@@ -1,6 +1,15 @@
 import { Brain, Instagram, Music2, Youtube } from 'lucide-react';
 
 export const Footer = ({ onContactClick }: { onContactClick?: () => void }) => {
+  const scrollToSection = (e: React.MouseEvent<HTMLAnchorElement>, href: string) => {
+    e.preventDefault();
+    const id = href.replace('#', '');
+    const element = document.getElementById(id);
+    if (element) {
+      element.scrollIntoView({ behavior: 'smooth' });
+    }
+  };
+
   return (
     <footer className="relative z-10 border-t border-white/10 bg-[#0B0F19] pt-20 pb-10 mt-12 w-full">
       <div className="max-w-7xl mx-auto px-6 md:px-12">
@@ -23,11 +32,11 @@ export const Footer = ({ onContactClick }: { onContactClick?: () => void }) => {
           <div>
             <h4 className="text-white font-medium mb-6">Navigation</h4>
             <ul className="flex flex-col gap-4 text-sm text-white/50">
-              <li><a href="#diagnostic" className="hover:text-white transition-colors">Mon diagnostic</a></li>
-              <li><a href="#temoignages" className="hover:text-white transition-colors">Témoignages</a></li>
-              <li><a href="#methode" className="hover:text-white transition-colors">La méthode</a></li>
-              <li><a href="#offres" className="hover:text-white transition-colors">Les offres</a></li>
-              <li><a href="#faq" className="hover:text-white transition-colors">FAQ</a></li>
+              <li><a href="#diagnostic" onClick={(e) => scrollToSection(e, '#diagnostic')} className="hover:text-white transition-colors">Mon diagnostic</a></li>
+              <li><a href="#temoignages" onClick={(e) => scrollToSection(e, '#temoignages')} className="hover:text-white transition-colors">Témoignages</a></li>
+              <li><a href="#methode" onClick={(e) => scrollToSection(e, '#methode')} className="hover:text-white transition-colors">La méthode</a></li>
+              <li><a href="#offres" onClick={(e) => scrollToSection(e, '#offres')} className="hover:text-white transition-colors">Les offres</a></li>
+              <li><a href="#faq" onClick={(e) => scrollToSection(e, '#faq')} className="hover:text-white transition-colors">FAQ</a></li>
             </ul>
           </div>
 

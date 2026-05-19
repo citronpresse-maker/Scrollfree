@@ -14,6 +14,16 @@ export const Hero = () => {
     { name: 'FAQ', href: '#faq' },
   ];
 
+  const scrollToSection = (e: React.MouseEvent<HTMLAnchorElement>, href: string) => {
+    e.preventDefault();
+    const id = href.replace('#', '');
+    const element = document.getElementById(id);
+    if (element) {
+      element.scrollIntoView({ behavior: 'smooth' });
+      setIsMenuOpen(false);
+    }
+  };
+
   return (
     <div className="relative min-h-screen">
       <div className="absolute inset-0 -z-10 overflow-hidden pointer-events-none">
@@ -107,6 +117,7 @@ export const Hero = () => {
             <a
               key={link.name}
               href={link.href}
+              onClick={(e) => scrollToSection(e, link.href)}
               className="text-[17px] leading-[31px] m-0 p-0 text-white hover:text-white/80 transition-colors"
             >
               {link.name}
@@ -135,7 +146,7 @@ export const Hero = () => {
                 key={link.name}
                 href={link.href}
                 className="text-lg font-medium opacity-60 hover:opacity-100 transition-opacity"
-                onClick={() => setIsMenuOpen(false)}
+                onClick={(e) => scrollToSection(e, link.href)}
               >
                 {link.name}
               </a>
@@ -177,7 +188,11 @@ export const Hero = () => {
             transition={{ duration: 0.8, delay: 0.4, ease: "easeOut" }}
             className="flex flex-col sm:flex-row gap-4 md:gap-5"
           >
-            <a href="#offres" className="glass-cta-primary group flex items-center justify-center text-center no-underline">
+            <a 
+              href="#offres" 
+              onClick={(e) => scrollToSection(e, '#offres')}
+              className="glass-cta-primary group flex items-center justify-center text-center no-underline"
+            >
               Reprendre le contrôle
             </a>
 
