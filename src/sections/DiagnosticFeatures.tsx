@@ -40,7 +40,7 @@ const itemVariants = {
 
 export const DiagnosticFeatures = () => {
   return (
-    <section id="diagnostic" className="relative z-10 px-6 pt-64 pb-32 md:py-40 md:px-12 max-w-7xl mx-auto flex flex-col items-center text-center">
+    <section className="relative z-10 px-6 pt-64 pb-32 md:py-40 md:px-12 max-w-7xl mx-auto flex flex-col items-center text-center">
       <m.h2 
         initial={{ opacity: 0, y: 20 }}
         whileInView={{ opacity: 1, y: 0 }}

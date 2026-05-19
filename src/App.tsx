@@ -67,29 +67,41 @@ export default function App() {
               <Stats />
             </Suspense>
             
-            <Suspense fallback={<SectionPlaceholder height="100vh" />}>
-              <DiagnosticFeatures />
-            </Suspense>
+            <div id="diagnostic">
+              <Suspense fallback={<SectionPlaceholder height="100vh" />}>
+                <DiagnosticFeatures />
+              </Suspense>
+            </div>
             
-            <Suspense fallback={<SectionPlaceholder height="80vh" />}>
-              <Testimonials />
-            </Suspense>
+            <div id="temoignages">
+              <Suspense fallback={<SectionPlaceholder height="80vh" />}>
+                <Testimonials />
+              </Suspense>
+            </div>
             
-            <Suspense fallback={<SectionPlaceholder height="100vh" />}>
-              <Method />
-            </Suspense>
+            <div id="methode">
+              <Suspense fallback={<SectionPlaceholder height="100vh" />}>
+                <Method />
+              </Suspense>
+            </div>
             
-            <Suspense fallback={<SectionPlaceholder height="80vh" />}>
-              <SuccessFeatures />
-            </Suspense>
+            <div id="success">
+              <Suspense fallback={<SectionPlaceholder height="80vh" />}>
+                <SuccessFeatures />
+              </Suspense>
+            </div>
             
-            <Suspense fallback={<SectionPlaceholder height="100vh" />}>
-              <Pricing onWaitlistClick={(pack) => setWaitlistState({ isOpen: true, pack })} />
-            </Suspense>
+            <div id="offres">
+              <Suspense fallback={<SectionPlaceholder height="100vh" />}>
+                <Pricing onWaitlistClick={(pack) => setWaitlistState({ isOpen: true, pack })} />
+              </Suspense>
+            </div>
 
-            <Suspense fallback={<SectionPlaceholder height="80vh" />}>
-              <FAQ />
-            </Suspense>
+            <div id="faq">
+              <Suspense fallback={<SectionPlaceholder height="80vh" />}>
+                <FAQ />
+              </Suspense>
+            </div>
           </main>
           
           <Suspense fallback={<SectionPlaceholder height="20vh" subtle />}>
