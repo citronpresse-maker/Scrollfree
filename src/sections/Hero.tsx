@@ -21,6 +21,7 @@ export const Hero = () => {
     if (element) {
       element.scrollIntoView({ behavior: 'smooth' });
       setIsMenuOpen(false);
+      window.history.replaceState(null, '', window.location.pathname);
     }
   };
 

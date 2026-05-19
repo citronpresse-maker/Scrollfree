@@ -7,6 +7,7 @@ export const Footer = ({ onContactClick }: { onContactClick?: () => void }) => {
     const element = document.getElementById(id);
     if (element) {
       element.scrollIntoView({ behavior: 'smooth' });
+      window.history.replaceState(null, '', window.location.pathname);
     }
   };
 
