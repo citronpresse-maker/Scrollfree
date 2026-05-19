@@ -1994,14 +1994,14 @@ const levelLabels=['','Éveillé','Distrait','Absorbé','Submergé'];
   };
 
 
-  // Construire le nom de fichier image (ex: flaneur_1.png)
+  // Construire le nom de fichier image (ex: flaneur_1.webp)
   const IMAGE_NAMES = {
     relie:'relie', automate:'automate', explorateur:'explorateur',
     flaneur:'flaneur', fugitif:'fugitif', chasseur:'stimule',
     observateur:'observateur', validant:'valide',
   };
   const imgBaseName = (IMAGE_NAMES[archKey] || archKey) + '_' + level;
-  const imgSrc = `images/${imgBaseName}.png`;
+  const imgSrc = `image/${imgBaseName}.webp`;
 
   const cardEl=document.getElementById('resultCard');
   if(cardEl){cardEl.innerHTML=`<div class="arch-intro-label">Ton archétype est</div>

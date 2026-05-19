@@ -1,0 +1,24 @@
+{
+  "rewrites": [
+    {
+      "source": "/simulateur",
+      "destination": "/simulateur.html"
+    },
+    {
+      "source": "/cgv",
+      "destination": "/cgv.html"
+    },
+    {
+      "source": "/confidentialite",
+      "destination": "/confidentialite.html"
+    },
+    {
+      "source": "/mentions-legales",
+      "destination": "/mentions-legales.html"
+    },
+    {
+      "source": "/remboursement",
+      "destination": "/remboursement.html"
+    }
+  ]
+}
