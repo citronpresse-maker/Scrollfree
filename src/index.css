@@ -1,0 +1,172 @@
+@import "tailwindcss";
+
+@theme {
+  --font-sans: "Helvetica Neue", Helvetica, Arial, ui-sans-serif, system-ui, sans-serif;
+}
+
+@layer base {
+  body {
+    @apply text-white antialiased tracking-tight;
+    background-color: #0B0F19;
+  }
+}
+
+.text-stroke {
+  -webkit-text-stroke: 1px rgba(255, 255, 255, 0.8);
+  color: transparent;
+}
+
+@layer components {
+  .glass-cta {
+    @apply relative overflow-hidden px-[32px] py-4 border-none rounded-full text-white text-lg font-bold tracking-[-0.01em] cursor-pointer transition-all duration-300;
+    background-color: rgba(255, 255, 255, 0.04) !important;
+    background-blend-mode: luminosity;
+    box-shadow: inset 0 1px 1px rgba(255,255,255,0.12);
+    isolation: isolate;
+    text-decoration: none !important;
+  }
+
+  .glass-cta::after {
+    content: '';
+    position: absolute;
+    inset: -2px;
+    border-radius: 9999px;
+    background: linear-gradient(135deg, #ffffff, #D4A373, #ffffff);
+    background-size: 200% auto;
+    animation: profile-gradient-shift 3s linear infinite;
+    z-index: -1;
+    opacity: 0;
+    filter: blur(8px);
+    transition: opacity 0.3s, filter 0.3s;
+  }
+
+  .glass-cta:hover {
+    transform: translateY(-3px) !important;
+    background: linear-gradient(135deg, #ffffff 0%, #F4D3A1 50%, #ffffff 100%) !important;
+    background-size: 200% auto;
+    color: #1a1a24;
+    box-shadow: 0 12px 30px rgba(212, 163, 115, 0.45);
+  }
+
+  .glass-cta:hover::after {
+    opacity: 0.8;
+    filter: blur(12px);
+  }
+
+  .glass-cta-primary {
+    @apply relative overflow-hidden px-[32px] py-4 border-none rounded-full text-black text-lg font-bold tracking-[-0.01em] cursor-pointer bg-[#F0F0F0] transition-all duration-300;
+    box-shadow: inset 0 1px 1px rgba(255,255,255,0.12);
+    isolation: isolate;
+    text-decoration: none !important;
+  }
+
+  .glass-cta-primary::after {
+    content: '';
+    position: absolute;
+    inset: -2px;
+    border-radius: 9999px;
+    background: linear-gradient(135deg, #ffffff, #D4A373, #ffffff);
+    background-size: 200% auto;
+    animation: profile-gradient-shift 3s linear infinite;
+    z-index: -1;
+    opacity: 0;
+    filter: blur(8px);
+    transition: opacity 0.3s, filter 0.3s;
+  }
+
+  .glass-cta-primary:hover {
+    transform: translateY(-3px) !important;
+    background: linear-gradient(135deg, #ffffff 0%, #F4D3A1 50%, #ffffff 100%) !important;
+    background-size: 200% auto;
+    color: #1a1a24;
+    box-shadow: 0 12px 30px rgba(212, 163, 115, 0.45);
+  }
+
+  .glass-cta-primary:hover::after {
+    opacity: 0.8;
+    filter: blur(12px);
+  }
+
+  .glass-cta::before, .glass-cta-primary::before {
+    content: "";
+    @apply absolute inset-0 rounded-[inherit] pointer-events-none p-[1.4px];
+    background: linear-gradient(
+      180deg,
+      rgba(255,255,255,0.55) 0%,
+      rgba(255,255,255,0.18) 18%,
+      rgba(255,255,255,0) 42%,
+      rgba(255,255,255,0) 58%,
+      rgba(255,255,255,0.18) 82%,
+      rgba(255,255,255,0.55) 100%
+    );
+    -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+    -webkit-mask-composite: xor;
+    mask-composite: exclude;
+  }
+}
+
+@keyframes gpuPulse {
+  0% { transform: scale(1); opacity: 0.8; }
+  50% { transform: scale(1.1); opacity: 1; }
+  100% { transform: scale(1); opacity: 0.8; }
+}
+
+.gpu-glow {
+  /* Removed global will-change: transform, opacity for mobile performance */
+  animation: gpuPulse 3.6s ease-in-out infinite;
+}
+
+/* ── BTN PROFILE GLOW ── */
+@keyframes profile-gradient-shift {
+  0% { background-position: 0% center; }
+  100% { background-position: 200% center; }
+}
+
+.btn-profile-glow {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  padding: 16px 32px; /* px-8 py-4: height matching the model CTA */
+  border: none;
+  border-radius: 9999px; /* rounded-full */
+  font-family: "Helvetica Neue", Helvetica, Arial, ui-sans-serif, system-ui, sans-serif !important; /* Font matching the model CTA */
+  font-size: 1.125rem !important; /* text-lg matching the model CTA */
+  font-weight: 700 !important; /* font-bold matching the model CTA */
+  color: #1a1a24; /* text-[#1a1a24] */
+  cursor: pointer;
+  background: linear-gradient(135deg, #ffffff 0%, #D4A373 50%, #ffffff 100%);
+  background-size: 200% auto;
+  animation: profile-gradient-shift 3s linear infinite;
+  transition: transform 0.2s cubic-bezier(0.4, 0, 0.2, 1), box-shadow 0.2s;
+  text-decoration: none;
+  isolation: isolate;
+  box-shadow: 0 8px 24px rgba(212, 163, 115, 0.2);
+}
+
+.btn-profile-glow::after {
+  content: '';
+  position: absolute;
+  inset: -2px;
+  border-radius: 9999px;
+  background: linear-gradient(135deg, #ffffff, #D4A373, #ffffff);
+  background-size: 200% auto;
+  animation: profile-gradient-shift 3s linear infinite;
+  z-index: -1;
+  opacity: 0.4;
+  filter: blur(8px);
+  transition: opacity 0.3s, filter 0.3s;
+}
+
+.btn-profile-glow:hover {
+  transform: translateY(-3px) !important;
+  background: linear-gradient(135deg, #ffffff 0%, #F4D3A1 50%, #ffffff 100%);
+  background-size: 200% auto;
+  box-shadow: 0 12px 30px rgba(212, 163, 115, 0.45);
+}
+
+.btn-profile-glow:hover::after {
+  opacity: 0.8;
+  filter: blur(12px);
+}
