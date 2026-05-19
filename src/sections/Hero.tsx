@@ -177,7 +177,7 @@ export const Hero = () => {
             className="text-[19.4px] text-white/90 mb-12 max-w-2xl leading-[1.6] font-normal tracking-wide"
           >
             Scrollfree t'aide à reprendre le contrôle<br className="hidden sm:block" />
-            sur les écrans en <span className="font-bold text-white">21 jours</span> avec<br className="hidden sm:block" />
+            sur les écrans en <span className="font-bold text-white">21 jours chrono</span> avec<br className="hidden sm:block" />
             la méthode personnalisée Origine.
           </m.p>
 
