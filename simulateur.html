@@ -1113,7 +1113,25 @@ h1 .line-gradient {
 .sliders-inner { padding: 18px; border: 1px solid var(--border); border-top: none; border-radius: 0 0 14px 14px; background: var(--card); }
 
 /* ── SECTION DIVIDER ── */
-.section-divider { height: 1px; background: linear-gradient(90deg, transparent, var(--border2), transparent); margin: 32px 0; }
+/* ── SECTION DIVIDER WITH PERFORMANCE-OPTIMIZED GLOW PULSE ── */
+@keyframes dividerPulse {
+  0%, 100% {
+    opacity: 0.15;
+    filter: drop-shadow(0 0 1px rgba(212, 163, 115, 0));
+  }
+  50% {
+    opacity: 0.95;
+    filter: drop-shadow(0 0 8px rgba(212, 163, 115, 0.45));
+  }
+}
+.section-divider {
+  height: 1px;
+  background: linear-gradient(90deg, transparent 5%, rgba(212, 163, 115, 0.5) 50%, transparent 95%);
+  margin: 56px 0;
+  position: relative;
+  will-change: opacity, filter;
+  animation: dividerPulse 4s ease-in-out infinite;
+}
 
 /* ── SINGLE CTA ── */
 .single-cta-wrap { margin-bottom: 24px; }
@@ -1848,24 +1866,26 @@ h1 .line-gradient {
 
     <!-- SLIDERS — caché par défaut, s'ouvre au survol ou au clic -->
     <div class="howto-body" id="slidersBody" style="margin-bottom: 0; padding-top: 0;">
-      <!-- Howto accordion intégré -->
-      <div class="howto-accordion" style="margin-bottom:12px;border-radius:12px;">
-        <button class="howto-trigger" onclick="toggleHowto()"><span>📱 Comment voir mon temps d'écran ?</span><span class="howto-arrow" id="howtoArrow">›</span></button>
-        <div class="howto-body" id="howtoBody">
-          <div class="howto-tabs"><button class="howto-tab active" onclick="switchHowtoTab('iphone',this)">🍎 iPhone</button><button class="howto-tab" onclick="switchHowtoTab('android',this)">🤖 Android</button></div>
-          <div class="howto-content active" id="howto-iphone">
-            <ul class="howto-steps">
-              <li><span class="howto-num">1</span>Va dans <strong>Réglages</strong></li>
-              <li><span class="howto-num">2</span>Appuie sur <strong>Temps d'écran</strong></li>
-              <li><span class="howto-num">3</span>Clique sur <strong>"Voir toute l'activité"</strong> pour le détail par app</li>
-            </ul>
+      <!-- Howto minimaliste intégré -->
+      <div class="sf-helper-box" style="margin-top: 4px; margin-bottom: 24px; padding: 18px 20px; background: rgba(255, 255, 255, 0.01); border: 1px dashed rgba(212, 163, 115, 0.15); border-radius: 20px; display: grid; grid-template-columns: 1fr 1fr; gap: 20px; backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px);">
+        <!-- Colonne iOS -->
+        <div style="display: flex; flex-direction: column; gap: 8px;">
+          <div style="display: flex; align-items: center; gap: 8px; font-size: 11px; font-weight: 700; color: var(--accent); letter-spacing: 0.06em; text-transform: uppercase;">
+            <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" style="color: var(--accent);"><path d="M12 20.94c1.88-1.06 3-3.07 3-5.24a5 5 0 0 0-10 0c0 2.17 1.12 4.18 3 5.24V22h4v-1.06z"/><path d="M12 2a5 5 0 0 1 5 5v3a5 5 0 0 1-10 0V7a5 5 0 0 1 5-5z"/></svg> 
+            Sur iOS (iPhone)
           </div>
-          <div class="howto-content" id="howto-android">
-            <ul class="howto-steps">
-              <li><span class="howto-num">1</span>Va dans <strong>Paramètres</strong></li>
-              <li><span class="howto-num">2</span>Cherche <strong>"Bien-être numérique"</strong></li>
-              <li><span class="howto-num">3</span>Appuie sur le <strong>graphique circulaire</strong> pour le détail par app</li>
-            </ul>
+          <div style="font-size: 12.5px; color: var(--muted2); line-height: 1.5; font-weight: 300; letter-spacing: -0.01em;">
+            Réglages → Temps d'écran → <span style="color: #ffffff; font-weight: 500;">Voir toute l'activité</span>
+          </div>
+        </div>
+        <!-- Colonne Android -->
+        <div style="display: flex; flex-direction: column; gap: 8px; border-left: 1px solid rgba(255, 255, 255, 0.06); padding-left: 20px;">
+          <div style="display: flex; align-items: center; gap: 8px; font-size: 11px; font-weight: 700; color: var(--accent); letter-spacing: 0.06em; text-transform: uppercase;">
+            <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" style="color: var(--accent);"><rect x="5" y="2" width="14" height="20" rx="2" ry="2"/><line x1="12" y1="18" x2="12.01" y2="18"/></svg>
+            Sur Android
+          </div>
+          <div style="font-size: 12.5px; color: var(--muted2); line-height: 1.5; font-weight: 300; letter-spacing: -0.01em;">
+            Paramètres → Bien-être numérique → <span style="color: #ffffff; font-weight: 500;">Graphique circulaire</span>
           </div>
         </div>
       </div>
@@ -1917,16 +1937,18 @@ h1 .line-gradient {
       </div>
       
     </div>
-	 
-    <!-- Pulse Instruction Pill -->
-    <div style="font-style: normal; color: var(--accent); font-size: 14.5px; font-weight: 600; letter-spacing: 0.02em; padding: 14px 28px; background: rgba(212, 163, 115, 0.04); border: 1px solid rgba(212, 163, 115, 0.12); border-radius: 100px; display: inline-flex; align-items: center; gap: 10px; box-shadow: 0 4px 16px rgba(0,0,0,0.15);">
-      <span style="display: inline-block; width: 8px; height: 8px; border-radius: 50%; background: #D4A373; box-shadow: 0 0 8px #D4A373; animation: pillPulse 1.6s infinite;"></span>
-      <span>Réponds spontanément : le but est d’avoir une réponse instinctive</span>
-    </div>
   </div>
 
   <!-- SEPARATEUR VISUEL -->
-  <div class="section-divider" style="margin: 40px 0 60px;"></div>
+  <div class="section-divider"></div>
+
+  <!-- INSTRUCTION BADGE -->
+  <div style="text-align: center; margin-bottom: 48px; animation: fadeUp 0.8s ease both;">
+    <div style="font-style: normal; color: var(--accent); font-size: 14.5px; font-weight: 600; letter-spacing: 0.02em; padding: 14px 28px; background: rgba(212, 163, 115, 0.04); border: 1px solid rgba(212, 163, 115, 0.12); border-radius: 100px; display: inline-flex; align-items: center; gap: 10px; box-shadow: 0 4px 16px rgba(0,0,0,0.15);">
+      <span style="display: inline-block; width: 8px; height: 8px; border-radius: 50%; background: #D4A373; box-shadow: 0 0 8px #D4A373; animation: pillPulse 1.6s infinite;"></span>
+      <span>Réponds instinctivement : le but est d’avoir une réponse instinctive</span>
+    </div>
+  </div>
 
   <!-- QUIZ -->
   <div id="quizSection" style="margin-bottom: 120px;">
