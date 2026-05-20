@@ -436,8 +436,18 @@ h1 .line-gradient {
 .howto-trigger:hover { color: var(--text); }
 .howto-arrow { font-size: 18px; color: var(--muted); transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1); line-height: 1; flex-shrink: 0; }
 .howto-arrow.open { transform: rotate(90deg); }
-.howto-body { max-height: 0; overflow: hidden; transition: max-height 0.4s cubic-bezier(0.4, 0, 0.2, 1); }
-.howto-body.open { max-height: 600px; border-top: 1px solid var(--border); }
+.howto-body {
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height 0.45s cubic-bezier(0.16, 1, 0.3, 1), padding-top 0.4s ease, border-top 0.4s ease;
+  padding-top: 0;
+  border-top: 1px solid transparent;
+}
+.howto-body.open {
+  max-height: 900px;
+  padding-top: 16px;
+  border-top: 1px solid rgba(255, 255, 255, 0.08);
+}
 .howto-tabs { display: flex; gap: 8px; padding: 14px 18px 0; }
 .howto-tab { flex: 1; padding: 8px 12px; border-radius: 9px; border: 1px solid var(--border); background: transparent; color: var(--muted); font-family: inherit; font-size: 13px; font-weight: 600; cursor: pointer; transition: all 0.2s; }
 .howto-tab.active { background: rgba(212, 163, 115, 0.1); border-color: rgba(212, 163, 115, 0.4); color: var(--text); }
@@ -504,42 +514,157 @@ h1 .line-gradient {
 .brain-arrow { font-size: 28px; color: var(--accent); animation: bounceDown 1.5s ease-in-out infinite; display: block; }
 @keyframes bounceDown { 0%, 100% { transform: translateY(0) } 50% { transform: translateY(8px) } }
 
-/* ── QUIZ ── */
-.quiz-wrapper { padding: 0; margin-bottom: 20px; }
-.quiz-progress-bar-bg { height: 4px; background: rgba(255, 255, 255, 0.06); border-radius: 4px; margin-bottom: 24px; overflow: hidden; }
-.quiz-progress-bar-fill { height: 100%; border-radius: 4px; background: linear-gradient(90deg, var(--violet), var(--violet-light)); transition: width 0.5s cubic-bezier(0.4, 0, 0.2, 1); }
-.quiz-step-label { font-size: 13px; font-weight: 600; letter-spacing: 0.15em; text-transform: uppercase; color: var(--muted); margin-bottom: 10px; display: flex; justify-content: space-between; }
-.quiz-step-label span { color: var(--violet-light); }
-.quiz-question { font-size: clamp(17px, 4vw, 20px); font-weight: 600; line-height: 1.35; color: var(--text); margin-bottom: 24px; letter-spacing: -0.01em; }
-.quiz-options { display: flex; flex-direction: column; gap: 10px; }
+/* ── QUIZ SECTION HIGH-END VISUAL REFINEMENT ── */
+.quiz-wrapper {
+  background: rgba(255, 255, 255, 0.015);
+  border: 1px solid rgba(255, 255, 255, 0.04);
+  border-radius: 32px;
+  padding: 36px;
+  box-shadow: 0 30px 60px -25px rgba(0, 0, 0, 0.6), inset 0 1px 1px rgba(255, 255, 255, 0.05);
+  margin-bottom: 20px;
+  position: relative;
+  overflow: hidden;
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+}
+@media (max-width: 640px) {
+  .quiz-wrapper {
+    padding: 24px 20px;
+    border-radius: 24px;
+  }
+}
+.quiz-progress-bar-bg {
+  height: 6px;
+  background: rgba(255, 255, 255, 0.04);
+  border-radius: 100px;
+  margin-bottom: 32px;
+  overflow: hidden;
+  position: relative;
+}
+.quiz-progress-bar-fill {
+  height: 100%;
+  border-radius: 100px;
+  background: linear-gradient(90deg, #D4A373 0%, #ffcda5 100%);
+  box-shadow: 0 0 12px rgba(212, 163, 115, 0.4);
+  transition: width 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+}
+.quiz-step-label {
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: var(--muted);
+  margin-bottom: 20px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.quiz-step-badge {
+  background: rgba(212, 163, 115, 0.08);
+  border: 1px solid rgba(212, 163, 115, 0.15);
+  padding: 6px 12px;
+  border-radius: 100px;
+  color: var(--accent) !important;
+  font-weight: 800;
+  display: inline-flex;
+}
+.quiz-step-pct {
+  color: var(--accent) !important;
+  font-weight: 700;
+  opacity: 0.95;
+}
+.quiz-question {
+  font-size: clamp(20px, 4vw, 24px);
+  font-weight: 700;
+  line-height: 1.35;
+  color: #ffffff;
+  margin-bottom: 32px;
+  letter-spacing: -0.02em;
+  font-family: 'Outfit', sans-serif;
+  text-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
+}
+.quiz-options {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
 .quiz-option {
   background: rgba(255, 255, 255, 0.02);
   border: 1px solid rgba(255, 255, 255, 0.05);
-  border-radius: 16px;
-  padding: 16px 20px;
+  border-radius: 20px;
+  padding: 18px 24px;
   cursor: pointer;
   display: flex;
   align-items: center;
-  gap: 14px;
-  transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
-  font-size: 15px;
-  color: rgba(255, 255, 255, 0.85);
-  font-weight: 500;
-  line-height: 1.45;
+  gap: 16px;
+  transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+  font-size: 15.5px;
+  font-weight: 400;
+  color: rgba(255, 255, 255, 0.75);
+  position: relative;
+  overflow: hidden;
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.02);
   text-align: left;
 }
 .quiz-option:hover {
-  border-color: rgba(212, 163, 115, 0.45);
-  background: rgba(212, 163, 115, 0.05);
+  background: rgba(212, 163, 115, 0.04);
+  border-color: rgba(212, 163, 115, 0.3);
   color: #ffffff;
-  transform: translateX(4px);
+  transform: translateY(-2px);
+  box-shadow: 0 12px 24px -10px rgba(212, 163, 115, 0.15), inset 0 1px 0 rgba(255, 255, 255, 0.05);
 }
 .quiz-option.selected {
-  border-color: var(--violet-light);
-  background: rgba(212, 163, 115, 0.12);
+  background: linear-gradient(135deg, rgba(212, 163, 115, 0.15) 0%, rgba(255, 205, 165, 0.08) 100%);
+  border-color: var(--accent);
   color: #ffffff;
+  font-weight: 600;
+  box-shadow: 0 16px 32px -12px rgba(212, 163, 115, 0.25), inset 0 1px 0 rgba(255, 255, 255, 0.1);
 }
-.quiz-option-emoji { font-size: 20px; flex-shrink: 0; width: 28px; text-align: center; }
+.quiz-option-emoji {
+  width: 36px;
+  height: 36px;
+  border-radius: 12px;
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid rgba(255, 255, 255, 0.06);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  transition: all 0.25s ease;
+}
+.quiz-option:hover .quiz-option-emoji {
+  background: rgba(212, 163, 115, 0.1);
+  border-color: rgba(212, 163, 115, 0.2);
+}
+.quiz-option.selected .quiz-option-emoji {
+  background: var(--accent);
+  border-color: var(--accent);
+  color: #0b0f19;
+  box-shadow: 0 4px 12px rgba(212, 163, 115, 0.3);
+}
+.quiz-svg {
+  width: 18px;
+  height: 18px;
+  color: var(--accent);
+  stroke-width: 2.2px;
+  transition: transform 0.25s ease, color 0.25s ease;
+}
+.quiz-option:hover .quiz-svg {
+  color: #ffffff;
+  transform: scale(1.05);
+}
+.quiz-option.selected .quiz-svg {
+  color: #0b0f19;
+}
+
+/* Question transition animations */
+@keyframes qFadeIn {
+  from { opacity: 0; transform: translateY(12px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+.quiz-question-animate {
+  animation: qFadeIn 0.4s cubic-bezier(0.16, 1, 0.3, 1) both;
+}
 
 /* ── EMAIL GATE ── */
 #emailGateSection { display: none; }
@@ -1425,7 +1550,7 @@ h1 .line-gradient {
 /* ── SF HEADER & FOOTER STYLE ── */
 .sf-navbar {
   position: absolute;
-  top: 0;
+  top: 24px;
   left: 0;
   right: 0;
   padding: 48px 48px;
@@ -1438,6 +1563,7 @@ h1 .line-gradient {
 }
 @media (max-width: 768px) {
   .sf-navbar {
+    top: 12px;
     padding: 24px 24px;
   }
 }
@@ -1715,7 +1841,7 @@ h1 .line-gradient {
   <!-- SECTION AJUSTER - CADRE COMPACT INDÉPENDANT -->
   <div class="ajuster-card-wrapper" id="ajusterWrapper" onmouseenter="openSlidersHover()" onmouseleave="closeSlidersHover()">
     <!-- AJUSTER MON TEMPS — bouton unique de style premium -->
-    <button class="ajuster-btn" onclick="toggleSliders()" id="ajusterBtn" style="margin: 0; width: 100%; display: flex; justify-content: space-between; align-items: center; gap: 12px; border: none; background: transparent; padding: 0; cursor: pointer; text-align: left; transition: opacity 0.2s;">
+    <button class="ajuster-btn-trigger" onclick="toggleSliders()" id="ajusterBtn" style="margin: 0; width: 100%; display: flex; justify-content: space-between; align-items: center; gap: 12px; border: none; background: transparent; padding: 0; cursor: pointer; text-align: left; transition: opacity 0.2s;">
       <span class="ajuster-btn-text" style="font-family: inherit; font-size: 13.5px; font-weight: 600; letter-spacing: 0.05em; color: var(--accent); display: flex; align-items: center;">Entrer mon vrai temps d’écran</span>
       <span class="ajuster-btn-arrow" id="slidersArrow" style="font-size: 16px; color: var(--accent); transition: transform 0.3s;">›</span>
     </button>
@@ -1799,12 +1925,17 @@ h1 .line-gradient {
     </div>
   </div>
 
+  <!-- SEPARATEUR VISUEL -->
+  <div class="section-divider" style="margin: 40px 0 60px;"></div>
 
   <!-- QUIZ -->
   <div id="quizSection" style="margin-bottom: 120px;">
     <div class="quiz-wrapper">
       <div class="quiz-progress-bar-bg"><div class="quiz-progress-bar-fill" id="quizProgressBar" style="width:0%"></div></div>
-      <div class="quiz-step-label"><span id="quizStepText">Question 1 / 8</span><span id="quizStepPct">0%</span></div>
+      <div class="quiz-step-label">
+        <span class="quiz-step-badge" id="quizStepText">Question 1 / 8</span>
+        <span class="quiz-step-pct" id="quizStepPct">0%</span>
+      </div>
       <div class="quiz-question" id="quizQuestion"></div>
       <div class="quiz-options" id="quizOptions"></div>
     </div>
@@ -2378,12 +2509,7 @@ function toggleSliders(){
   w.classList.toggle('active',o);
   w.classList.toggle('clicked-open',o);
   if(o) {
-    b.style.paddingTop = '16px';
-    b.style.borderTop = '1px solid rgba(255, 255, 255, 0.08)';
     setTimeout(()=>b.scrollIntoView({behavior:'smooth',block:'nearest'}),100);
-  } else {
-    b.style.paddingTop = '0';
-    b.style.borderTop = 'none';
   }
 }
 let slidersHoverTimer = null;
@@ -2394,8 +2520,6 @@ function openSlidersHover(){
   w.classList.add('active');
   b.classList.add('open');
   a.classList.add('open');
-  b.style.paddingTop = '16px';
-  b.style.borderTop = '1px solid rgba(255, 255, 255, 0.08)';
 }
 function closeSlidersHover(){
   slidersHoverTimer = setTimeout(()=>{
@@ -2405,8 +2529,6 @@ function closeSlidersHover(){
       w.classList.remove('active');
       b.classList.remove('open');
       a.classList.remove('open');
-      b.style.paddingTop = '0';
-      b.style.borderTop = 'none';
     }
   }, 350);
 }
@@ -2419,15 +2541,56 @@ let currentQ=0;
 let quizScores={R:0,A:0,E:0,F:0,G:0,C:0,O:0,V:0};
 let selectedOpt=null;
 
+function getPremiumIcon(emoji) {
+  const map = {
+    '👥': `<svg class="quiz-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M22 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>`,
+    '🔁': `<svg class="quiz-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21.5 2v6h-6M21.34 15.57a10 10 0 1 1-.57-8.38l5.67-5.67"/></svg>`,
+    '🔄': `<svg class="quiz-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21.5 2v6h-6M21.34 15.57a10 10 0 1 1-.57-8.38l5.67-5.67"/></svg>`,
+    '🔍': `<svg class="quiz-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>`,
+    '😴': `<svg class="quiz-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2a10 10 0 1 0 10 10H12V2z"/><path d="M12 2a10 10 0 0 1 10 10h-10V2z"/></svg>`,
+    '😶': `<svg class="quiz-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22c5.523 0 10-4.477 10-10S17.523 2 12 2 2 6.477 2 12s4.477 10 10 10z"/><line x1="8" y1="12" x2="16" y2="12"/></svg>`,
+    '💡': `<svg class="quiz-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 14c.2-1 .7-1.7 1.5-2.5 1-.9 1.5-2.2 1.5-3.5A5 5 0 0 0 8 8c0 1.3.5 2.6 1.5 3.5.8.8 1.3 1.5 1.5 2.5"/><line x1="9" y1="18" x2="15" y2="18"/><line x1="10" y1="22" x2="14" y2="22"/></svg>`,
+    '👁️': `<svg class="quiz-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M2 12s3-7 10-7 10 7 10 7-3 7-10 7-10-7-10-7z"/><circle cx="12" cy="12" r="3"/></svg>`,
+    '😂': `<svg class="quiz-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg>`,
+    '💬': `<svg class="quiz-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>`,
+    '❤️': `<svg class="quiz-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>`,
+    '⚙️': `<svg class="quiz-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 1 1-2.83 2.83l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-4 0v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 1 1-2.83-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1 0-4h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 1 1 2.83-2.83l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 4 0v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 1 1 2.83 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 0 4h-.09a1.65 1.65 0 0 0-1.51 1z"/></svg>`,
+    '🪞': `<svg class="quiz-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M2 12s3-7 10-7 10 7 10 7-3 7-10 7-10-7-10-7z"/><circle cx="12" cy="12" r="3"/></svg>`,
+    '🔭': `<svg class="quiz-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>`,
+    '🌀': `<svg class="quiz-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg>`,
+    '✨': `<svg class="quiz-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364-6.364l-.707.707M6.343 17.657l-.707.707m0-12.728l.707.707m11.314 11.314l.707-.707M12 8a4 4 0 1 0 0 8 4 4 0 0 0 0-8z"/></svg>`,
+    '🤝': `<svg class="quiz-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M22 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>`,
+    '🌐': `<svg class="quiz-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg>`,
+    '📤': `<svg class="quiz-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="18" cy="5" r="3"/><circle cx="6" cy="12" r="3"/><circle cx="18" cy="19" r="3"/><line x1="8.59" y1="13.51" x2="15.42" y2="17.49"/><line x1="15.41" y1="6.51" x2="8.59" y2="10.49"/></svg>`,
+    '⚡': `<svg class="quiz-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg>`,
+    '😌': `<svg class="quiz-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M8 14s1.5 2 4 2 4-2 4-2"/><line x1="9" y1="9" x2="9.01" y2="9"/><line x1="15" y1="9" x2="15.01" y2="9"/></svg>`,
+    '📚': `<svg class="quiz-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/></svg>`
+  };
+  return map[emoji] || `<span style="font-size:18px;">${emoji}</span>`;
+}
+
 function renderQuestion(){
   const q=quizQuestions[currentQ],total=quizQuestions.length,pct=Math.round((currentQ/total)*100);
   const g=id=>document.getElementById(id);
   if(g('quizStepText'))g('quizStepText').textContent=`Question ${currentQ+1} / ${total}`;
   if(g('quizStepPct'))g('quizStepPct').textContent=pct+'%';
   if(g('quizProgressBar'))g('quizProgressBar').style.width=pct+'%';
-  if(g('quizQuestion'))g('quizQuestion').innerHTML=q.q;
+  
+  const qq=g('quizQuestion');
+  if(qq) {
+    qq.innerHTML=q.q;
+    qq.classList.remove('quiz-question-animate');
+    void qq.offsetWidth; // Force layout reflow
+    qq.classList.add('quiz-question-animate');
+  }
+  
   const opts=g('quizOptions');
-  if(opts)opts.innerHTML=q.options.map((o,i)=>`<div class="quiz-option" onclick="selectOpt(${i})"><span class="quiz-option-emoji">${o.emoji}</span><span>${o.text}</span></div>`).join('');
+  if(opts) {
+    opts.innerHTML=q.options.map((o,i)=>`<div class="quiz-option" onclick="selectOpt(${i})"><span class="quiz-option-emoji">${getPremiumIcon(o.emoji)}</span><span>${o.text}</span></div>`).join('');
+    opts.classList.remove('quiz-question-animate');
+    void opts.offsetWidth; // Force layout reflow
+    opts.classList.add('quiz-question-animate');
+  }
   selectedOpt=null;
 }
 
