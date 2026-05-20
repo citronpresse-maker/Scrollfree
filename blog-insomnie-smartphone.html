@@ -1,0 +1,497 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pourquoi tu ne peux pas lâcher ton téléphone le soir | ScrollFree</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Sans:ital,wght@0,300;0,400;0,500;0,700;1,300&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg: #0B0F19;
+            --accent: #D4A373;
+            --accent-hot: #F4D3A1;
+            --text: #ffffff;
+            --muted: rgba(255, 255, 255, 0.4);
+            --muted2: rgba(255, 255, 255, 0.7);
+            --card: rgba(255, 255, 255, 0.03);
+            --border: rgba(255, 255, 255, 0.1);
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            background: var(--bg);
+            color: var(--text);
+            font-family: 'DM Sans', sans-serif;
+            line-height: 1.7;
+            overflow-x: hidden;
+            -webkit-font-smoothing: antialiased;
+            font-size: 1.1rem;
+        }
+
+        /* Grain Texture Overlay */
+        body::before {
+            content: '';
+            position: fixed;
+            inset: 0;
+            background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.03'/%3E%3C/svg%3E");
+            pointer-events: none;
+            z-index: 10;
+            opacity: 0.4;
+        }
+
+        .halo {
+            position: fixed;
+            width: 800px;
+            height: 800px;
+            border-radius: 50%;
+            background: radial-gradient(circle, rgba(212, 163, 115, 0.05) 0%, transparent 70%);
+            z-index: -1;
+            filter: blur(100px);
+        }
+
+        .container {
+            max-width: 850px;
+            margin: 0 auto;
+            padding: 120px 24px;
+        }
+
+        .eyebrow {
+            font-family: 'Bebas Neue', sans-serif;
+            color: var(--accent);
+            letter-spacing: 6px;
+            font-size: 1rem;
+            margin-bottom: 12px;
+            display: block;
+            text-transform: uppercase;
+        }
+
+        h1 {
+            font-family: 'Bebas Neue', sans-serif;
+            font-size: clamp(2.2rem, 7vw, 4rem);
+            line-height: 0.9;
+            margin-bottom: 24px;
+            text-transform: uppercase;
+            letter-spacing: -1px;
+        }
+
+        .meta {
+            color: var(--muted);
+            font-size: 0.8rem;
+            text-transform: uppercase;
+            letter-spacing: 3px;
+            font-weight: 500;
+        }
+
+        article {
+            color: var(--muted2);
+        }
+
+        p {
+            margin-bottom: 28px;
+        }
+
+        h2 {
+            font-family: 'Bebas Neue', sans-serif;
+            font-size: 2.3rem;
+            color: var(--text);
+            margin: 60px 0 24px;
+            letter-spacing: 1px;
+            line-height: 1.1;
+        }
+
+        h3 {
+            font-size: 1.3rem;
+            color: var(--accent-hot);
+            margin: 40px 0 18px;
+            font-weight: 600;
+            letter-spacing: -0.02em;
+        }
+
+        strong {
+            color: var(--text);
+            font-weight: 800;
+        }
+
+        .focus-box {
+            background: var(--card);
+            border: 1px solid var(--border);
+            padding: 40px;
+            margin: 64px 0;
+            border-radius: 16px;
+            position: relative;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.2);
+        }
+
+        .focus-box::before {
+            content: 'DOSSIER SCIENTIFIQUE';
+            position: absolute;
+            top: -14px;
+            left: 32px;
+            background: var(--bg);
+            padding: 0 16px;
+            color: var(--accent);
+            font-family: 'Bebas Neue', sans-serif;
+            letter-spacing: 3px;
+            font-size: 0.9rem;
+        }
+
+        blockquote {
+            font-style: italic;
+            border-left: 5px solid var(--accent);
+            padding: 10px 0 10px 32px;
+            margin: 56px 0;
+            font-size: 1.5rem;
+            color: var(--text);
+            line-height: 1.4;
+            background: linear-gradient(90deg, rgba(212, 163, 115, 0.05) 0%, transparent 100%);
+        }
+
+        .glossary {
+            display: block;
+            background: rgba(212, 163, 115, 0.08);
+            border-left: 2px solid var(--accent);
+            color: var(--accent-hot);
+            padding: 16px 24px;
+            border-radius: 0 8px 8px 0;
+            font-size: 0.9rem;
+            margin: 24px 0;
+            font-family: 'DM Sans', sans-serif;
+        }
+
+        .comparison-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 64px 0;
+            font-size: 1rem;
+            background: rgba(255,255,255,0.02);
+            border-radius: 12px;
+            overflow: hidden;
+        }
+
+        .comparison-table th, .comparison-table td {
+            padding: 20px;
+            border: 1px solid var(--border);
+            text-align: left;
+        }
+
+        .comparison-table th {
+            background: rgba(255, 255, 255, 0.05);
+            font-family: 'Bebas Neue', sans-serif;
+            letter-spacing: 2px;
+            font-size: 1.3rem;
+            color: var(--accent);
+        }
+
+        .cta-block {
+            margin-top: 100px;
+            text-align: center;
+            padding: 80px 40px;
+            background: radial-gradient(circle at top, rgba(212, 163, 115, 0.15) 0%, transparent 100%);
+            border-radius: 32px;
+            border: 1px solid rgba(212, 163, 115, 0.3);
+            box-shadow: 0 40px 80px rgba(0,0,0,0.4);
+        }
+
+        /* ── BTN PROFILE GLOW (Copied from index.css) ── */
+        @keyframes profile-gradient-shift {
+            0% { background-position: 0% center; }
+            100% { background-position: 200% center; }
+        }
+
+        .btn-profile-glow {
+            position: relative;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 12px;
+            padding: 16px 32px;
+            border: none;
+            border-radius: 9999px;
+            font-family: "Helvetica Neue", Helvetica, Arial, ui-sans-serif, system-ui, sans-serif !important;
+            font-size: 1.125rem !important;
+            font-weight: 700 !important;
+            color: #1a1a24;
+            cursor: pointer;
+            background: linear-gradient(135deg, #ffffff 0%, #D4A373 50%, #ffffff 100%);
+            background-size: 200% auto;
+            animation: profile-gradient-shift 3s linear infinite;
+            transition: transform 0.2s cubic-bezier(0.4, 0, 0.2, 1), box-shadow 0.2s;
+            text-decoration: none;
+            isolation: isolate;
+            box-shadow: 0 8px 24px rgba(212, 163, 115, 0.2);
+            margin-top: 32px;
+        }
+
+        .btn-profile-glow::after {
+            content: '';
+            position: absolute;
+            inset: -2px;
+            border-radius: 9999px;
+            background: linear-gradient(135deg, #ffffff, #D4A373, #ffffff);
+            background-size: 200% auto;
+            animation: profile-gradient-shift 3s linear infinite;
+            z-index: -1;
+            opacity: 0.4;
+            filter: blur(8px);
+            transition: opacity 0.3s, filter 0.3s;
+        }
+
+        .btn-profile-glow:hover {
+            transform: translateY(-3px) !important;
+            background: linear-gradient(135deg, #ffffff 0%, #F4D3A1 50%, #ffffff 100%);
+            background-size: 200% auto;
+            box-shadow: 0 12px 30px rgba(212, 163, 115, 0.45);
+        }
+
+        .btn-profile-glow:hover::after {
+            opacity: 0.8;
+            filter: blur(12px);
+        }
+
+        /* ── TOOLTIP SYSTEM ── */
+        .tooltip {
+            position: relative;
+            display: inline-block;
+            border-bottom: 1px dashed var(--accent);
+            cursor: help;
+            color: var(--text);
+            font-weight: 700;
+        }
+
+        .tooltip .tooltip-text {
+            visibility: hidden;
+            width: 240px;
+            background-color: #1a1f2e;
+            color: #fff;
+            text-align: left;
+            border-radius: 8px;
+            padding: 12px 16px;
+            position: absolute;
+            z-index: 100;
+            bottom: 125%;
+            left: 50%;
+            margin-left: -120px;
+            opacity: 0;
+            transition: opacity 0.3s, transform 0.3s;
+            font-size: 0.9rem;
+            line-height: 1.4;
+            font-weight: 400;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+            border: 1px solid var(--border);
+            pointer-events: none;
+            transform: translateY(10px);
+        }
+
+        .tooltip:hover .tooltip-text {
+            visibility: visible;
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .tooltip .tooltip-text::after {
+            content: "";
+            position: absolute;
+            top: 100%;
+            left: 50%;
+            margin-left: -5px;
+            border-width: 5px;
+            border-style: solid;
+            border-color: #1a1f2e transparent transparent transparent;
+        }
+
+        footer {
+            margin-top: 160px;
+            padding: 60px 0;
+            border-top: 1px solid var(--border);
+            text-align: center;
+            color: var(--muted);
+            font-size: 0.85rem;
+            letter-spacing: 1px;
+        }
+
+        .nav {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            padding: 24px 32px;
+            z-index: 100;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            backdrop-filter: blur(20px);
+            background: rgba(11, 15, 25, 0.7);
+            border-bottom: 1px solid var(--border);
+        }
+
+        .logo {
+            font-family: 'Bebas Neue', sans-serif;
+            font-size: 1.8rem;
+            color: #fff;
+            text-decoration: none;
+            letter-spacing: 3px;
+        }
+
+        .list-puces {
+            list-style: none;
+            margin: 32px 0;
+        }
+
+        .list-puces li {
+            position: relative;
+            padding-left: 36px;
+            margin-bottom: 20px;
+            font-size: 1.05rem;
+        }
+
+        .list-puces li::before {
+            content: '→';
+            position: absolute;
+            left: 0;
+            color: var(--accent);
+            font-weight: bold;
+        }
+
+        .highlight-text {
+            color: var(--text);
+            font-weight: 700;
+            background: linear-gradient(180deg, transparent 70%, rgba(212, 163, 115, 0.2) 30%);
+        }
+
+        @media (max-width: 768px) {
+            .container { padding: 100px 20px; }
+            h1 { font-size: 2.5rem; }
+            h2 { font-size: 1.9rem; }
+            .cta-block { padding: 40px 20px; }
+        }
+    </style>
+</head>
+<body>
+    <div class="halo" style="top: -10%; left: -10%;"></div>
+    <div class="halo" style="bottom: 10%; right: -10%; background: radial-gradient(circle, rgba(255, 255, 255, 0.05) 0%, transparent 70%);"></div>
+
+    <nav class="nav">
+        <a href="/" class="logo">SCROLLFREE</a>
+        <a href="/" style="color: var(--accent); text-decoration: none; font-weight: 700; font-size: 0.8rem; letter-spacing: 2px; text-transform: uppercase;">Retour au site</a>
+    </nav>
+
+    <div class="container">
+        <article>
+            <header style="text-align: left; margin-bottom: 60px;">
+                <span class="eyebrow">Santé & Neurosciences</span>
+                <h1>Pourquoi ton cerveau te braque chaque soir à 23h30</h1>
+                <div class="meta">Lecture : 9 min • Par L'Équipe ScrollFree</div>
+            </header>
+
+            <p><strong>Minuit passé.</strong> Le silence de ta chambre est total, mais dans ton crâne, c'est le chaos de Las Vegas. Ton visage, blafard, est éclairé par cette dalle de verre de 6 pouces qui semble peser une tonne et rien à la fois. Ton pouce droit exécute ce mouvement pendulaire, mécanique, presque rituel : le scroll. <span class="highlight-text">Encore une vidéo. Juste une.</span></p>
+
+            <p>Pourtant, tes paupières pèsent des kilos. Demain, la réunion de 9h sera une torture. Tu le sais. Tu sens cette boule d'anxiété monter parce que tu "grignotes" sur ton futur toi. Et pourtant, <strong>tu ne peux pas poser cet objet.</strong></p>
+
+            <p>Oublie les discours lisses sur la "discipline" ou la "fatigue numérique". Ce qui t'arrive en ce moment n'est pas un manque de volonté. C'est un <strong>piratage neurologique de haute intensité</strong> orchestré par les ingénieurs les plus brillants du monde. <span class="highlight-text">Ton smartphone n'est plus un outil : c'est devenu une perfusion de dopamine à débit variable.</span></p>
+
+            <h2>1. Le Siège de la Volonté est à genoux</h2>
+            <p>Pourquoi l'insomnie smartphone est-elle devenue la pathologie silencieuse de notre siècle ? Pour comprendre, il faut plonger dans la "salle des machines" : ton 
+                <span class="tooltip">Cortex Préfrontal
+                    <span class="tooltip-text">Le "PDG" de ton cerveau. Responsable de la planification et de l'inhibition des impulsions.</span>
+                </span>.
+            </p>
+            
+            <p>C'est lui, le patron. C'est lui qui prend les décisions rationnelles ("Je dois dormir pour être efficace demain"). Mais voilà le problème : <strong>le Cortex Préfrontal est une ressource épuisable.</strong> À force de prendre des milliers de micro-décisions toute la journée, il sature. Le soir, il est en état de mort cérébrale clinique.</p>
+
+            <p>C'est précisément là que les algorithmes frappent. Quand ton "patron" interne dort déjà, c'est ton 
+                <span class="tooltip">Système Limbique
+                    <span class="tooltip-text">Ton cerveau reptilien, celui des pulsions et de la gratification immédiate.</span>
+                </span>
+                qui prend les commandes. <span class="highlight-text">Et pour lui, un TikTok de 15 secondes vaut mieux qu'une nuit de 8 heures.</span>
+            </p>
+
+            <div class="glossary"><strong>[GLOSSAIRE : Cortex Préfrontal]</strong> Le "PDG" de ton cerveau. Responsable de la planification, de la prise de décision et surtout de l'inhibition des impulsions.</div>
+
+            <blockquote>
+                "Les réseaux sociaux sont des machines à sous que nous portons dans nos poches. Et le soir, quand nous sommes vulnérables, elles nous vident de notre temps comme de notre sang."
+            </blockquote>
+
+            <h2>2. La Loi du Renforcement Intermittent (Le piège de Vegas)</h2>
+            <p>As-tu remarqué que tu ne t'arrêtes jamais sur une vidéo qui t'ennuie ? Tu swipes. Tu cherches la pépite. Celle qui va te faire rire, t'apprendre un truc ou te choquer. </p>
+            
+            <p>C'est ce qu'on appelle en neurosciences le <strong>Renforcement Intermittent</strong>. C'est exactement le mécanisme qui rend les joueurs de casino accros. Si tu gagnais à chaque coup, tu te lasserais. Si tu perdais à chaque coup, tu arrêterais. Mais parce que la récompense est **aléatoire**, ton cerveau reste en état d'alerte maximale.</p>
+
+            <div class="focus-box">
+                <strong>FOCUS : Le rôle du Noyau Accumbens</strong><br><br>
+                Des études d'imagerie cérébrale (IRMf) menées à <strong>Harvard</strong> ont montré que la réception d'une notification ou la découverte d'un contenu "validant" active le noyau accumbens avec la même intensité que la prise de cocaïne. Le soir, en cherchant cette validation, tu maintiens ton corps dans un état de stress physiologique incompatible avec le sommeil profond.
+            </div>
+
+            <h2>3. L'Effet Zeigarnik : Pourquoi tu ne peux pas "fermer la boucle"</h2>
+            <p>Pourquoi est-il si dur de s'arrêter après un article ou une vidéo ? Parce que les flux sont conçus comme des <strong>Open Loops (Boucles Ouvertes)</strong>. </p>
+
+            <p>Ton cerveau déteste les tâches inachevées. C'est l'Effet Zeigarnik. En te montrant un début de réponse ou une miniature intrigante, l'application crée une tension cognitive. Tu *dois* savoir la suite. <span class="highlight-text">Sauf que la suite n'arrive jamais, car elle est immédiatement remplacée par une nouvelle boucle.</span></p>
+
+            <ul class="list-puces">
+                <li><strong>Le Scroll Infini :</strong> Une architecture sans fin qui supprime les "points d'arrêt" naturels (comme la fin d'un chapitre de livre).</li>
+                <li><strong>L'Autoplay :</strong> La suppression de la friction décisionnelle. Tu ne choisis pas de regarder la vidéo suivante, elle s'impose à toi.</li>
+                <li><strong>La Charge Émotionnelle :</strong> Passer de la colère (actu politique) à la joie (vidéo de chat) crée des montagnes russes hormonales qui empêchent la production de mélatonine.</li>
+            </ul>
+
+            <table class="comparison-table">
+                <thead>
+                    <tr>
+                        <th>Mythe vs Réalité</th>
+                        <th>Ce que tu penses</th>
+                        <th>Ce qui se passe réellement</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><strong>Détente</strong></td>
+                        <td>"Je me vide la tête après une dure journée."</td>
+                        <td>Ton système nerveux est en hyper-vigilance sélective.</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Contrôle</strong></td>
+                        <td>"Encore 5 petites minutes, je gère."</td>
+                        <td>L'algorithme a déjà calculé comment t'en prendre 45 de plus.</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Besoin</strong></td>
+                        <td>"Je cherche une info importante."</td>
+                        <td>Tu fuis simplement le silence et l'ennui de ta propre pensée.</td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <h2>4. Questions Fréquentes (Que tu te poses à 2h du matin)</h2>
+            
+            <h3>Est-ce que la lumière bleue est la seule coupable ?</h3>
+            <p>Non. C'est l'arbre qui cache la forêt. La lumière bleue bloque certes la mélatonine, mas <strong>l'excitation cognitive</strong> (le fait d'être stimulé par le contenu) est bien plus dévastatrice. Lire un livre sur une liseuse (peu de bleu) est moins pire que scroller TikTok, mais le vrai problème reste l'hyper-stimulation.</p>
+
+            <h3>Pourquoi je me sens "sale" après avoir scrollé ?</h3>
+            <p>C'est le crash dopaminergique. Après un pic de plaisir artificiel, ton cerveau compense en abaissant ton niveau de bien-être en dessous de la normale. C'est ce sentiment de vacuité, de temps gâché, qui te pousse paradoxalement à scroller davantage pour retrouver le pic initial. <span class="highlight-text">Un cercle vicieux parfait.</span></p>
+
+            <h3>Comment identifier si je suis un cas "critique" ?</h3>
+            <p>Si la première chose que tu fais en ouvrant les yeux et la dernière avant de les fermer est de toucher ton écran, tu es dans la zone rouge. Mais attention : tous les profils d'addiction ne se ressemblent pas. Pour savoir quelle partie de ton cerveau est la plus attaquée, il est vital d'analyser ton comportement. <a href="/simulateur" style="color: var(--accent); font-weight: 700;">Le test des 8 archétypes du scrolleur</a> permet souvent de mettre un nom sur son propre naufrage.</p>
+
+            <div class="glossary"><strong>[GLOSSAIRE : Plasticité Synaptique]</strong> La capacité de ton cerveau à créer de nouveaux circuits. En scrollant chaque soir, tu "muscles" physiquement ton addiction.</div>
+
+            <h2>L'Impasse : Le prix réel de ton "temps libre"</h2>
+            <p>Regarde tes mains. Là, maintenant. Ce soir encore, elles vont probablement trembler d'une impatience invisible à l'idée de déverrouiller ce rectangle de verre. </p>
+
+            <p>Mais pose-toi cette question : <strong>pendant que tu observes la vie mise en scène des autres, qu'advient-il de la tienne ?</strong> Elle s'évapore. Elle coule entre tes doigts comme du sable fin. Chaque minute volée à ton sommeil est une gifle donnée à tes ambitions de demain. </p>
+
+            <p>Tu n'es pas en train de "te reposer". Tu es en train de te faire piller tes ressources cognitives par des multinationales qui vendent ton attention au plus offrant. <span class="highlight-text">Le temps n'est pas de l'argent. Le temps, c'est ta vie.</span> Et à minuit, tu es en train de la brader pour des vidéos de Spitz Nains et des polémiques stériles.</p>
+
+            <p>La vérité est inconfortable : personne ne viendra te sauver. Ton smartphone est une prison dont tu portes la clé, mais dont tu as oublié comment te servir de la serrure.</p>
+
+            <div class="cta-block">
+                <h3>Es-tu prêt à la Gifle de Réalité ?</h3>
+                <p>Ne reste pas dans le déni. Découvre exactement combien de mois (ou d'années) de ta vie ont déjà été aspirés par le vide numérique.</p>
+                <a href="/simulateur" class="btn-profile-glow">Lancer le Simulateur de Temps Perdu</a>
+            </div>
+        </article>
+
+        <footer>
+            <p>© 2026 ScrollFree — Division Santé & Neurosciences. Reprends le contrôle.</p>
+        </footer>
+    </div>
+</body>
+</html>

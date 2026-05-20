@@ -44,7 +44,7 @@ export const Footer = ({ onContactClick }: { onContactClick?: () => void }) => {
           <div>
             <h4 className="text-white font-medium mb-6">Ressources</h4>
             <ul className="flex flex-col gap-4 text-sm text-white/50">
-              <li><a href="#" className="hover:text-white transition-colors">Blog</a></li>
+              <li><a href="/blog/insomnie-smartphone" className="hover:text-white transition-colors">Blog</a></li>
               <li><a href="#" className="hover:text-white transition-colors">Guides gratuits</a></li>
               <li><a href="#" className="hover:text-white transition-colors">Études scientifiques</a></li>
               <li><a href="#" className="hover:text-white transition-colors">À propos</a></li>
