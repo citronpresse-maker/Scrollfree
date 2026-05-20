@@ -1,0 +1,387 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Le Blog ScrollFree | Neurosciences & Addiction aux écrans</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Sans:ital,wght@0,300;0,400;0,500;0,700;1,300&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg: #0B0F19;
+            --accent: #D4A373;
+            --accent-hot: #F4D3A1;
+            --text: #ffffff;
+            --muted: rgba(255, 255, 255, 0.4);
+            --muted2: rgba(255, 255, 255, 0.7);
+            --card: rgba(255, 255, 255, 0.02);
+            --card-hover: rgba(255, 255, 255, 0.05);
+            --border: rgba(255, 255, 255, 0.08);
+            --border-hover: rgba(212, 163, 115, 0.3);
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            background: var(--bg);
+            color: var(--text);
+            font-family: 'DM Sans', sans-serif;
+            line-height: 1.6;
+            overflow-x: hidden;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        /* Grain Texture Overlay */
+        body::before {
+            content: '';
+            position: fixed;
+            inset: 0;
+            background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.03'/%3E%3C/svg%3E");
+            pointer-events: none;
+            z-index: 10;
+            opacity: 0.4;
+        }
+
+        .halo {
+            position: fixed;
+            width: 800px;
+            height: 800px;
+            border-radius: 50%;
+            background: radial-gradient(circle, rgba(212, 163, 115, 0.04) 0%, transparent 70%);
+            z-index: -1;
+            filter: blur(100px);
+        }
+
+        .nav {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            padding: 24px 32px;
+            z-index: 100;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            backdrop-filter: blur(20px);
+            background: rgba(11, 15, 25, 0.7);
+            border-bottom: 1px solid var(--border);
+        }
+
+        .logo {
+            font-family: 'Bebas Neue', sans-serif;
+            font-size: 1.8rem;
+            color: #fff;
+            text-decoration: none;
+            letter-spacing: 3px;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 160px 24px 80px;
+        }
+
+        .header-section {
+            text-align: center;
+            margin-bottom: 80px;
+            position: relative;
+        }
+
+        .eyebrow {
+            font-family: 'Bebas Neue', sans-serif;
+            color: var(--accent);
+            letter-spacing: 6px;
+            font-size: 1.1rem;
+            margin-bottom: 16px;
+            display: block;
+            text-transform: uppercase;
+        }
+
+        h1 {
+            font-family: 'Bebas Neue', sans-serif;
+            font-size: clamp(3rem, 8vw, 5.5rem);
+            line-height: 0.85;
+            margin-bottom: 24px;
+            text-transform: uppercase;
+            letter-spacing: -2px;
+        }
+
+        .subtitle {
+            font-size: 1.25rem;
+            color: var(--muted2);
+            max-width: 700px;
+            margin: 0 auto;
+            font-weight: 300;
+        }
+
+        /* Article Grid */
+        .article-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 40px;
+            margin-bottom: 100px;
+        }
+
+        @media (max-width: 768px) {
+            .article-grid {
+                grid-template-columns: 1fr;
+                gap: 30px;
+            }
+        }
+
+        /* Card Style */
+        .card {
+            background: var(--card);
+            border: 1px solid var(--border);
+            border-radius: 24px;
+            padding: 40px;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+            text-decoration: none;
+            color: inherit;
+            position: relative;
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+        }
+
+        .card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 100%;
+            background: linear-gradient(180deg, rgba(212, 163, 115, 0.03) 0%, transparent 100%);
+            opacity: 0;
+            transition: opacity 0.4s;
+        }
+
+        .card:hover {
+            transform: translateY(-5px);
+            background: var(--card-hover);
+            border-color: var(--border-hover);
+            box-shadow: 0 20px 40px rgba(212, 163, 115, 0.05);
+        }
+
+        .card:hover::before {
+            opacity: 1;
+        }
+
+        .card-category {
+            font-family: 'Bebas Neue', sans-serif;
+            color: var(--accent);
+            font-size: 0.95rem;
+            letter-spacing: 3px;
+            margin-bottom: 20px;
+            text-transform: uppercase;
+        }
+
+        .card-title {
+            font-family: 'Bebas Neue', sans-serif;
+            font-size: 2.2rem;
+            line-height: 1.05;
+            color: #fff;
+            margin-bottom: 18px;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            transition: color 0.3s;
+        }
+
+        .card:hover .card-title {
+            color: var(--accent-hot);
+        }
+
+        .card-excerpt {
+            color: var(--muted2);
+            font-size: 1.05rem;
+            margin-bottom: 30px;
+            display: -webkit-box;
+            -webkit-line-clamp: 3;
+            -webkit-box-orient: vertical;
+            overflow: hidden;
+        }
+
+        .card-footer {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-top: 1px solid var(--border);
+            padding-top: 24px;
+            margin-top: auto;
+        }
+
+        .card-meta {
+            font-size: 0.8rem;
+            color: var(--muted);
+            text-transform: uppercase;
+            letter-spacing: 2px;
+        }
+
+        .card-link {
+            font-size: 0.9rem;
+            font-weight: 700;
+            color: var(--accent);
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            transition: transform 0.3s;
+        }
+
+        .card:hover .card-link {
+            transform: translateX(4px);
+        }
+
+        /* CTA block at bottom */
+        .cta-block {
+            text-align: center;
+            padding: 80px 40px;
+            background: radial-gradient(circle at top, rgba(212, 163, 115, 0.12) 0%, transparent 100%);
+            border-radius: 32px;
+            border: 1px solid rgba(212, 163, 115, 0.2);
+            box-shadow: 0 40px 80px rgba(0,0,0,0.4);
+            margin-top: 60px;
+        }
+
+        .cta-block h2 {
+            font-family: 'Bebas Neue', sans-serif;
+            font-size: 2.8rem;
+            margin-bottom: 16px;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+        }
+
+        .cta-block p {
+            color: var(--muted2);
+            max-width: 600px;
+            margin: 0 auto 32px;
+            font-size: 1.1rem;
+        }
+
+        /* ── BTN PROFILE GLOW ── */
+        @keyframes profile-gradient-shift {
+            0% { background-position: 0% center; }
+            100% { background-position: 200% center; }
+        }
+
+        .btn-profile-glow {
+            position: relative;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 12px;
+            padding: 16px 36px;
+            border: none;
+            border-radius: 9999px;
+            font-family: "Helvetica Neue", Helvetica, Arial, ui-sans-serif, system-ui, sans-serif !important;
+            font-size: 1.1rem !important;
+            font-weight: 700 !important;
+            color: #1a1a24;
+            cursor: pointer;
+            background: linear-gradient(135deg, #ffffff 0%, #D4A373 50%, #ffffff 100%);
+            background-size: 200% auto;
+            animation: profile-gradient-shift 3s linear infinite;
+            transition: transform 0.2s cubic-bezier(0.4, 0, 0.2, 1), box-shadow 0.2s;
+            text-decoration: none;
+            isolation: isolate;
+            box-shadow: 0 8px 24px rgba(212, 163, 115, 0.2);
+        }
+
+        .btn-profile-glow::after {
+            content: '';
+            position: absolute;
+            inset: -2px;
+            border-radius: 9999px;
+            background: linear-gradient(135deg, #ffffff, #D4A373, #ffffff);
+            background-size: 200% auto;
+            animation: profile-gradient-shift 3s linear infinite;
+            z-index: -1;
+            opacity: 0.4;
+            filter: blur(8px);
+            transition: opacity 0.3s, filter 0.3s;
+        }
+
+        .btn-profile-glow:hover {
+            transform: translateY(-3px) !important;
+            background: linear-gradient(135deg, #ffffff 0%, #F4D3A1 50%, #ffffff 100%);
+            background-size: 200% auto;
+            box-shadow: 0 12px 30px rgba(212, 163, 115, 0.45);
+        }
+
+        .btn-profile-glow:hover::after {
+            opacity: 0.8;
+            filter: blur(12px);
+        }
+
+        footer {
+            margin-top: 120px;
+            padding: 40px 0;
+            border-top: 1px solid var(--border);
+            text-align: center;
+            color: var(--muted);
+            font-size: 0.85rem;
+            letter-spacing: 1px;
+        }
+    </style>
+</head>
+<body>
+    <div class="halo" style="top: -10%; left: -10%;"></div>
+    <div class="halo" style="bottom: 10%; right: -10%; background: radial-gradient(circle, rgba(255, 255, 255, 0.05) 0%, transparent 70%);"></div>
+
+    <nav class="nav">
+        <a href="/" class="logo">SCROLLFREE</a>
+        <div style="display: flex; gap: 24px; align-items: center;">
+            <a href="/blog" style="color: var(--accent); text-decoration: none; font-weight: 700; font-size: 0.8rem; letter-spacing: 2px; text-transform: uppercase;">Blog</a>
+            <a href="/" style="color: #fff; text-decoration: none; font-weight: 700; font-size: 0.8rem; letter-spacing: 2px; text-transform: uppercase; opacity: 0.8; transition: opacity 0.2s;" onmouseover="this.style.opacity=1" onmouseout="this.style.opacity=0.8">Retour au site</a>
+        </div>
+    </nav>
+
+    <div class="container">
+        <header class="header-section">
+            <span class="eyebrow">Dossiers & Neurosciences</span>
+            <h1>Le Blog Scrollfree</h1>
+            <p class="subtitle">Décryptages neuroscientifiques, hacks psychologiques et analyses comportementales pour libérer ton esprit de la dictature algorithmique.</p>
+        </header>
+
+        <section class="article-grid">
+            <!-- Article 1 -->
+            <a href="/blog/insomnie-smartphone" class="card">
+                <div>
+                    <span class="card-category">Santé & Neurosciences</span>
+                    <h2 class="card-title">Pourquoi ton cerveau te braque chaque soir à 23h30</h2>
+                    <p class="card-excerpt">Minuit passé. Ton visage blafard est éclairé par cette dalle de verre de 6 pouces. Ton pouce droit exécute ce mouvement pendulaire mécanique. Découvre la science secrète derrière l'insomnie smartphone et le piratage neurologique nocturne.</p>
+                </div>
+                <div class="card-footer">
+                    <span class="card-meta">Lecture : 9 min • Par L'Équipe</span>
+                    <span class="card-link">Lire l'article →</span>
+                </div>
+            </a>
+
+            <!-- Article 2 -->
+            <a href="/blog/dopamine-reseaux-sociaux" class="card">
+                <div>
+                    <span class="card-category">Santé & Neurosciences</span>
+                    <h2 class="card-title">Comprendre les pics de dopamine du scroll infini</h2>
+                    <p class="card-excerpt">À chaque coup de pouce, tu actionnes le levier d'une machine à sous moléculaire. Découvre comment les géants de la tech ont piraté ton circuit de la récompense et transformé la dopamine en promesse d'addiction numérique infinie.</p>
+                </div>
+                <div class="card-footer">
+                    <span class="card-meta">Lecture : 11 min • Par L'Équipe</span>
+                    <span class="card-link">Lire l'article →</span>
+                </div>
+            </a>
+        </section>
+
+        <section class="cta-block">
+            <h2>Prêt à briser l'hypnose de l'écran ?</h2>
+            <p>Ne reste pas dans le flou sémantique. Découvre en 3 minutes quel archétype de scrolleur tu incarnes et comment reprendre le contrôle de ton temps.</p>
+            <a href="/simulateur" class="btn-profile-glow">Faire mon diagnostic gratuit</a>
+        </section>
+
+        <footer>
+            <p>© 2026 ScrollFree — Division Santé & Neurosciences. Reprends le contrôle.</p>
+        </footer>
+    </div>
+</body>
+</html>

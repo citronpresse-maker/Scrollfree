@@ -23,6 +23,14 @@
     {
       "source": "/blog/insomnie-smartphone",
       "destination": "/blog-insomnie-smartphone.html"
+    },
+    {
+      "source": "/blog",
+      "destination": "/blog.html"
+    },
+    {
+      "source": "/blog/dopamine-reseaux-sociaux",
+      "destination": "/blog-dopamine-reseaux-sociaux.html"
     }
   ]
 }

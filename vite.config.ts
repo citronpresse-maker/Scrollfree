@@ -65,6 +65,8 @@ export default defineConfig(({mode}) => {
           'mentions-legales': path.resolve(__dirname, 'mentions-legales.html'),
           remboursement: path.resolve(__dirname, 'remboursement.html'),
           'blog-insomnie-smartphone': path.resolve(__dirname, 'blog-insomnie-smartphone.html'),
+          blog: path.resolve(__dirname, 'blog.html'),
+          'blog-dopamine-reseaux-sociaux': path.resolve(__dirname, 'blog-dopamine-reseaux-sociaux.html'),
         },
         output: {
           manualChunks: {

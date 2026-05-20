@@ -12,16 +12,19 @@ export const Hero = () => {
     { name: 'La méthode', href: '#methode' },
     { name: 'Les offres', href: '#offres' },
     { name: 'FAQ', href: '#faq' },
+    { name: 'Blog', href: '/blog' },
   ];
 
   const scrollToSection = (e: React.MouseEvent<HTMLAnchorElement>, href: string) => {
-    e.preventDefault();
-    const id = href.replace('#', '');
-    const element = document.getElementById(id);
-    if (element) {
-      element.scrollIntoView({ behavior: 'smooth' });
-      setIsMenuOpen(false);
-      window.history.replaceState(null, '', window.location.pathname);
+    if (href.startsWith('#')) {
+      e.preventDefault();
+      const id = href.replace('#', '');
+      const element = document.getElementById(id);
+      if (element) {
+        element.scrollIntoView({ behavior: 'smooth' });
+        setIsMenuOpen(false);
+        window.history.replaceState(null, '', window.location.pathname);
+      }
     }
   };
 
