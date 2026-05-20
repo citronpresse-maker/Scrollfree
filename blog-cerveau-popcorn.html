@@ -1,0 +1,493 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Le syndrome du cerveau popcorn et le trouble de la concentration adulte | ScrollFree</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Sans:ital,wght@0,300;0,400;0,500;0,700;1,300&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg: #0B0F19;
+            --accent: #D4A373;
+            --accent-hot: #F4D3A1;
+            --text: #ffffff;
+            --muted: rgba(255, 255, 255, 0.4);
+            --muted2: rgba(255, 255, 255, 0.7);
+            --card: rgba(255, 255, 255, 0.03);
+            --border: rgba(255, 255, 255, 0.1);
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            background: var(--bg);
+            color: var(--text);
+            font-family: 'DM Sans', sans-serif;
+            line-height: 1.7;
+            overflow-x: hidden;
+            -webkit-font-smoothing: antialiased;
+            font-size: 1.1rem;
+        }
+
+        /* Grain Texture Overlay */
+        body::before {
+            content: '';
+            position: fixed;
+            inset: 0;
+            background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.03'/%3E%3C/svg%3E");
+            pointer-events: none;
+            z-index: 10;
+            opacity: 0.4;
+        }
+
+        .halo {
+            position: fixed;
+            width: 800px;
+            height: 800px;
+            border-radius: 50%;
+            background: radial-gradient(circle, rgba(212, 163, 115, 0.05) 0%, transparent 70%);
+            z-index: -1;
+            filter: blur(100px);
+        }
+
+        .container {
+            max-width: 850px;
+            margin: 0 auto;
+            padding: 120px 24px;
+        }
+
+        .eyebrow {
+            font-family: 'Bebas Neue', sans-serif;
+            color: var(--accent);
+            letter-spacing: 6px;
+            font-size: 1rem;
+            margin-bottom: 12px;
+            display: block;
+            text-transform: uppercase;
+        }
+
+        h1 {
+            font-family: 'Bebas Neue', sans-serif;
+            font-size: clamp(2.2rem, 7vw, 4rem);
+            line-height: 0.9;
+            margin-bottom: 24px;
+            text-transform: uppercase;
+            letter-spacing: -1px;
+        }
+
+        .meta {
+            color: var(--muted);
+            font-size: 0.8rem;
+            text-transform: uppercase;
+            letter-spacing: 3px;
+            font-weight: 500;
+        }
+
+        article {
+            color: var(--muted2);
+        }
+
+        p {
+            margin-bottom: 28px;
+        }
+
+        h2 {
+            font-family: 'Bebas Neue', sans-serif;
+            font-size: 2.3rem;
+            color: var(--text);
+            margin: 60px 0 24px;
+            letter-spacing: 1px;
+            line-height: 1.1;
+        }
+
+        h3 {
+            font-size: 1.3rem;
+            color: var(--accent-hot);
+            margin: 40px 0 18px;
+            font-weight: 600;
+            letter-spacing: -0.02em;
+        }
+
+        strong {
+            color: var(--text);
+            font-weight: 800;
+        }
+
+        .focus-box {
+            background: var(--card);
+            border: 1px solid var(--border);
+            padding: 40px;
+            margin: 64px 0;
+            border-radius: 16px;
+            position: relative;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.2);
+        }
+
+        .focus-box::before {
+            content: 'DOSSIER COGNITIF';
+            position: absolute;
+            top: -14px;
+            left: 32px;
+            background: var(--bg);
+            padding: 0 16px;
+            color: var(--accent);
+            font-family: 'Bebas Neue', sans-serif;
+            letter-spacing: 3px;
+            font-size: 0.9rem;
+        }
+
+        blockquote {
+            font-style: italic;
+            border-left: 5px solid var(--accent);
+            padding: 10px 0 10px 32px;
+            margin: 56px 0;
+            font-size: 1.5rem;
+            color: var(--text);
+            line-height: 1.4;
+            background: linear-gradient(90deg, rgba(212, 163, 115, 0.05) 0%, transparent 100%);
+        }
+
+        .glossary {
+            display: block;
+            background: rgba(212, 163, 115, 0.08);
+            border-left: 2px solid var(--accent);
+            color: var(--accent-hot);
+            padding: 16px 24px;
+            border-radius: 0 8px 8px 0;
+            font-size: 0.9rem;
+            margin: 24px 0;
+            font-family: 'DM Sans', sans-serif;
+        }
+
+        .comparison-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 64px 0;
+            font-size: 1rem;
+            background: rgba(255,255,255,0.02);
+            border-radius: 12px;
+            overflow: hidden;
+        }
+
+        .comparison-table th, .comparison-table td {
+            padding: 20px;
+            border: 1px solid var(--border);
+            text-align: left;
+        }
+
+        .comparison-table th {
+            background: rgba(255, 255, 255, 0.05);
+            font-family: 'Bebas Neue', sans-serif;
+            letter-spacing: 2px;
+            font-size: 1.3rem;
+            color: var(--accent);
+        }
+
+        .cta-block {
+            margin-top: 100px;
+            text-align: center;
+            padding: 80px 40px;
+            background: radial-gradient(circle at top, rgba(212, 163, 115, 0.15) 0%, transparent 100%);
+            border-radius: 32px;
+            border: 1px solid rgba(212, 163, 115, 0.3);
+            box-shadow: 0 40px 80px rgba(0,0,0,0.4);
+        }
+
+        /* ── BTN PROFILE GLOW ── */
+        @keyframes profile-gradient-shift {
+            0% { background-position: 0% center; }
+            100% { background-position: 200% center; }
+        }
+
+        .btn-profile-glow {
+            position: relative;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 12px;
+            padding: 16px 32px;
+            border: none;
+            border-radius: 9999px;
+            font-family: "Helvetica Neue", Helvetica, Arial, ui-sans-serif, system-ui, sans-serif !important;
+            font-size: 1.125rem !important;
+            font-weight: 700 !important;
+            color: #1a1a24;
+            cursor: pointer;
+            background: linear-gradient(135deg, #ffffff 0%, #D4A373 50%, #ffffff 100%);
+            background-size: 200% auto;
+            animation: profile-gradient-shift 3s linear infinite;
+            transition: transform 0.2s cubic-bezier(0.4, 0, 0.2, 1), box-shadow 0.2s;
+            text-decoration: none;
+            isolation: isolate;
+            box-shadow: 0 8px 24px rgba(212, 163, 115, 0.2);
+            margin-top: 32px;
+        }
+
+        .btn-profile-glow::after {
+            content: '';
+            position: absolute;
+            inset: -2px;
+            border-radius: 9999px;
+            background: linear-gradient(135deg, #ffffff, #D4A373, #ffffff);
+            background-size: 200% auto;
+            animation: profile-gradient-shift 3s linear infinite;
+            z-index: -1;
+            opacity: 0.4;
+            filter: blur(8px);
+            transition: opacity 0.3s, filter 0.3s;
+        }
+
+        .btn-profile-glow:hover {
+            transform: translateY(-3px) !important;
+            background: linear-gradient(135deg, #ffffff 0%, #F4D3A1 50%, #ffffff 100%);
+            background-size: 200% auto;
+            box-shadow: 0 12px 30px rgba(212, 163, 115, 0.45);
+        }
+
+        .btn-profile-glow:hover::after {
+            opacity: 0.8;
+            filter: blur(12px);
+        }
+
+        /* ── TOOLTIP SYSTEM ── */
+        .tooltip {
+            position: relative;
+            display: inline-block;
+            border-bottom: 1px dashed var(--accent);
+            cursor: help;
+            color: var(--text);
+            font-weight: 700;
+        }
+
+        .tooltip .tooltip-text {
+            visibility: hidden;
+            width: 240px;
+            background-color: #1a1f2e;
+            color: #fff;
+            text-align: left;
+            border-radius: 8px;
+            padding: 12px 16px;
+            position: absolute;
+            z-index: 100;
+            bottom: 125%;
+            left: 50%;
+            margin-left: -120px;
+            opacity: 0;
+            transition: opacity 0.3s, transform 0.3s;
+            font-size: 0.9rem;
+            line-height: 1.4;
+            font-weight: 400;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+            border: 1px solid var(--border);
+            pointer-events: none;
+            transform: translateY(10px);
+        }
+
+        .tooltip:hover .tooltip-text {
+            visibility: visible;
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .tooltip .tooltip-text::after {
+            content: "";
+            position: absolute;
+            top: 100%;
+            left: 50%;
+            margin-left: -5px;
+            border-width: 5px;
+            border-style: solid;
+            border-color: #1a1f2e transparent transparent transparent;
+        }
+
+        footer {
+            margin-top: 160px;
+            padding: 60px 0;
+            border-top: 1px solid var(--border);
+            text-align: center;
+            color: var(--muted);
+            font-size: 0.85rem;
+            letter-spacing: 1px;
+        }
+
+        .nav {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            padding: 24px 32px;
+            z-index: 100;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            backdrop-filter: blur(20px);
+            background: rgba(11, 15, 25, 0.7);
+            border-bottom: 1px solid var(--border);
+        }
+
+        .logo {
+            font-family: 'Bebas Neue', sans-serif;
+            font-size: 1.8rem;
+            color: #fff;
+            text-decoration: none;
+            letter-spacing: 3px;
+        }
+
+        .list-puces {
+            list-style: none;
+            margin: 32px 0;
+        }
+
+        .list-puces li {
+            position: relative;
+            padding-left: 36px;
+            margin-bottom: 20px;
+            font-size: 1.05rem;
+        }
+
+        .list-puces li::before {
+            content: '→';
+            position: absolute;
+            left: 0;
+            color: var(--accent);
+            font-weight: bold;
+        }
+
+        .highlight-text {
+            color: var(--text);
+            font-weight: 700;
+            background: linear-gradient(180deg, transparent 70%, rgba(212, 163, 115, 0.2) 30%);
+        }
+
+        .highlight-link {
+            color: var(--accent);
+            font-weight: 700;
+            text-decoration: none;
+            border-bottom: 1px solid var(--accent);
+            transition: all 0.2s;
+        }
+
+        .highlight-link:hover {
+            color: var(--accent-hot);
+            border-bottom-color: var(--accent-hot);
+            background: rgba(212, 163, 115, 0.1);
+        }
+
+        @media (max-width: 768px) {
+            .container { padding: 100px 20px; }
+            h1 { font-size: 2.5rem; }
+            h2 { font-size: 1.9rem; }
+            .cta-block { padding: 40px 20px; }
+        }
+    </style>
+</head>
+<body>
+    <div class="halo" style="top: -10%; left: -10%;"></div>
+    <div class="halo" style="bottom: 10%; right: -10%; background: radial-gradient(circle, rgba(255, 255, 255, 0.05) 0%, transparent 70%);"></div>
+
+    <nav class="nav">
+        <a href="/" class="logo">SCROLLFREE</a>
+        <div style="display: flex; gap: 24px; align-items: center;">
+            <a href="/blog" style="color: var(--accent); text-decoration: none; font-weight: 700; font-size: 0.8rem; letter-spacing: 2px; text-transform: uppercase;">Blog</a>
+            <a href="/" style="color: #fff; text-decoration: none; font-weight: 700; font-size: 0.8rem; letter-spacing: 2px; text-transform: uppercase; opacity: 0.8; transition: opacity 0.2s;" onmouseover="this.style.opacity=1" onmouseout="this.style.opacity=0.8">Retour au site</a>
+        </div>
+    </nav>
+
+    <div class="container">
+        <article>
+            <header style="text-align: left; margin-bottom: 60px;">
+                <span class="eyebrow">Santé & Neurosciences</span>
+                <h1>Le syndrome du cerveau popcorn : pourquoi notre concentration s'effondre</h1>
+                <div class="meta">Lecture : 11 min • Par L'Équipe ScrollFree</div>
+            </header>
+
+            <p><strong>Essaie de lire cette page sans t'arrêter.</strong> Pas de coup d'œil à tes onglets. Pas de vibration imaginaire dans ta poche. Juste toi et ce texte. Si après trente secondes tu ressens déjà cette démangeaison cognitive impérieuse de faire autre chose, d'ouvrir une application ou de zapper... félicitations. Tu es victime du <strong>syndrome du cerveau popcorn</strong>.</p>
+
+            <p>Ce terme imagé, inventé par le chercheur David Levy de l'Université de Washington, décrit une réalité neurobiologique implacable : l'incapacité croissante du cerveau à se poser sur une tâche fixe sans sursauter d'une pensée à une autre, à l'image d'un grain de maïs qui éclate sous l'effet de la chaleur. Le <span class="tooltip">trouble de la concentration adulte<span class="tooltip-text">Diminution progressive de la capacité à maintenir une attention focalisée sur une seule tâche sans distraction interne ou externe.</span></span> est en pleine explosion, et la cause n'est pas génétique : elle est technologique.</p>
+
+            <p>Nous vivons sous le bombardement permanent des formats ultra-courts (TikTok, Reels, Shorts). En habituant notre esprit à recevoir une gratification toutes les 15 secondes, nous avons littéralement réécrit notre logiciel attentionnel. L'attention profonde est en train d'être éradiquée au profit d'un état de distraction permanent et épuisant.</p>
+
+            <h2>1. La destruction de l'attention profonde par les formats courts</h2>
+            <p>Pourquoi les formats courts de 15 secondes sont-ils si destructeurs ? La réponse réside dans la fragmentation de l'attention.</p>
+
+            <p>Ton cerveau est doté d'une fonction appelée <strong>l'attention soutenue</strong>. C'est elle qui te permet de lire un livre complexe, de travailler sur un dossier épineux pendant deux heures ou de suivre une conversation profonde sans divaguer. Cette attention demande un effort constant au <span class="tooltip">cortex préfrontal<span class="tooltip-text">Partie antérieure du lobe frontal impliquée dans les fonctions exécutives, le contrôle de l'attention et la prise de décision.</span></span> pour filtrer les stimuli parasites.</p>
+
+            <p>Mais lorsque tu passes une heure sur TikTok, ton cerveau subit une agression cognitive inédite. Toutes les 15 secondes, l'algorithme te présente un nouveau stimulus : un changement de musique, un autre visage, un nouveau concept, une blague ou une polémique. Ton cerveau n'a pas le temps d'engager son attention soutenue. Il reste en mode de <strong>réaction réflexe</strong>. À force de répéter cet entraînement des milliers de fois par semaine, ton cortex préfrontal s'atrophie. Tu perds littéralement la capacité biologique d'attendre et de te concentrer.</p>
+
+            <div class="glossary"><strong>[GLOSSAIRE : Cerveau Popcorn]</strong> Métaphore neuroscientifique désignant un esprit devenu si dépendant aux stimuli rapides qu'il s'avère incapable de se concentrer sur une tâche linéaire.</div>
+
+            <blockquote>
+                "Nous entraînons une génération entière à avoir la capacité attentionnelle d'un poisson rouge. Et le pire, c'est que nous appelons cela du divertissement."
+            </blockquote>
+
+            <h2>2. L'Effondrement du focus : Les chiffres cliniques</h2>
+            <p>Le trouble de la concentration chez l'adulte n'est plus une exception, c'est devenu la norme silencieuse des open spaces et du télétravail. L'épuisement cognitif qui en résulte explique pourquoi, une fois la journée terminée, nous retombons inlassablement dans nos pires travers. Pourquoi ? Parce que notre jauge d'attention est vide, comme nous le décrivons dans notre analyse clinique : <a href="/blog/insomnie-smartphone" class="highlight-link">Pourquoi je n'arrive pas à poser mon téléphone le soir ?</a>.</p>
+
+            <div class="focus-box">
+                <strong>DOSSIER COGNITIF : L'étude sur le temps d'attention résiduel</strong><br><br>
+                Des recherches menées par le <strong>Dr Gloria Mark</strong> à l'Université de Californie (UCI) ont révélé que le temps d'attention moyen sur un écran d'ordinateur avant de changer de fenêtre ou de tâche est passé de 2,5 minutes en 2004 à seulement <strong>47 secondes</strong> aujourd'hui. L'étude démontre que la fragmentation de l'attention augmente le niveau de cortisol (l'hormone du stress) de manière drastique, créant un sentiment d'anxiété chronique et d'inutilité.
+            </div>
+
+            <h2>3. Le coût réel du Cerveau Popcorn</h2>
+            <p>L'incapacité à se concentrer ne détruit pas seulement ta productivité au travail. Elle érode ta vie personnelle, ta mémoire à long terme et ton bien-être psychologique.</p>
+
+            <table class="comparison-table">
+                <thead>
+                    <tr>
+                        <th>Fonction cognitive</th>
+                        <th>Cerveau Entraîné (Focus préservé)</th>
+                        <th>Cerveau Popcorn (Fragmenté)</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><strong>Lecture</strong></td>
+                        <td>Capacité à lire 50 pages d'un roman d'une seule traite avec rétention.</td>
+                        <td>Besoin de relire 3 fois le même paragraphe au bout de 2 pages.</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Mémoire de travail</strong></td>
+                        <td>Stockage fluide des informations complexes à court terme.</td>
+                        <td>Oublis réguliers ("Qu'est-ce que je venais chercher dans cette pièce ?").</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Régulation Émotionnelle</strong></td>
+                        <td>Calme, tolérance à l'ennui et à l'attente.</td>
+                        <td>Irritabilité, ennui immédiat dès qu'il n'y a pas de stimulation visuelle.</td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <h2>4. Questions Fréquentes (FAQ : Reconstruire son focus)</h2>
+
+            <h3>Peut-on guérir du syndrome du cerveau popcorn ?</h3>
+            <p>Oui. La plasticité cérébrale fonctionne dans les deux sens. Tout comme ton attention a été détruite par l'entraînement aux formats courts, elle peut être rééduquée. Mais cela demande un environnement protégé, débarrassé de toute friction numérique immédiate. Le problème n'est pas le manque de méthodes, c'est l'accès constant au distributeur de friandises dopaminergiques que constitue ton smartphone.</p>
+
+            <h3>Quel est le rapport avec le trouble de la concentration chez l'adulte ?</h3>
+            <p>Beaucoup d'adultes s'auto-diagnostiquent aujourd'hui un TDA/H (Trouble du Déficit de l'Attention avec ou sans Hyperactivité). Bien que cette pathologie clinique existe, dans 90% des cas, il s'agit d'un <strong>déficit de l'attention acquis</strong> par sur-stimulation technologique. En retirant les stimuli algorithmiques, le focus revient naturellement.</p>
+
+            <h3>Pourquoi l'ennui est-il devenu insupportable ?</h3>
+            <p>Parce que ton cerveau a été programmé pour fuir le silence cognitif. L'ennui est pourtant le terreau de la créativité et de la consolidation de la mémoire. En le remplaçant systématiquement par du scroll, tu prives ton cerveau des phases de repos nécessaires à son équilibre biochimique.</p>
+
+            <h2>La Chute Abrupte : La liberté commence par le silence</h2>
+            <p>Regarde-toi. Tu as réussi à lire cet article jusqu'ici. C'est une petite victoire, mais combien de fois ton esprit a-t-il lutté contre l'envie de fermer cette page ? Combien de fois tes yeux ont-ils glissé vers les côtés en quête d'une nouvelle notification ?</p>
+
+            <p>La vérité est cruelle : chaque jour où tu continues d'alimenter ton cerveau avec des formats courts, tu détruis activement tes facultés de création, d'analyse et de décision. Tu t'atrophies volontairement, devenant un rouage passif d'une économie de l'attention qui se nourrit de ta passivité.</p>
+
+            <p>Personne ne viendra te forcer à éteindre le flux. La Silicon Valley veut que ton cerveau reste un paquet de popcorn, explosant inlassablement au gré de ses publicités.</p>
+
+            <p>Le choix t'appartient : rester le spectateur passif de ton effondrement cognitif, ou reprendre le contrôle.</p>
+
+            <div class="cta-block">
+                <h3>Es-tu prêt à rééduquer ton attention ?</h3>
+                <p>Rejoins la waiting list exclusive de ScrollFree et sois parmi les premiers à découvrir notre méthode de reconquête de l'attention en 21 jours.</p>
+                <a href="/#offres" class="btn-profile-glow">Rejoindre la Waiting List ScrollFree</a>
+            </div>
+        </article>
+
+        <footer>
+            <p>© 2026 ScrollFree — Division Santé & Neurosciences. Reprends le contrôle.</p>
+        </footer>
+    </div>
+</body>
+</html>

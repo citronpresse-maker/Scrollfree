@@ -1,0 +1,495 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sédentarité, Text Neck et érosion posturale : le mal de cou smartphone | ScrollFree</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Sans:ital,wght@0,300;0,400;0,500;0,700;1,300&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg: #0B0F19;
+            --accent: #D4A373;
+            --accent-hot: #F4D3A1;
+            --text: #ffffff;
+            --muted: rgba(255, 255, 255, 0.4);
+            --muted2: rgba(255, 255, 255, 0.7);
+            --card: rgba(255, 255, 255, 0.03);
+            --border: rgba(255, 255, 255, 0.1);
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            background: var(--bg);
+            color: var(--text);
+            font-family: 'DM Sans', sans-serif;
+            line-height: 1.7;
+            overflow-x: hidden;
+            -webkit-font-smoothing: antialiased;
+            font-size: 1.1rem;
+        }
+
+        /* Grain Texture Overlay */
+        body::before {
+            content: '';
+            position: fixed;
+            inset: 0;
+            background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.03'/%3E%3C/svg%3E");
+            pointer-events: none;
+            z-index: 10;
+            opacity: 0.4;
+        }
+
+        .halo {
+            position: fixed;
+            width: 800px;
+            height: 800px;
+            border-radius: 50%;
+            background: radial-gradient(circle, rgba(212, 163, 115, 0.05) 0%, transparent 70%);
+            z-index: -1;
+            filter: blur(100px);
+        }
+
+        .container {
+            max-width: 850px;
+            margin: 0 auto;
+            padding: 120px 24px;
+        }
+
+        .eyebrow {
+            font-family: 'Bebas Neue', sans-serif;
+            color: var(--accent);
+            letter-spacing: 6px;
+            font-size: 1rem;
+            margin-bottom: 12px;
+            display: block;
+            text-transform: uppercase;
+        }
+
+        h1 {
+            font-family: 'Bebas Neue', sans-serif;
+            font-size: clamp(2.2rem, 7vw, 4rem);
+            line-height: 0.9;
+            margin-bottom: 24px;
+            text-transform: uppercase;
+            letter-spacing: -1px;
+        }
+
+        .meta {
+            color: var(--muted);
+            font-size: 0.8rem;
+            text-transform: uppercase;
+            letter-spacing: 3px;
+            font-weight: 500;
+        }
+
+        article {
+            color: var(--muted2);
+        }
+
+        p {
+            margin-bottom: 28px;
+        }
+
+        h2 {
+            font-family: 'Bebas Neue', sans-serif;
+            font-size: 2.3rem;
+            color: var(--text);
+            margin: 60px 0 24px;
+            letter-spacing: 1px;
+            line-height: 1.1;
+        }
+
+        h3 {
+            font-size: 1.3rem;
+            color: var(--accent-hot);
+            margin: 40px 0 18px;
+            font-weight: 600;
+            letter-spacing: -0.02em;
+        }
+
+        strong {
+            color: var(--text);
+            font-weight: 800;
+        }
+
+        .focus-box {
+            background: var(--card);
+            border: 1px solid var(--border);
+            padding: 40px;
+            margin: 64px 0;
+            border-radius: 16px;
+            position: relative;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.2);
+        }
+
+        .focus-box::before {
+            content: 'DOSSIER MÉDICAL';
+            position: absolute;
+            top: -14px;
+            left: 32px;
+            background: var(--bg);
+            padding: 0 16px;
+            color: var(--accent);
+            font-family: 'Bebas Neue', sans-serif;
+            letter-spacing: 3px;
+            font-size: 0.9rem;
+        }
+
+        blockquote {
+            font-style: italic;
+            border-left: 5px solid var(--accent);
+            padding: 10px 0 10px 32px;
+            margin: 56px 0;
+            font-size: 1.5rem;
+            color: var(--text);
+            line-height: 1.4;
+            background: linear-gradient(90deg, rgba(212, 163, 115, 0.05) 0%, transparent 100%);
+        }
+
+        .glossary {
+            display: block;
+            background: rgba(212, 163, 115, 0.08);
+            border-left: 2px solid var(--accent);
+            color: var(--accent-hot);
+            padding: 16px 24px;
+            border-radius: 0 8px 8px 0;
+            font-size: 0.9rem;
+            margin: 24px 0;
+            font-family: 'DM Sans', sans-serif;
+        }
+
+        .comparison-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 64px 0;
+            font-size: 1rem;
+            background: rgba(255,255,255,0.02);
+            border-radius: 12px;
+            overflow: hidden;
+        }
+
+        .comparison-table th, .comparison-table td {
+            padding: 20px;
+            border: 1px solid var(--border);
+            text-align: left;
+        }
+
+        .comparison-table th {
+            background: rgba(255, 255, 255, 0.05);
+            font-family: 'Bebas Neue', sans-serif;
+            letter-spacing: 2px;
+            font-size: 1.3rem;
+            color: var(--accent);
+        }
+
+        .cta-block {
+            margin-top: 100px;
+            text-align: center;
+            padding: 80px 40px;
+            background: radial-gradient(circle at top, rgba(212, 163, 115, 0.15) 0%, transparent 100%);
+            border-radius: 32px;
+            border: 1px solid rgba(212, 163, 115, 0.3);
+            box-shadow: 0 40px 80px rgba(0,0,0,0.4);
+        }
+
+        /* ── BTN PROFILE GLOW ── */
+        @keyframes profile-gradient-shift {
+            0% { background-position: 0% center; }
+            100% { background-position: 200% center; }
+        }
+
+        .btn-profile-glow {
+            position: relative;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 12px;
+            padding: 16px 32px;
+            border: none;
+            border-radius: 9999px;
+            font-family: "Helvetica Neue", Helvetica, Arial, ui-sans-serif, system-ui, sans-serif !important;
+            font-size: 1.125rem !important;
+            font-weight: 700 !important;
+            color: #1a1a24;
+            cursor: pointer;
+            background: linear-gradient(135deg, #ffffff 0%, #D4A373 50%, #ffffff 100%);
+            background-size: 200% auto;
+            animation: profile-gradient-shift 3s linear infinite;
+            transition: transform 0.2s cubic-bezier(0.4, 0, 0.2, 1), box-shadow 0.2s;
+            text-decoration: none;
+            isolation: isolate;
+            box-shadow: 0 8px 24px rgba(212, 163, 115, 0.2);
+            margin-top: 32px;
+        }
+
+        .btn-profile-glow::after {
+            content: '';
+            position: absolute;
+            inset: -2px;
+            border-radius: 9999px;
+            background: linear-gradient(135deg, #ffffff, #D4A373, #ffffff);
+            background-size: 200% auto;
+            animation: profile-gradient-shift 3s linear infinite;
+            z-index: -1;
+            opacity: 0.4;
+            filter: blur(8px);
+            transition: opacity 0.3s, filter 0.3s;
+        }
+
+        .btn-profile-glow:hover {
+            transform: translateY(-3px) !important;
+            background: linear-gradient(135deg, #ffffff 0%, #F4D3A1 50%, #ffffff 100%);
+            background-size: 200% auto;
+            box-shadow: 0 12px 30px rgba(212, 163, 115, 0.45);
+        }
+
+        .btn-profile-glow:hover::after {
+            opacity: 0.8;
+            filter: blur(12px);
+        }
+
+        /* ── TOOLTIP SYSTEM ── */
+        .tooltip {
+            position: relative;
+            display: inline-block;
+            border-bottom: 1px dashed var(--accent);
+            cursor: help;
+            color: var(--text);
+            font-weight: 700;
+        }
+
+        .tooltip .tooltip-text {
+            visibility: hidden;
+            width: 240px;
+            background-color: #1a1f2e;
+            color: #fff;
+            text-align: left;
+            border-radius: 8px;
+            padding: 12px 16px;
+            position: absolute;
+            z-index: 100;
+            bottom: 125%;
+            left: 50%;
+            margin-left: -120px;
+            opacity: 0;
+            transition: opacity 0.3s, transform 0.3s;
+            font-size: 0.9rem;
+            line-height: 1.4;
+            font-weight: 400;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+            border: 1px solid var(--border);
+            pointer-events: none;
+            transform: translateY(10px);
+        }
+
+        .tooltip:hover .tooltip-text {
+            visibility: visible;
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .tooltip .tooltip-text::after {
+            content: "";
+            position: absolute;
+            top: 100%;
+            left: 50%;
+            margin-left: -5px;
+            border-width: 5px;
+            border-style: solid;
+            border-color: #1a1f2e transparent transparent transparent;
+        }
+
+        footer {
+            margin-top: 160px;
+            padding: 60px 0;
+            border-top: 1px solid var(--border);
+            text-align: center;
+            color: var(--muted);
+            font-size: 0.85rem;
+            letter-spacing: 1px;
+        }
+
+        .nav {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            padding: 24px 32px;
+            z-index: 100;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            backdrop-filter: blur(20px);
+            background: rgba(11, 15, 25, 0.7);
+            border-bottom: 1px solid var(--border);
+        }
+
+        .logo {
+            font-family: 'Bebas Neue', sans-serif;
+            font-size: 1.8rem;
+            color: #fff;
+            text-decoration: none;
+            letter-spacing: 3px;
+        }
+
+        .list-puces {
+            list-style: none;
+            margin: 32px 0;
+        }
+
+        .list-puces li {
+            position: relative;
+            padding-left: 36px;
+            margin-bottom: 20px;
+            font-size: 1.05rem;
+        }
+
+        .list-puces li::before {
+            content: '→';
+            position: absolute;
+            left: 0;
+            color: var(--accent);
+            font-weight: bold;
+        }
+
+        .highlight-text {
+            color: var(--text);
+            font-weight: 700;
+            background: linear-gradient(180deg, transparent 70%, rgba(212, 163, 115, 0.2) 30%);
+        }
+
+        .highlight-link {
+            color: var(--accent);
+            font-weight: 700;
+            text-decoration: none;
+            border-bottom: 1px solid var(--accent);
+            transition: all 0.2s;
+        }
+
+        .highlight-link:hover {
+            color: var(--accent-hot);
+            border-bottom-color: var(--accent-hot);
+            background: rgba(212, 163, 115, 0.1);
+        }
+
+        @media (max-width: 768px) {
+            .container { padding: 100px 20px; }
+            h1 { font-size: 2.5rem; }
+            h2 { font-size: 1.9rem; }
+            .cta-block { padding: 40px 20px; }
+        }
+    </style>
+</head>
+<body>
+    <div class="halo" style="top: -10%; left: -10%;"></div>
+    <div class="halo" style="bottom: 10%; right: -10%; background: radial-gradient(circle, rgba(255, 255, 255, 0.05) 0%, transparent 70%);"></div>
+
+    <nav class="nav">
+        <a href="/" class="logo">SCROLLFREE</a>
+        <div style="display: flex; gap: 24px; align-items: center;">
+            <a href="/blog" style="color: var(--accent); text-decoration: none; font-weight: 700; font-size: 0.8rem; letter-spacing: 2px; text-transform: uppercase;">Blog</a>
+            <a href="/" style="color: #fff; text-decoration: none; font-weight: 700; font-size: 0.8rem; letter-spacing: 2px; text-transform: uppercase; opacity: 0.8; transition: opacity 0.2s;" onmouseover="this.style.opacity=1" onmouseout="this.style.opacity=0.8">Retour au site</a>
+        </div>
+    </nav>
+
+    <div class="container">
+        <article>
+            <header style="text-align: left; margin-bottom: 60px;">
+                <span class="eyebrow">Santé & Neurosciences</span>
+                <h1>Le coût physique du scroll : sédentarité et "Text Neck"</h1>
+                <div class="meta">Lecture : 10 min • Par L'Équipe ScrollFree</div>
+            </header>
+
+            <p><strong>Redresse ton menton.</strong> Juste un instant. Si tu lis cet article dans ta posture habituelle, tes cervicales sont actuellement en train de subir une pression d'environ <strong>22 kilos</strong>. Tu ne le ressens pas immédiatement car le corps possède une incroyable tolérance à l'auto-destruction lente. Mais à cet instant précis, tes muscles profonds s'asphyxient, tes disques intervertébraux s'écrasent, et ton dos s'effondre.</p>
+
+            <p>Ce fléau a désormais un nom clinique : le <strong>Text Neck</strong>. C'est l'érosion posturale progressive provoquée par le fait de regarder constamment vers le bas en direction de ton écran. Le <span class="tooltip">mal de cou smartphone<span class="tooltip-text">Syndrome cervical aigu ou chronique provoqué par la flexion prolongée et répétée du cou vers l'avant lors de l'utilisation d'écrans mobiles.</span></span> n'est pas un bobo passager de bureau. C'est une pathologie ostéopathique majeure qui détruit le capital articulaire d'une génération entière, combinée à la sédentarité induite par le scroll compulsif.</p>
+
+            <p>L'immobilité physique prolongée, combinée à cette contrainte mécanique dévastatrice, modifie en profondeur notre équilibre biologique et postural. En ignorant ces alertes physiques, nous préparons notre corps aux pathologies articulaires chroniques et favorisons le dérèglement de notre sommeil par épuisement nerveux.</p>
+
+            <h2>1. La génération "tête baissée" : Qu'est-ce que le Text Neck ?</h2>
+            <p>Pour comprendre le Text Neck, il faut faire un peu de physique appliquée au corps humain.</p>
+
+            <p>La tête d'un adulte pèse environ 5 kg en position neutre, parfaitement alignée sur l'axe de la colonne vertébrale. Mais dès que tu inclines ta tête vers l'avant pour regarder l'écran de ton smartphone, l'effet de levier gravitationnel s'active. À un angle de 15°, le poids ressenti par ta nuque double pour atteindre 12 kg. À 30°, il grimpe à 18 kg. Et à 60° (l'inclinaison classique du scrolleur dans son canapé), ta nuque subit une charge de <strong>27 kg</strong> !</p>
+
+            <p>Pour empêcher ta tête de tomber en avant, les muscles postérieurs de ton cou et du haut de ton dos (les trapèzes et les splénius) doivent se contracter de manière isométrique continue. <span class="highlight-text">C'est l'équivalent neurologique de porter un sac de ciment sur la nuque pendant toute la durée de ton temps d'écran.</span> À force de répéter cette contrainte, les muscles fatiguent, s'enflamment et finissent par se fibroser, provoquant des contractures chroniques douloureuses et des névralgies cervicales.</p>
+
+            <div class="glossary"><strong>[GLOSSAIRE : Text Neck]</strong> Le syndrome douloureux cervical causé par la flexion répétée et prolongée de la tête vers le bas pour regarder des écrans de smartphones.</div>
+
+            <blockquote>
+                "Le Text Neck est la première pathologie posturale de l'histoire humaine induite à 100% par des logiciels applicatifs."
+            </blockquote>
+
+            <h2>2. La sédentarité de scroll : L'extinction du métabolisme</h2>
+            <p>Mais le coût physique ne se limite pas à la nuque. En scrollant, tu passes en mode de <strong>sédentarité passive absolue</strong>. Ton activité musculaire globale s'effondre à son niveau le plus bas possible, proche de l'état végétatif, alors même que ton système nerveux central est en état d'hyper-vigilance dopaminergique.</p>
+
+            <p>Ce décalage biologique est dramatique : ton cerveau consomme du glucose pour faire face à la stimulation algorithmique, mais tes muscles n'en brûlent aucun. Ton système vasculaire s'endort, ta circulation lymphatique stagne, et la production d'hormones de bien-être associées au mouvement est coupée à la racine. Ce stress physique perturbe en chaîne tes fonctions de récupération nocturne, comme détaillé dans notre dossier : <a href="/blog/lumiere-bleue-insomnie-sommeil" class="highlight-link">Lumière bleue et insomnie : comment les notifications piratent votre sommeil</a>.</p>
+
+            <div class="focus-box">
+                <strong>FOCUS OSTÉOPATHIQUE : L'effacement de la lordose cervicale</strong><br><br>
+                Des radiographies menées à la <strong>Clinique Rhumatologique de New York</strong> ont montré une augmentation de plus de 400% des cas d'inversion de courbe cervicale chez les jeunes de moins de 30 ans. Au lieu de présenter une courbure naturelle en forme de C ("lordose") qui amortit les chocs, leur colonne cervicale se raidit en ligne droite ("cyphose cervicale"), accélérant de 20 ans le processus d'arthrose cervicale et de hernie discale.
+            </div>
+
+            <h2>3. Ergonomie vs Compulsion numérique</h2>
+            <p>Beaucoup pensent qu'il suffit de faire quelques étirements ou de changer de chaise pour annuler l'érosion physique du scroll. C'est une erreur de physiologie posturale majeure.</p>
+
+            <table class="comparison-table">
+                <thead>
+                    <tr>
+                        <th>Ce que tu penses faire</th>
+                        <th>La réalité musculaire</th>
+                        <th>La conséquence à long terme</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>"Je fais tourner mon cou pour décoincer la nuque."</td>
+                        <td>Tu compresses des articulations déjà enflammées par la tension.</td>
+                        <td>Aggravation des micro-lésions musculaires cervicales.</td>
+                    </tr>
+                    <tr>
+                        <td>"J'utilise un coussin ergonomique pour compenser."</td>
+                        <td>Le coussin déplace simplement le point de contrainte sans corriger l'inclinaison du regard.</td>
+                        <td>Effondrement postural reporté sur la zone lombaire.</td>
+                    </tr>
+                    <tr>
+                        <td>"Je scroll seulement debout dans les transports."</td>
+                        <td>Les secousses du transport multiplient par deux le stress mécanique sur tes disques cervicaux fléchis.</td>
+                        <td>Risque accru de hernie discale cervicale précoce.</td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <h2>4. Questions Fréquentes (FAQ : Soulager son corps)</h2>
+
+            <h3>Comment corriger ma posture de scrolleur au quotidien ?</h3>
+            <p>La règle d'or est simple : amène l'écran à la hauteur de tes yeux, pas tes yeux à la hauteur de l'écran. Tes coudes doivent être pliés et tes épaules relâchées. Mais applique-t-on vraiment cela en pleine crise dopaminergique face à un contenu captivant ? Absolument jamais. C'est pour cela que la seule vraie solution ergonomique est de réduire drastiquement le temps d'exposition.</p>
+
+            <h3>Quels sont les symptômes alarmants du Text Neck ?</h3>
+            <p>Des céphalées de tension (maux de tête partant de la nuque et remontant vers le front), des douleurs lancinantes entre les omoplates, et des sensations de fourmillements dans les bras ou les mains au réveil. Ce sont les signes que les nerfs cervicaux sont sous compression.</p>
+
+            <h3>Quel est le lien entre le mal de cou et la sédentarité ?</h3>
+            <p>La sédentarité affaiblit les muscles stabilisateurs du tronc (les abdominaux profonds et les spinaux). Sans ces muscles pour maintenir ton dos, ton squelette s'effondre dès que ton cou fléchit, maximisant les forces de cisaillement sur ta colonne.</p>
+
+            <h2>La Chute Abrupte : Ton corps n'est pas virtuel</h2>
+            <p>Tu peux ignorer ces tensions. Tu peux te dire que c'est le stress, que tu es "un peu coincé" aujourd'hui, et reprendre ton téléphone à deux mains pour replonger dans le scroll infini. </p>
+
+            <p>Mais souviens-toi de ceci : ton corps est la seule maison que tu habiteras toute ta vie. Il ne possède pas de touche de réinitialisation ni de mise à jour logicielle. Chaque minute passée la tête pliée sous le poids virtuel de 27 kg détruit activement les disques intervertébraux qui te permettent de te tenir debout.</p>
+
+            <p>Le smartphone est le plus grand outil d'évasion mentale jamais conçu, mais il exige un tribut physique implacable. </p>
+
+            <p>Es-tu prêt à continuer de brader ton intégrité posturale pour des notifications et des vidéos éphémères ? Combien de mois de vie en bonne santé es-tu en train de sacrifier ?</p>
+
+            <div class="cta-block">
+                <h3>Mesure le coût de ton temps perdu</h3>
+                <p>Découvre l'état d'érosion de ton attention et calcule le temps réel que le scroll a volé à ton corps et à ton bien-être physique.</p>
+                <a href="/simulateur" class="btn-profile-glow">Lancer le Simulateur de Temps Perdu</a>
+            </div>
+        </article>
+
+        <footer>
+            <p>© 2026 ScrollFree — Division Santé & Neurosciences. Reprends le contrôle.</p>
+        </footer>
+    </div>
+</body>
+</html>

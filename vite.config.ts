@@ -67,6 +67,11 @@ export default defineConfig(({mode}) => {
           'blog-insomnie-smartphone': path.resolve(__dirname, 'blog-insomnie-smartphone.html'),
           blog: path.resolve(__dirname, 'blog.html'),
           'blog-dopamine-reseaux-sociaux': path.resolve(__dirname, 'blog-dopamine-reseaux-sociaux.html'),
+          'blog-fatigue-oculaire-ecran': path.resolve(__dirname, 'blog-fatigue-oculaire-ecran.html'),
+          'blog-cerveau-popcorn': path.resolve(__dirname, 'blog-cerveau-popcorn.html'),
+          'blog-lumiere-bleue-insomnie-sommeil': path.resolve(__dirname, 'blog-lumiere-bleue-insomnie-sommeil.html'),
+          'blog-neuroplasticite-scroll-infini-cerveau': path.resolve(__dirname, 'blog-neuroplasticite-scroll-infini-cerveau.html'),
+          'blog-cout-physique-scroll-sedentarite-text-neck': path.resolve(__dirname, 'blog-cout-physique-scroll-sedentarite-text-neck.html'),
         },
         output: {
           manualChunks: {

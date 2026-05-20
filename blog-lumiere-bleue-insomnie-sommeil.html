@@ -1,0 +1,495 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lumière bleue, notifications et insomnie : la dette de sommeil écrans | ScrollFree</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Sans:ital,wght@0,300;0,400;0,500;0,700;1,300&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg: #0B0F19;
+            --accent: #D4A373;
+            --accent-hot: #F4D3A1;
+            --text: #ffffff;
+            --muted: rgba(255, 255, 255, 0.4);
+            --muted2: rgba(255, 255, 255, 0.7);
+            --card: rgba(255, 255, 255, 0.03);
+            --border: rgba(255, 255, 255, 0.1);
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            background: var(--bg);
+            color: var(--text);
+            font-family: 'DM Sans', sans-serif;
+            line-height: 1.7;
+            overflow-x: hidden;
+            -webkit-font-smoothing: antialiased;
+            font-size: 1.1rem;
+        }
+
+        /* Grain Texture Overlay */
+        body::before {
+            content: '';
+            position: fixed;
+            inset: 0;
+            background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.03'/%3E%3C/svg%3E");
+            pointer-events: none;
+            z-index: 10;
+            opacity: 0.4;
+        }
+
+        .halo {
+            position: fixed;
+            width: 800px;
+            height: 800px;
+            border-radius: 50%;
+            background: radial-gradient(circle, rgba(212, 163, 115, 0.05) 0%, transparent 70%);
+            z-index: -1;
+            filter: blur(100px);
+        }
+
+        .container {
+            max-width: 850px;
+            margin: 0 auto;
+            padding: 120px 24px;
+        }
+
+        .eyebrow {
+            font-family: 'Bebas Neue', sans-serif;
+            color: var(--accent);
+            letter-spacing: 6px;
+            font-size: 1rem;
+            margin-bottom: 12px;
+            display: block;
+            text-transform: uppercase;
+        }
+
+        h1 {
+            font-family: 'Bebas Neue', sans-serif;
+            font-size: clamp(2.2rem, 7vw, 4rem);
+            line-height: 0.9;
+            margin-bottom: 24px;
+            text-transform: uppercase;
+            letter-spacing: -1px;
+        }
+
+        .meta {
+            color: var(--muted);
+            font-size: 0.8rem;
+            text-transform: uppercase;
+            letter-spacing: 3px;
+            font-weight: 500;
+        }
+
+        article {
+            color: var(--muted2);
+        }
+
+        p {
+            margin-bottom: 28px;
+        }
+
+        h2 {
+            font-family: 'Bebas Neue', sans-serif;
+            font-size: 2.3rem;
+            color: var(--text);
+            margin: 60px 0 24px;
+            letter-spacing: 1px;
+            line-height: 1.1;
+        }
+
+        h3 {
+            font-size: 1.3rem;
+            color: var(--accent-hot);
+            margin: 40px 0 18px;
+            font-weight: 600;
+            letter-spacing: -0.02em;
+        }
+
+        strong {
+            color: var(--text);
+            font-weight: 800;
+        }
+
+        .focus-box {
+            background: var(--card);
+            border: 1px solid var(--border);
+            padding: 40px;
+            margin: 64px 0;
+            border-radius: 16px;
+            position: relative;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.2);
+        }
+
+        .focus-box::before {
+            content: 'CRITÈRES CLINIQUES';
+            position: absolute;
+            top: -14px;
+            left: 32px;
+            background: var(--bg);
+            padding: 0 16px;
+            color: var(--accent);
+            font-family: 'Bebas Neue', sans-serif;
+            letter-spacing: 3px;
+            font-size: 0.9rem;
+        }
+
+        blockquote {
+            font-style: italic;
+            border-left: 5px solid var(--accent);
+            padding: 10px 0 10px 32px;
+            margin: 56px 0;
+            font-size: 1.5rem;
+            color: var(--text);
+            line-height: 1.4;
+            background: linear-gradient(90deg, rgba(212, 163, 115, 0.05) 0%, transparent 100%);
+        }
+
+        .glossary {
+            display: block;
+            background: rgba(212, 163, 115, 0.08);
+            border-left: 2px solid var(--accent);
+            color: var(--accent-hot);
+            padding: 16px 24px;
+            border-radius: 0 8px 8px 0;
+            font-size: 0.9rem;
+            margin: 24px 0;
+            font-family: 'DM Sans', sans-serif;
+        }
+
+        .comparison-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 64px 0;
+            font-size: 1rem;
+            background: rgba(255,255,255,0.02);
+            border-radius: 12px;
+            overflow: hidden;
+        }
+
+        .comparison-table th, .comparison-table td {
+            padding: 20px;
+            border: 1px solid var(--border);
+            text-align: left;
+        }
+
+        .comparison-table th {
+            background: rgba(255, 255, 255, 0.05);
+            font-family: 'Bebas Neue', sans-serif;
+            letter-spacing: 2px;
+            font-size: 1.3rem;
+            color: var(--accent);
+        }
+
+        .cta-block {
+            margin-top: 100px;
+            text-align: center;
+            padding: 80px 40px;
+            background: radial-gradient(circle at top, rgba(212, 163, 115, 0.15) 0%, transparent 100%);
+            border-radius: 32px;
+            border: 1px solid rgba(212, 163, 115, 0.3);
+            box-shadow: 0 40px 80px rgba(0,0,0,0.4);
+        }
+
+        /* ── BTN PROFILE GLOW ── */
+        @keyframes profile-gradient-shift {
+            0% { background-position: 0% center; }
+            100% { background-position: 200% center; }
+        }
+
+        .btn-profile-glow {
+            position: relative;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 12px;
+            padding: 16px 32px;
+            border: none;
+            border-radius: 9999px;
+            font-family: "Helvetica Neue", Helvetica, Arial, ui-sans-serif, system-ui, sans-serif !important;
+            font-size: 1.125rem !important;
+            font-weight: 700 !important;
+            color: #1a1a24;
+            cursor: pointer;
+            background: linear-gradient(135deg, #ffffff 0%, #D4A373 50%, #ffffff 100%);
+            background-size: 200% auto;
+            animation: profile-gradient-shift 3s linear infinite;
+            transition: transform 0.2s cubic-bezier(0.4, 0, 0.2, 1), box-shadow 0.2s;
+            text-decoration: none;
+            isolation: isolate;
+            box-shadow: 0 8px 24px rgba(212, 163, 115, 0.2);
+            margin-top: 32px;
+        }
+
+        .btn-profile-glow::after {
+            content: '';
+            position: absolute;
+            inset: -2px;
+            border-radius: 9999px;
+            background: linear-gradient(135deg, #ffffff, #D4A373, #ffffff);
+            background-size: 200% auto;
+            animation: profile-gradient-shift 3s linear infinite;
+            z-index: -1;
+            opacity: 0.4;
+            filter: blur(8px);
+            transition: opacity 0.3s, filter 0.3s;
+        }
+
+        .btn-profile-glow:hover {
+            transform: translateY(-3px) !important;
+            background: linear-gradient(135deg, #ffffff 0%, #F4D3A1 50%, #ffffff 100%);
+            background-size: 200% auto;
+            box-shadow: 0 12px 30px rgba(212, 163, 115, 0.45);
+        }
+
+        .btn-profile-glow:hover::after {
+            opacity: 0.8;
+            filter: blur(12px);
+        }
+
+        /* ── TOOLTIP SYSTEM ── */
+        .tooltip {
+            position: relative;
+            display: inline-block;
+            border-bottom: 1px dashed var(--accent);
+            cursor: help;
+            color: var(--text);
+            font-weight: 700;
+        }
+
+        .tooltip .tooltip-text {
+            visibility: hidden;
+            width: 240px;
+            background-color: #1a1f2e;
+            color: #fff;
+            text-align: left;
+            border-radius: 8px;
+            padding: 12px 16px;
+            position: absolute;
+            z-index: 100;
+            bottom: 125%;
+            left: 50%;
+            margin-left: -120px;
+            opacity: 0;
+            transition: opacity 0.3s, transform 0.3s;
+            font-size: 0.9rem;
+            line-height: 1.4;
+            font-weight: 400;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+            border: 1px solid var(--border);
+            pointer-events: none;
+            transform: translateY(10px);
+        }
+
+        .tooltip:hover .tooltip-text {
+            visibility: visible;
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .tooltip .tooltip-text::after {
+            content: "";
+            position: absolute;
+            top: 100%;
+            left: 50%;
+            margin-left: -5px;
+            border-width: 5px;
+            border-style: solid;
+            border-color: #1a1f2e transparent transparent transparent;
+        }
+
+        footer {
+            margin-top: 160px;
+            padding: 60px 0;
+            border-top: 1px solid var(--border);
+            text-align: center;
+            color: var(--muted);
+            font-size: 0.85rem;
+            letter-spacing: 1px;
+        }
+
+        .nav {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            padding: 24px 32px;
+            z-index: 100;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            backdrop-filter: blur(20px);
+            background: rgba(11, 15, 25, 0.7);
+            border-bottom: 1px solid var(--border);
+        }
+
+        .logo {
+            font-family: 'Bebas Neue', sans-serif;
+            font-size: 1.8rem;
+            color: #fff;
+            text-decoration: none;
+            letter-spacing: 3px;
+        }
+
+        .list-puces {
+            list-style: none;
+            margin: 32px 0;
+        }
+
+        .list-puces li {
+            position: relative;
+            padding-left: 36px;
+            margin-bottom: 20px;
+            font-size: 1.05rem;
+        }
+
+        .list-puces li::before {
+            content: '→';
+            position: absolute;
+            left: 0;
+            color: var(--accent);
+            font-weight: bold;
+        }
+
+        .highlight-text {
+            color: var(--text);
+            font-weight: 700;
+            background: linear-gradient(180deg, transparent 70%, rgba(212, 163, 115, 0.2) 30%);
+        }
+
+        .highlight-link {
+            color: var(--accent);
+            font-weight: 700;
+            text-decoration: none;
+            border-bottom: 1px solid var(--accent);
+            transition: all 0.2s;
+        }
+
+        .highlight-link:hover {
+            color: var(--accent-hot);
+            border-bottom-color: var(--accent-hot);
+            background: rgba(212, 163, 115, 0.1);
+        }
+
+        @media (max-width: 768px) {
+            .container { padding: 100px 20px; }
+            h1 { font-size: 2.5rem; }
+            h2 { font-size: 1.9rem; }
+            .cta-block { padding: 40px 20px; }
+        }
+    </style>
+</head>
+<body>
+    <div class="halo" style="top: -10%; left: -10%;"></div>
+    <div class="halo" style="bottom: 10%; right: -10%; background: radial-gradient(circle, rgba(255, 255, 255, 0.05) 0%, transparent 70%);"></div>
+
+    <nav class="nav">
+        <a href="/" class="logo">SCROLLFREE</a>
+        <div style="display: flex; gap: 24px; align-items: center;">
+            <a href="/blog" style="color: var(--accent); text-decoration: none; font-weight: 700; font-size: 0.8rem; letter-spacing: 2px; text-transform: uppercase;">Blog</a>
+            <a href="/" style="color: #fff; text-decoration: none; font-weight: 700; font-size: 0.8rem; letter-spacing: 2px; text-transform: uppercase; opacity: 0.8; transition: opacity 0.2s;" onmouseover="this.style.opacity=1" onmouseout="this.style.opacity=0.8">Retour au site</a>
+        </div>
+    </nav>
+
+    <div class="container">
+        <article>
+            <header style="text-align: left; margin-bottom: 60px;">
+                <span class="eyebrow">Santé & Neurosciences</span>
+                <h1>Lumière bleue et insomnie : comment les notifications piratent votre sommeil</h1>
+                <div class="meta">Lecture : 9 min • Par L'Équipe ScrollFree</div>
+            </header>
+
+            <p><strong>Ferme les yeux.</strong> Imagine une nuit de sommeil parfaite : calme, ininterrompue, régénératrice. Maintenant, confronte cette image à ta réalité de la nuit dernière. Ce moment où, à 1h du matin, une notification a illuminé ton visage dans le noir complet. Un simple flash. Tu as tendu la main, déverrouillé l'écran, et tu as plongé dans le vide numérique pendant quarante-cinq minutes. </p>
+
+            <p>Ce geste impulsif a une conséquence biologique immédiate : il vient d'anéantir ta nuit. La <span class="tooltip">dette de sommeil écrans<span class="tooltip-text">Accumulation de fatigue chronique due à l'abréviation des nuits et à la détérioration de la structure du sommeil par les usages numériques tardifs.</span></span> est la crise de santé publique la plus massive et la plus sous-estimée de notre décennie. Ce piratage clinique repose sur un coupable bien identifié : la <strong>lumière bleue</strong>, complice active des notifications qui maintiennent ton cerveau en état d'alerte permanent.</p>
+
+            <p>L'exposition nocturne aux écrans agit comme un véritable saboteur hormonal. En envoyant de fausses informations temporelles à ton horloge interne, ton smartphone repousse artificiellement l'heure d'endormissement et dégrade la structure même de ton sommeil profond.</p>
+
+            <h2>1. L'Horloge interne brisée : Comment la lumière bleue bloque la mélatonine</h2>
+            <p>Ton sommeil est régulé par un chef d'orchestre biologique : ton rythme circadien. Ce rythme dépend d'une hormone clé, la <span class="tooltip">mélatonine<span class="tooltip-text">L'hormone du sommeil, sécrétée par la glande pinéale, qui signale au cerveau qu'il est temps de s'endormir en réponse à l'obscurité.</span></span> (l'hormone du sommeil). En fin de journée, lorsque la lumière naturelle baisse, la glande pinéale commence à sécréter de la mélatonine pour préparer ton corps à l'endormissement.</p>
+
+            <p>Mais les écrans LED de nos smartphones émettent une lumière riche en longueurs d'onde bleues (autour de 460-480 nanomètres). Malheureusement pour nous, ces ondes bleues stimulent intensément des cellules réceptrices très spécifiques dans notre rétine (les cellules ganglionnaires à mélanopsine). Ces cellules sont directement reliées à l'horloge biologique centrale du cerveau. </p>
+
+            <p>Lorsqu'elles reçoivent de la lumière bleue en pleine nuit, elles envoient un signal d'urgence : <em>"Il fait grand jour ! Arrêtez immédiatement la mélatonine !"</em>. <span class="highlight-text">En regardant ton téléphone au lit, tu indiques chimiquement à ton cerveau qu'il est midi en plein mois de juillet.</span> La sécrétion de mélatonine est bloquée instantanément, retardant l'endormissement de plus de deux heures.</p>
+
+            <div class="glossary"><strong>[GLOSSAIRE : Mélatonine]</strong> Neurohormone sécrétée par la glande pinéale qui régule les rythmes chronobiologiques en informant le cerveau de l'alternance jour/nuit.</div>
+
+            <blockquote>
+                "Regarder un écran dans son lit équivaut à avaler une double tasse d'espresso juste avant d'éteindre la lumière. L'excitation neuronale est identique."
+            </blockquote>
+
+            <h2>2. Les Notifications nocturnes : Les bombes d'alerte cognitive</h2>
+            <p>Mais le problème n'est pas seulement lumineux, il est aussi attentionnel. Les notifications agissent comme des chocs d'adrénaline. Une alerte à 23h30 (un email professionnel, un commentaire sur les réseaux, une actualité stressante) active instantanément ton système nerveux sympathique.</p>
+            
+            <p>Ton rythme cardiaque s'accélère, ta température corporelle augmente : ton corps passe en mode "combat ou fuite". Ce stress physiologique est le contraire absolu de l'état de relâchement requis pour l'endormissement. De plus, la tension oculaire induite par cette concentration tardive fatigue ton organisme de manière anormale, comme expliqué dans notre dossier complet : <a href="/blog/fatigue-oculaire-ecran" class="highlight-link">Est-ce que le temps d'écran fatigue les yeux et modifie la posture ?</a>.</p>
+
+            <div class="focus-box">
+                <strong>CLINIQUE : La fragmentation du sommeil profond</strong><br><br>
+                Des études cliniques menées au <strong>Centre du Sommeil de Harvard</strong> ont prouvé que les personnes consultant leur smartphone dans les 2 heures précédant le coucher perdent en moyenne <strong>30 minutes de sommeil profond</strong> (la phase essentielle à la régénération cellulaire et à la consolidation de la mémoire). Le sommeil paradoxal est également fragmenté, ce qui entraîne une fatigue mentale dès le réveil.
+            </div>
+
+            <h2>3. Le Cercle vicieux de la Dette de Sommeil</h2>
+            <p>La dette de sommeil accumulée à cause des écrans crée un engrenage redoutable dont il est presque impossible de sortir sans une hygiène numérique drastique.</p>
+
+            <table class="comparison-table">
+                <thead>
+                    <tr>
+                        <th>Nuit sans Écran</th>
+                        <th>Nuit avec Scroll Tardif</th>
+                        <th>L'impact le lendemain</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><strong>Mélatonine régulée</strong></td>
+                        <td>Sécrétion retardée de 90 à 120 minutes.</td>
+                        <td>Difficulté majeure au réveil, brouillard mental.</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Sommeil profond continu</strong></td>
+                        <td>Micro-éveils dus aux vibrations et flashs.</td>
+                        <td>Fatigue physique, douleurs musculaires chroniques.</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Phase de déconnexion cognitive</strong></td>
+                        <td>Rumination et stress liés aux notifications reçues.</td>
+                        <td>Anxiété accrue, compulsion à scroller pour compenser.</td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <h2>4. Questions Fréquentes (FAQ : Protéger ses nuits)</h2>
+
+            <h3>Le mode nuit (filtre jaune) protège-t-il vraiment ?</h3>
+            <p>C'est un placebo partiel. Bien que le filtre jaune atténue la quantité de lumière bleue, il ne supprime pas <strong>l'hyper-stimulation cognitive</strong>. Discuter, scroller ou lire des contenus stimulants maintient ton cerveau actif et retarde l'endormissement, quelle que soit la couleur de ton écran.</p>
+
+            <h3>Combien de temps avant de dormir faut-il éteindre les écrans ?</h3>
+            <p>La recommandation clinique stricte est de <strong>60 à 90 minutes</strong> avant le coucher. C'est le temps biologique nécessaire pour que la courbe de mélatonine commence sa montée naturelle et que ton système nerveux redescende en pression.</p>
+
+            <h3>Quel est l'impact de la dette de sommeil sur la santé mentale ?</h3>
+            <p>La dette de sommeil chronique altère la plasticité cérébrale, diminue la résistance au stress et multiplie par trois le risque d'épisodes dépressifs. Un cerveau fatigué est un cerveau biologiquement vulnérable.</p>
+
+            <h2>La Chute Abrupte : Le réveil sonnera toujours</h2>
+            <p>La nuit prochaine, la scène se répétera. Ton téléphone vibrera à portée de main. Une notification brillera dans la pénombre, promesse éphémère d'un plaisir instantané. Tu sais désormais ce qui se passe dans ton crâne à ce moment-là. Tu connais la chute de la mélatonine, le blocage de ton horloge interne, et la fatigue du lendemain.</p>
+
+            <p>Pourtant, tu tendras probablement le bras. </p>
+
+            <p>Parce que la curiosité dopaminergique est plus forte que la raison clinique. Parce que les designers d'applications ont passé des années à s'assurer que tu ne puisses pas résister à ce flash nocturne. Chaque nuit volée par ton smartphone est un chèque en blanc signé à la fatigue, à l'anxiété et au vieillissement prématuré de tes neurones.</p>
+
+            <p>Ton sommeil est la fondation de ta vie. Es-tu prêt à continuer de la brader pour des notifications éphémères ?</p>
+
+            <div class="cta-block">
+                <h3>Calcule le coût de tes nuits volées</h3>
+                <p>Découvre combien d'années de sommeil réparateur tu as déjà troquées contre du scroll infini et reprends enfin le contrôle de tes nuits.</p>
+                <a href="/simulateur" class="btn-profile-glow">Lancer le Simulateur de Temps Perdu</a>
+            </div>
+        </article>
+
+        <footer>
+            <p>© 2026 ScrollFree — Division Santé & Neurosciences. Reprends le contrôle.</p>
+        </footer>
+    </div>
+</body>
+</html>
