@@ -1,7 +1,7 @@
-import { useState } from 'react';
+import React, { useState } from 'react';
 import { Menu, X, ChevronRight } from 'lucide-react';
 import { m } from 'motion/react';
-import bgImage from '../background.webp';
+import bgImage from '../background_web_dark.webp';
 
 export const Hero = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);

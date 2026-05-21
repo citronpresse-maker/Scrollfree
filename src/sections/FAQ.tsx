@@ -1,5 +1,5 @@
 import { m, AnimatePresence } from 'motion/react';
-import { useState } from 'react';
+import React, { useState } from 'react';
 import { Plus, Minus, ChevronRight } from 'lucide-react';
 
 interface FAQItemProps {
@@ -7,7 +7,7 @@ interface FAQItemProps {
   answer: string;
 }
 
-const FAQItem = ({ question, answer }: FAQItemProps) => {
+const FAQItem: React.FC<FAQItemProps> = ({ question, answer }) => {
   const [isOpen, setIsOpen] = useState(false);
 
   return (

@@ -1,5 +1,5 @@
 import { m, AnimatePresence } from 'motion/react';
-import { useState } from 'react';
+import React, { useState } from 'react';
 import { Send, CheckCircle2, X } from 'lucide-react';
 
 interface ContactFormProps {

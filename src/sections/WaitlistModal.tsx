@@ -1,5 +1,5 @@
 import { m, AnimatePresence } from 'motion/react';
-import { useState } from 'react';
+import React, { useState } from 'react';
 import { Sparkles, CheckCircle2, X } from 'lucide-react';
 
 interface WaitlistModalProps {

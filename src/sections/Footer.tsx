@@ -1,3 +1,4 @@
+import React from 'react';
 import { Brain, Instagram, Music2, Youtube } from 'lucide-react';
 
 export const Footer = ({ onContactClick }: { onContactClick?: () => void }) => {
