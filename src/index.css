@@ -1,13 +1,180 @@
+@source "./**/*.tsx";
 @import "tailwindcss";
 
+/* ── THEME VARIABLES ── */
+:root {
+  --sf-bg: #0B0F19;
+  --sf-accent: #D4A373;
+  --sf-accent-hot: #F4D3A1;
+  --sf-text: #ffffff;
+  --sf-text-muted: rgba(255,255,255,0.60);
+  --sf-surface: rgba(255,255,255,0.04);
+  --sf-border: rgba(255,255,255,0.10);
+}
+[data-theme="light"] {
+  --sf-bg: #EEE9DF;
+  --sf-accent: #A35139;
+  --sf-accent-hot: #FFB162;
+  --sf-text: #1B2632;
+  --sf-text-muted: rgba(27,38,50,0.58);
+  --sf-surface: rgba(201,193,177,0.35);
+  --sf-border: rgba(27,38,50,0.12);
+}
+
+/* ── LIGHT MODE GLOBAL OVERRIDES ── */
+[data-theme="light"] body {
+  background-color: #EEE9DF;
+  color: #1B2632;
+}
+[data-theme="light"] h1,
+[data-theme="light"] h2,
+[data-theme="light"] h3,
+[data-theme="light"] h4 {
+  color: #1B2632;
+}
+[data-theme="light"] p {
+  color: rgba(27,38,50,0.72);
+}
+[data-theme="light"] li {
+  color: rgba(27,38,50,0.72);
+}
+[data-theme="light"] blockquote {
+  color: rgba(27,38,50,0.80);
+}
+[data-theme="light"] section {
+  color: #1B2632;
+}
+[data-theme="light"] article {
+  color: rgba(27,38,50,0.80);
+}
+
+/* Nav */
+[data-theme="light"] nav a {
+  color: #2C3B4D !important;
+}
+
+/* Gradient background hidden in light */
+[data-theme="light"] canvas,
+[data-theme="light"] [class*="gradient-bg"],
+[data-theme="light"] [class*="GradientBackground"] {
+  opacity: 0;
+  pointer-events: none;
+}
+
+/* Accent color overrides */
+[data-theme="light"] .text-\[\#D4A373\] { color: #A35139 !important; }
+[data-theme="light"] .text-\[\#F4D3A1\] { color: #FFB162 !important; }
+[data-theme="light"] .border-\[\#D4A373\]\/30 { border-color: rgba(163,81,57,0.30) !important; }
+[data-theme="light"] .border-\[\#D4A373\]\/60 { border-color: rgba(163,81,57,0.55) !important; }
+
+/* Cards — frozen glass light */
+[data-theme="light"] .bg-white\/\[0\.04\],
+[data-theme="light"] .bg-white\/\[0\.02\] {
+  background-color: rgba(201,193,177,0.40) !important;
+}
+[data-theme="light"] .border-white\/\[0\.10\],
+[data-theme="light"] .border-white\/10 {
+  border-color: rgba(27,38,50,0.13) !important;
+}
+[data-theme="light"] .bg-\[\#16120E\] {
+  background-color: rgba(201,193,177,0.45) !important;
+}
+[data-theme="light"] .bg-\[\#1F1912\] {
+  background-color: rgba(201,193,177,0.40) !important;
+}
+[data-theme="light"] .bg-\[\#0B0F19\] {
+  background-color: #EEE9DF !important;
+}
+
+/* Text muted overrides */
+[data-theme="light"] .text-white\/60,
+[data-theme="light"] .text-white\/65,
+[data-theme="light"] .text-white\/70,
+[data-theme="light"] .text-white\/80 {
+  color: rgba(27,38,50,0.68) !important;
+}
+[data-theme="light"] .text-white\/50,
+[data-theme="light"] .text-white\/55 {
+  color: rgba(27,38,50,0.55) !important;
+}
+[data-theme="light"] .text-white\/40,
+[data-theme="light"] .text-white\/45 {
+  color: rgba(27,38,50,0.42) !important;
+}
+[data-theme="light"] .text-white\/30 {
+  color: rgba(27,38,50,0.32) !important;
+}
+[data-theme="light"] .text-white\/90,
+[data-theme="light"] .text-white\/95 {
+  color: rgba(27,38,50,0.88) !important;
+}
+
+/* Dividers */
+[data-theme="light"] .bg-white\/10 {
+  background-color: rgba(27,38,50,0.10) !important;
+}
+[data-theme="light"] .border-white\/5 {
+  border-color: rgba(27,38,50,0.08) !important;
+}
+[data-theme="light"] .border-white\/\[0\.07\] {
+  border-color: rgba(27,38,50,0.09) !important;
+}
+
+/* Btn profile glow — stays gold, adjust shadow */
+[data-theme="light"] .btn-profile-glow {
+  box-shadow: 0 8px 24px rgba(163,81,57,0.25);
+}
+[data-theme="light"] .btn-profile-glow:hover {
+  box-shadow: 0 12px 30px rgba(163,81,57,0.40);
+}
+
+/* Footer */
+[data-theme="light"] footer {
+  background-color: rgba(201,193,177,0.50) !important;
+  border-top-color: rgba(27,38,50,0.12) !important;
+}
+[data-theme="light"] footer p,
+[data-theme="light"] footer a,
+[data-theme="light"] footer li,
+[data-theme="light"] footer h4 {
+  color: rgba(27,38,50,0.70) !important;
+}
+[data-theme="light"] footer h4 {
+  color: #1B2632 !important;
+}
+
+/* Modal overlays stay dark */
+[data-theme="light"] [role="dialog"],
+[data-theme="light"] .fixed.inset-0.bg-black {
+  background-color: rgba(27,38,50,0.60);
+}
+
 @theme {
-  --font-sans: "Helvetica Neue", Helvetica, Arial, ui-sans-serif, system-ui, sans-serif;
+  --font-sans: "Bricolage Grotesque", ui-sans-serif, system-ui, sans-serif;
 }
 
 @layer base {
   body {
-    @apply text-white antialiased tracking-tight;
+    @apply text-white antialiased;
     background-color: #0B0F19;
+    font-family: "Bricolage Grotesque", ui-sans-serif, system-ui, sans-serif;
+    font-optical-sizing: auto;
+    line-height: 1.7;
+    letter-spacing: -0.01em;
+  }
+
+  h1, h2 {
+    font-weight: 800;
+    letter-spacing: -0.035em;
+    line-height: 1.05;
+    text-wrap: balance;
+  }
+
+  h3 {
+    font-weight: 700;
+    letter-spacing: -0.02em;
+    line-height: 1.15;
+    text-wrap: balance;
   }
 }
 
@@ -18,7 +185,8 @@
 
 @layer components {
   .glass-cta {
-    @apply relative overflow-hidden px-[32px] py-4 border-none rounded-full text-white text-lg font-bold tracking-[-0.01em] cursor-pointer transition-all duration-300;
+    @apply relative overflow-hidden px-[32px] py-[10px] border-none rounded-full text-white text-lg font-bold tracking-[-0.01em] cursor-pointer;
+    transition: transform 300ms, color 300ms, box-shadow 300ms;
     background-color: rgba(255, 255, 255, 0.04) !important;
     background-blend-mode: luminosity;
     box-shadow: inset 0 1px 1px rgba(255,255,255,0.12);
@@ -54,7 +222,8 @@
   }
 
   .glass-cta-primary {
-    @apply relative overflow-hidden px-[32px] py-4 border-none rounded-full text-black text-lg font-bold tracking-[-0.01em] cursor-pointer bg-[#F0F0F0] transition-all duration-300;
+    @apply relative overflow-hidden px-[32px] py-[10px] border-none rounded-full text-black text-lg font-bold tracking-[-0.01em] cursor-pointer bg-[#F0F0F0];
+    transition: transform 300ms, color 300ms, box-shadow 300ms;
     box-shadow: inset 0 1px 1px rgba(255,255,255,0.12);
     isolation: isolate;
     text-decoration: none !important;
@@ -87,6 +256,11 @@
     filter: blur(12px);
   }
 
+  .glass-cta:active, .glass-cta-primary:active {
+    transform: scale(0.96) !important;
+    transition-duration: 80ms;
+  }
+
   .glass-cta::before, .glass-cta-primary::before {
     content: "";
     @apply absolute inset-0 rounded-[inherit] pointer-events-none p-[1.4px];
@@ -106,14 +280,19 @@
 }
 
 @keyframes gpuPulse {
-  0% { transform: scale(1); opacity: 0.8; }
-  50% { transform: scale(1.1); opacity: 1; }
-  100% { transform: scale(1); opacity: 0.8; }
+  0% { transform: scale(1); opacity: 0.7; }
+  50% { transform: scale(1.04); opacity: 0.9; }
+  100% { transform: scale(1); opacity: 0.7; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .gpu-glow { animation: none; opacity: 0.8; }
+  .glass-cta::after, .glass-cta-primary::after { animation: none; }
 }
 
 .gpu-glow {
-  /* Removed global will-change: transform, opacity for mobile performance */
   animation: gpuPulse 3.6s ease-in-out infinite;
+  will-change: transform;
 }
 
 /* ── BTN PROFILE GLOW ── */
@@ -128,21 +307,22 @@
   align-items: center;
   justify-content: center;
   gap: 12px;
-  padding: 16px 32px; /* px-8 py-4: height matching the model CTA */
+  padding: 10px 28px; /* px-8 py-[10px] */
   border: none;
   border-radius: 9999px; /* rounded-full */
-  font-family: "Helvetica Neue", Helvetica, Arial, ui-sans-serif, system-ui, sans-serif !important; /* Font matching the model CTA */
+  font-family: "Bricolage Grotesque", ui-sans-serif, system-ui, sans-serif !important; /* Font matching the model CTA */
   font-size: 1.125rem !important; /* text-lg matching the model CTA */
   font-weight: 700 !important; /* font-bold matching the model CTA */
   color: #1a1a24; /* text-[#1a1a24] */
   cursor: pointer;
   background: linear-gradient(135deg, #ffffff 0%, #D4A373 50%, #ffffff 100%);
-  background-size: 200% auto;
-  animation: profile-gradient-shift 3s linear infinite;
+  background-size: 100% auto;
   transition: transform 0.2s cubic-bezier(0.4, 0, 0.2, 1), box-shadow 0.2s;
   text-decoration: none;
   isolation: isolate;
   box-shadow: 0 8px 24px rgba(212, 163, 115, 0.2);
+  white-space: nowrap;
+  will-change: transform;
 }
 
 .btn-profile-glow::after {
@@ -152,9 +332,8 @@
   border-radius: 9999px;
   background: linear-gradient(135deg, #ffffff, #D4A373, #ffffff);
   background-size: 200% auto;
-  animation: profile-gradient-shift 3s linear infinite;
   z-index: -1;
-  opacity: 0.4;
+  opacity: 0;
   filter: blur(8px);
   transition: opacity 0.3s, filter 0.3s;
 }
@@ -169,4 +348,373 @@
 .btn-profile-glow:hover::after {
   opacity: 0.8;
   filter: blur(12px);
+}
+
+.btn-profile-glow:active {
+  transform: scale(0.96) !important;
+  transition-duration: 80ms;
+}
+
+/* ── ARCHETYPE CAROUSEL ── */
+.archetype-carousel {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  height: 100%;
+  min-height: 380px;
+  overflow: hidden;
+  user-select: none;
+}
+
+.archetype-carousel__container {
+  position: relative;
+  z-index: 1;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+  padding: 24px 8px;
+}
+
+.archetype-carousel__glow {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  z-index: 0;
+}
+
+.archetype-carousel__image-wrapper {
+  position: relative;
+  z-index: 1;
+  width: 100%;
+  height: 380px;
+  max-width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.archetype-carousel__image {
+  width: 125%;
+  height: 125%;
+  max-width: none !important; /* Bypasses Tailwind global img { max-width: 100% } preflight cap */
+  object-fit: contain;
+  filter: drop-shadow(0 2px 10px rgba(0,0,0,0.3));
+  transform: translateY(-15px); /* Adjusted to prevent bottom cropping */
+  will-change: transform;
+}
+
+@media (max-width: 640px) {
+  .archetype-carousel__image-wrapper {
+    height: 380px; /* Keep compact to fit perfectly inside the 520px card */
+  }
+  .archetype-carousel__image {
+    width: 115% !important; /* Reduced zoom so it takes most space but is not cut off */
+    height: 115% !important;
+    max-width: none !important; /* Bypasses Tailwind global img { max-width: 100% } preflight cap */
+    transform: translateY(-15px) !important;
+    object-fit: contain;
+  }
+  .archetype-carousel__label {
+    font-size: 1.1rem;
+    padding: 8px 16px;
+    background: rgba(0,0,0,0.2);
+    backdrop-filter: blur(4px);
+    border-radius: 100px;
+    position: relative;
+    z-index: 10;
+  }
+}
+
+.archetype-carousel__label {
+  position: relative;
+  z-index: 2;
+  margin-bottom: 0px; /* Removed margin to align perfectly with the tabs label */
+  font-size: 0.95rem;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  white-space: nowrap;
+}
+
+/* ── SCREENTIME SIMULATOR ── */
+.screentime-simulator {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  height: 100%;
+  min-height: 380px;
+  overflow: hidden;
+  user-select: none;
+}
+
+.screentime-simulator__glow {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  z-index: 0;
+  border-radius: 40px;
+}
+
+.screentime-simulator__container, .emprise-simulator__container {
+  position: relative;
+  z-index: 1;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+  padding: 16px 8px 12px;
+}
+
+.screentime-simulator__slider-box {
+  width: 100%;
+  background: rgba(255, 255, 255, 0.02);
+  border: 1px solid rgba(255, 255, 255, 0.05);
+  border-radius: 16px;
+  padding: 16px;
+  margin-top: 10px;
+  backdrop-filter: blur(10px);
+}
+
+.screentime-simulator__track-wrapper {
+  width: 100%;
+  padding: 10px 0;
+}
+
+.screentime-simulator__track {
+  position: relative;
+  width: 100%;
+  height: 6px;
+  background: rgba(255, 255, 255, 0.08);
+  border-radius: 3px;
+}
+
+.screentime-simulator__track-fill {
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 100%;
+  border-radius: 3px;
+}
+
+.screentime-simulator__thumb {
+  position: absolute;
+  top: 50%;
+  width: 18px;
+  height: 18px;
+  background: #11141D;
+  border: 3px solid;
+  border-radius: 50%;
+  transform: translate(-50%, -50%);
+  cursor: pointer;
+}
+
+.screentime-simulator__status-badge {
+  height: 28px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.screentime-simulator__counter-box {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 10px;
+}
+
+.screentime-simulator__counter-row {
+  display: flex;
+  align-items: baseline;
+  justify-content: center;
+  gap: 8px;
+  margin: 6px 0;
+}
+
+.screentime-simulator__days {
+  font-size: 3.5rem;
+  font-weight: 800;
+  font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+  line-height: 1;
+  letter-spacing: -0.02em;
+}
+
+.screentime-simulator__unit {
+  font-size: 1.25rem;
+  font-weight: 700;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+}
+
+@keyframes pulseGlow {
+  0%, 100% {
+    opacity: 0.95;
+  }
+  50% {
+    opacity: 0.75;
+  }
+}
+
+.animate-pulse-glow {
+  animation: pulseGlow 1.6s ease-in-out infinite;
+}
+
+/* ── EMPRISE SIMULATOR ── */
+.emprise-simulator {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  height: 100%;
+  min-height: 380px;
+  overflow: hidden;
+  user-select: none;
+}
+
+.emprise-simulator__glow {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  z-index: 0;
+  border-radius: 40px;
+}
+
+.emprise-simulator__tabs {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  justify-content: center;
+  width: 100%;
+  margin-top: 0px;
+}
+
+.emprise-simulator__tab-btn {
+  font-size: 0.7rem;
+  font-weight: 700;
+  letter-spacing: 0.02em;
+  text-transform: uppercase;
+  padding: 6px 12px;
+  border-radius: 12px;
+  border: 1px solid transparent;
+  cursor: pointer;
+  transition: background-color 0.3s cubic-bezier(0.4, 0, 0.2, 1), border-color 0.3s cubic-bezier(0.4, 0, 0.2, 1), color 0.3s cubic-bezier(0.4, 0, 0.2, 1), box-shadow 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.emprise-simulator__tab-btn--active {
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+}
+
+.emprise-simulator__chart-box {
+  width: 100%;
+  flex: 1;
+  min-height: 0;
+}
+
+.emprise-simulator__svg {
+  width: 100%;
+  height: 100%;
+  overflow: visible;
+}
+
+.emprise-simulator__details {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 5px;
+}
+
+.emprise-simulator__score-row {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  line-height: 1;
+}
+
+.emprise-simulator__percentage {
+  font-size: 2.8rem;
+  font-weight: 800;
+  font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+}
+
+.emprise-simulator__desc-box {
+  width: 100%;
+  padding: 0 10px;
+}
+
+/* ── DIAGNOSTIC CARDS — DAY MODE ── */
+[data-theme="light"] .diagnostic-card {
+  background: rgba(248, 244, 238, 0.90) !important;
+  border-color: rgba(212, 163, 115, 0.22) !important;
+  box-shadow: inset 0 1px 0 rgba(255,255,255,0.6), 0 8px 32px rgba(0,0,0,0.08) !important;
+  backdrop-filter: blur(24px);
+  -webkit-backdrop-filter: blur(24px);
+}
+[data-theme="light"] .diagnostic-card h3,
+[data-theme="light"] .diagnostic-card span,
+[data-theme="light"] .diagnostic-card p {
+  /* text stays white-ish — images are dark so this is fine */
+}
+
+/* ── TEXT-WHITE OVERRIDE DAY MODE ── */
+[data-theme="light"] .text-white {
+  color: #1B2632 !important;
+}
+
+/* Bold/strong → terracotta in day mode */
+[data-theme="light"] strong,
+[data-theme="light"] b {
+  color: #A35139 !important;
+}
+
+/* Glass-CTA day mode: match nav link color */
+[data-theme="light"] .glass-cta {
+  color: #2C3B4D !important;
+  background-color: rgba(27,38,50,0.07) !important;
+}
+[data-theme="light"] .glass-cta:hover {
+  color: #1B2632 !important;
+  background-color: rgba(27,38,50,0.12) !important;
+}
+
+/* Diagnostic cards day mode — text override */
+[data-theme="light"] .diagnostic-card .text-white\/50,
+[data-theme="light"] .diagnostic-card .text-white\/35,
+[data-theme="light"] .diagnostic-card .text-white\/30,
+[data-theme="light"] .diagnostic-card .text-white {
+  color: rgba(27,38,50,0.75) !important;
+}
+[data-theme="light"] .diagnostic-card {
+  background: rgba(248, 244, 238, 0.92) !important;
+  border-color: rgba(163,81,57,0.18) !important;
+}
+[data-theme="light"] .diagnostic-card .bg-white\/\[0\.05\] {
+  background-color: rgba(163,81,57,0.08) !important;
+  border-color: rgba(163,81,57,0.12) !important;
+}
+/* Slider track day mode */
+[data-theme="light"] .diagnostic-card .bg-white\/20 {
+  background-color: rgba(27,38,50,0.18) !important;
+}
+[data-theme="light"] .diagnostic-card .bg-white {
+  background-color: #A35139 !important;
+}
+[data-theme="light"] .diagnostic-card .shadow-\[0_0_14px_rgba\(255\,255\,255\,0\.55\)\] {
+  box-shadow: 0 0 14px rgba(163,81,57,0.45) !important;
 }

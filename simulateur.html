@@ -1,12 +1,13 @@
-<!DOCTYPE html>
-<html lang="fr">
+﻿<!DOCTYPE html>
+<html lang="fr" data-theme="dark">
 <head>
 <meta charset="UTF-8">
+<script>(function(){var t=localStorage.getItem("sf-theme")||"dark";document.documentElement.setAttribute("data-theme",t);})();</script>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Les réseaux ont hacké ton cerveau ?</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Sans:ital,wght@0,300;0,400;0,500;0,700;1,300&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,200..800&display=swap" rel="stylesheet">
 <style>
 /* ── HALO BACKGROUND ── */
 .halo-container {
@@ -36,10 +37,10 @@
 
 :root {
   --bg: #0B0F19;
-  --surface: linear-gradient(135deg, #1C1815 0%, #110E0C 100%);
-  --card: rgba(28, 24, 21, 0.7);
-  --card2: rgba(36, 31, 28, 0.85);
-  --border: rgba(255, 255, 255, 0.05);
+  --surface: rgba(255, 255, 255, 0.04);
+  --card: rgba(255, 255, 255, 0.04);
+  --card2: rgba(255, 255, 255, 0.06);
+  --border: rgba(255, 255, 255, 0.10);
   --border2: rgba(212, 163, 115, 0.2);
   --accent: #D4A373;
   --accent-hot: #F4D3A1;
@@ -62,7 +63,7 @@ html { scroll-behavior: smooth; }
 body {
   background: var(--bg);
   color: var(--text);
-  font-family: "Helvetica Neue", Helvetica, Arial, ui-sans-serif, system-ui, sans-serif;
+  font-family: 'Bricolage Grotesque', ui-sans-serif, system-ui, sans-serif;
   min-height: 100vh;
   position: relative;
   overflow-x: hidden;
@@ -89,7 +90,7 @@ body::before {
 }
 
 /* ── HEADER ── */
-.header { text-align: center; margin-bottom: 36px; animation: fadeUp 0.7s ease both; }
+.header { text-align: center; margin-bottom: 52px; animation: fadeUp 0.7s ease both; }
 .eyebrow {
   font-size: 11px;
   font-weight: 600;
@@ -107,7 +108,7 @@ body::before {
 }
 .eyebrow-dot { width: 6px; height: 6px; border-radius: 50%; background: var(--accent); animation: pulse 2s infinite; }
 h1 {
-  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+  font-family: 'Bricolage Grotesque', ui-sans-serif, system-ui, sans-serif;
   font-size: clamp(34px, 8vw, 56px);
   font-weight: 500;
   line-height: 1.15;
@@ -142,11 +143,13 @@ h1 .line-gradient {
 
 /* ── CARD COMMONS ── */
 .shock-banner, .live-counter, .howto-accordion, .email-gate, .result-card, .conclusion-block {
-  background: var(--surface);
-  border: 1px solid rgba(255, 255, 255, 0.05);
+  background: rgba(255, 255, 255, 0.04);
+  backdrop-filter: blur(24px);
+  -webkit-backdrop-filter: blur(24px);
+  border: 1px solid rgba(255, 255, 255, 0.10);
   border-radius: 28px;
   padding: 32px 28px;
-  box-shadow: 0 20px 40px -15px rgba(0, 0, 0, 0.5), inset 0 1px 1px rgba(255, 255, 255, 0.06);
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.14), 0 8px 32px rgba(0, 0, 0, 0.25);
   position: relative;
   overflow: hidden;
 }
@@ -154,7 +157,7 @@ h1 .line-gradient {
 /* ── LIVE COUNTER ── */
 .live-counter {
   padding: 14px 20px;
-  margin-bottom: 20px;
+  margin-bottom: 32px;
   animation: fadeUp 0.7s 0.05s ease both;
   border-color: rgba(212, 163, 115, 0.15);
 }
@@ -215,14 +218,14 @@ h1 .line-gradient {
 /* ── CONTAM TITLE ── */
 .contam-level-title { text-align: center; margin-bottom: 16px; margin-top: 4px; animation: fadeUp 0.7s 0.08s ease both; line-height: 1.2; }
 .contam-level-title .cl-white {
-  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+  font-family: 'Bricolage Grotesque', ui-sans-serif, system-ui, sans-serif;
   font-size: clamp(18px, 4vw, 28px);
   font-weight: 500;
   letter-spacing: -0.02em;
   color: #f2f0ff;
 }
 .contam-level-title .cl-grad {
-  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+  font-family: 'Bricolage Grotesque', ui-sans-serif, system-ui, sans-serif;
   font-size: clamp(18px, 4vw, 28px);
   font-weight: 600;
   letter-spacing: -0.02em;
@@ -234,7 +237,8 @@ h1 .line-gradient {
 
 /* ── SHOCK BANNER ── */
 .shock-banner {
-  border-color: rgba(212, 163, 115, 0.25);
+  background: rgba(255, 255, 255, 0.02);
+  border: 1px solid rgba(255, 255, 255, 0.06);
   margin-bottom: 16px;
   animation: fadeUp 0.7s 0.07s ease both;
 }
@@ -269,7 +273,7 @@ h1 .line-gradient {
   font-size: 11px;
   color: var(--muted2);
   font-weight: 500;
-  margin-bottom: 14px;
+  margin-bottom: 22px; /* Increased from 14px */
   position: relative;
   z-index: 1;
   transition: all 0.3s;
@@ -282,11 +286,11 @@ h1 .line-gradient {
   text-transform: uppercase;
   color: var(--muted2);
   font-weight: 600;
-  margin-bottom: 6px;
+  margin-bottom: 18px; /* Increased from 12px */
   position: relative;
   z-index: 1;
 }
-.days-row { display: flex; align-items: center; justify-content: center; gap: 10px; margin-bottom: 4px; position: relative; z-index: 1; }
+.days-row { display: flex; align-items: center; justify-content: center; gap: 10px; margin-bottom: 16px; /* Increased from 10px */ position: relative; z-index: 1; }
 .total-days {
   font-size: clamp(68px, 15vw, 96px);
   font-weight: 700;
@@ -305,7 +309,7 @@ h1 .line-gradient {
   align-self: center;
 }
 @keyframes daysBob { 0%, 100% { transform: translateY(0) scale(1) } 50% { transform: translateY(-3px) scale(1.01) } }
-.total-unit { font-size: 13px; font-weight: 400; color: var(--muted2); margin-bottom: 14px; position: relative; z-index: 1; text-align: center; line-height: 1.6; }
+.total-unit { font-size: 13px; font-weight: 400; color: var(--muted2); margin-bottom: 28px; /* Increased from 14px */ position: relative; z-index: 1; text-align: center; line-height: 1.6; }
 .total-unit .tu-month { font-style: italic; color: #ffffff; font-weight: 500; }
 .total-unit .tu-sub { color: var(--muted2); font-weight: 300; }
 
@@ -324,7 +328,7 @@ h1 .line-gradient {
 .shock-contam-sublabel { font-size: 12px; color: var(--muted2); font-style: italic; text-align: left; margin-top: 4px; margin-bottom: 16px; }
 
 /* Double lecture */
-.contam-double-wrap { margin-top: 16px; background: rgba(255, 255, 255, 0.02); border: 1px solid var(--border); border-radius: 16px; padding: 18px; position: relative; z-index: 1; }
+.contam-double-wrap { margin-top: 16px; background: rgba(255, 255, 255, 0.04); backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px); border: 1px solid rgba(255, 255, 255, 0.10); box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.12); border-radius: 20px; padding: 18px; position: relative; z-index: 1; }
 .contam-double-row { display: flex; justify-content: space-between; align-items: center; margin-bottom: 10px; }
 .contam-double-label { font-size: 9px; font-weight: 700; letter-spacing: 0.15em; text-transform: uppercase; color: var(--muted); text-align: left; display: block; }
 .contam-double-name { font-size: 11px; font-weight: 600; transition: color 0.3s; color: var(--muted2); }
@@ -345,16 +349,18 @@ h1 .line-gradient {
   align-items: center;
   justify-content: center;
   padding: 20px 28px;
-  border-radius: 16px;
+  border-radius: 20px;
   cursor: pointer;
   text-decoration: none;
   overflow: visible;
-  transition: transform 0.2s ease, box-shadow 0.2s ease;
-  background: linear-gradient(160deg, #181828 0%, #0f0f1a 100%);
-  border: 1px solid rgba(255, 255, 255, 0.07);
+  transition: border-color 0.3s, box-shadow 0.3s;
+  background: rgba(255, 255, 255, 0.04);
+  backdrop-filter: blur(24px);
+  -webkit-backdrop-filter: blur(24px);
+  border: 1px solid rgba(255, 255, 255, 0.10);
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.14), 0 8px 32px rgba(0, 0, 0, 0.25);
   margin-top: 12px;
 }
-.hero-cta-btn:hover { transform: translateY(-2px); }
 .hero-cta-btn:active { transform: translateY(0); }
 .hero-cta-btn::after { content: ''; position: absolute; top: 0; left: -100%; width: 55%; height: 100%; background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.06), transparent); transition: left 0.45s ease; pointer-events: none; }
 .hero-cta-btn:hover::after { left: 160%; }
@@ -389,17 +395,19 @@ h1 .line-gradient {
   justify-content: center;
   gap: 4px;
   padding: 16px 24px;
-  border-radius: 16px;
+  border-radius: 20px;
   cursor: pointer;
-  background: linear-gradient(160deg, #12121e 0%, #0a0a12 100%);
-  border: 1px solid rgba(212, 163, 115, 0.35);
-  box-shadow: 0 0 0 1px rgba(212, 163, 115, 0.1), 0 6px 24px rgba(0,0,0,0.5), inset 0 1px 0 rgba(255,255,255,0.05);
-  transition: all 0.2s;
+  background: rgba(255, 255, 255, 0.04);
+  backdrop-filter: blur(24px);
+  -webkit-backdrop-filter: blur(24px);
+  border: 1px solid rgba(255, 255, 255, 0.10);
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.14), 0 6px 24px rgba(0, 0, 0, 0.25);
+  transition: border-color 0.3s, box-shadow 0.3s;
   text-decoration: none;
   text-align: center;
   overflow: hidden;
 }
-.cta-card:hover { border-color: rgba(212, 163, 115, 0.55); transform: translateY(-2px); }
+.cta-card:hover { border-color: rgba(212, 163, 115, 0.50); box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.22), 0 0 20px -6px rgba(212, 163, 115, 0.30); }
 .cta-card::before { content: ''; position: absolute; top: 0; left: 0; right: 0; height: 40%; background: linear-gradient(180deg, rgba(212, 163, 115, 0.05) 0%, transparent 100%); pointer-events: none; }
 .cta-card.cta-purple { border-color: rgba(212, 163, 115, 0.35); }
 .cta-card.cta-purple:hover { border-color: rgba(212, 163, 115, 0.55); }
@@ -408,9 +416,12 @@ h1 .line-gradient {
 
 /* ── ACCORDIONS ── */
 .howto-accordion {
-  background: var(--surface);
-  border: 1px solid var(--border);
-  border-radius: 16px;
+  background: rgba(255, 255, 255, 0.04);
+  backdrop-filter: blur(24px);
+  -webkit-backdrop-filter: blur(24px);
+  border: 1px solid rgba(255, 255, 255, 0.10);
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.14);
+  border-radius: 20px;
   margin-bottom: 16px;
   overflow: hidden;
   animation: fadeUp 0.7s 0.11s ease both;
@@ -507,7 +518,7 @@ h1 .line-gradient {
 .reset-avg-btn:hover { border-color: var(--border2); color: var(--muted2); }
 
 /* ── BRAIN INDICATOR ── */
-.brain-indicator { text-align: center; margin-bottom: 24px; animation: fadeUp 0.7s 0.15s ease both; }
+.brain-indicator { text-align: center; margin-bottom: 36px; animation: fadeUp 0.7s 0.15s ease both; }
 .brain-cta-line { display: flex; align-items: center; justify-content: center; flex-wrap: wrap; gap: 6px; font-size: clamp(24px, 4vw, 32px); font-weight: 600; color: #f0f0f8; margin-bottom: 8px; letter-spacing: -0.02em; }
 .brain-cta-arch { background: linear-gradient(90deg, #D4A373, #F4D3A1, #FFF0E0, #D4A373); background-size: 200% auto; -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; animation: gradientShift 2.5s linear infinite; }
 .brain-sub { font-size: 13px; color: var(--muted2); font-weight: 400; margin-bottom: 10px; }
@@ -516,21 +527,31 @@ h1 .line-gradient {
 
 /* ── QUIZ SECTION HIGH-END VISUAL REFINEMENT ── */
 .quiz-wrapper {
-  background: rgba(255, 255, 255, 0.015);
-  border: 1px solid rgba(255, 255, 255, 0.04);
+  background: rgba(255, 255, 255, 0.04);
+  backdrop-filter: blur(24px);
+  -webkit-backdrop-filter: blur(24px);
+  border: 1px solid rgba(255, 255, 255, 0.10);
   border-radius: 32px;
-  padding: 36px;
-  box-shadow: 0 30px 60px -25px rgba(0, 0, 0, 0.6), inset 0 1px 1px rgba(255, 255, 255, 0.05);
-  margin-bottom: 20px;
+  padding: 40px;
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.14), 0 8px 32px rgba(0, 0, 0, 0.25);
+  margin-bottom: 32px;
   position: relative;
   overflow: hidden;
-  backdrop-filter: blur(20px);
-  -webkit-backdrop-filter: blur(20px);
 }
 @media (max-width: 640px) {
   .quiz-wrapper {
-    padding: 24px 20px;
-    border-radius: 24px;
+    background: transparent !important;
+    border: none !important;
+    box-shadow: none !important;
+    backdrop-filter: none !important;
+    -webkit-backdrop-filter: none !important;
+    padding: 0 !important;
+    overflow: visible !important;
+  }
+  .quiz-options {
+    margin-left: 0 !important;
+    margin-right: 0 !important;
+    width: 100% !important;
   }
 }
 .quiz-progress-bar-bg {
@@ -549,24 +570,36 @@ h1 .line-gradient {
   transition: width 0.5s cubic-bezier(0.16, 1, 0.3, 1);
 }
 .quiz-step-label {
-  font-size: 11px;
-  font-weight: 700;
-  letter-spacing: 0.15em;
-  text-transform: uppercase;
-  color: var(--muted);
-  margin-bottom: 20px;
+  position: relative;
   display: flex;
-  justify-content: space-between;
   align-items: center;
+  justify-content: center;
+  min-height: 32px;
+  margin-bottom: 24px;
 }
 .quiz-step-badge {
   background: rgba(212, 163, 115, 0.08);
   border: 1px solid rgba(212, 163, 115, 0.15);
   padding: 6px 12px;
   border-radius: 100px;
-  color: var(--accent) !important;
-  font-weight: 800;
-  display: inline-flex;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: var(--accent);
+  position: absolute;
+  left: 0;
+}
+@media (max-width: 640px) {
+  .quiz-step-label {
+    flex-direction: column;
+    gap: 12px;
+    justify-content: center;
+    min-height: auto;
+  }
+  .quiz-step-badge {
+    position: static;
+  }
 }
 .quiz-step-pct {
   color: var(--accent) !important;
@@ -621,11 +654,8 @@ h1 .line-gradient {
   box-shadow: 0 16px 32px -12px rgba(212, 163, 115, 0.25), inset 0 1px 0 rgba(255, 255, 255, 0.1);
 }
 .quiz-option-emoji {
-  width: 36px;
-  height: 36px;
-  border-radius: 12px;
-  background: rgba(255, 255, 255, 0.03);
-  border: 1px solid rgba(255, 255, 255, 0.06);
+  width: 24px;
+  height: 24px;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -633,14 +663,14 @@ h1 .line-gradient {
   transition: all 0.25s ease;
 }
 .quiz-option:hover .quiz-option-emoji {
-  background: rgba(212, 163, 115, 0.1);
-  border-color: rgba(212, 163, 115, 0.2);
+  background: transparent;
+  border-color: transparent;
 }
 .quiz-option.selected .quiz-option-emoji {
-  background: var(--accent);
-  border-color: var(--accent);
-  color: #0b0f19;
-  box-shadow: 0 4px 12px rgba(212, 163, 115, 0.3);
+  background: transparent;
+  border-color: transparent;
+  color: var(--accent);
+  box-shadow: none;
 }
 .quiz-svg {
   width: 18px;
@@ -654,7 +684,7 @@ h1 .line-gradient {
   transform: scale(1.05);
 }
 .quiz-option.selected .quiz-svg {
-  color: #0b0f19;
+  color: var(--accent);
 }
 
 /* Question transition animations */
@@ -740,7 +770,7 @@ h1 .line-gradient {
   background: linear-gradient(135deg, #ffffff 0%, #D4A373 50%, #ffffff 100%);
   background-size: 200% auto;
   animation: gf2 3s linear infinite;
-  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif !important; /* Font matching the model CTA */
+  font-family: 'Bricolage Grotesque', ui-sans-serif, system-ui, sans-serif !important; /* Font matching the model CTA */
   font-size: 1.125rem !important; /* Font-size matching the model CTA */
   font-weight: 700 !important; /* Font-weight matching the model CTA */
   color: #1a1a24;
@@ -789,7 +819,7 @@ h1 .line-gradient {
   color: white;
   font-size: 22px;
   font-weight: 400;
-  letter-spacing: 2px;
+  letter-spacing: 0.08em;
   cursor: pointer;
   transition: transform 0.15s, box-shadow 0.15s;
   box-shadow: 0 8px 28px rgba(212, 163, 115, 0.35);
@@ -823,12 +853,16 @@ h1 .line-gradient {
   margin-bottom: 16px;
   overflow: hidden;
   z-index: 1;
-  border: 1px solid rgba(255, 255, 255, 0.08);
+  background: rgba(255, 255, 255, 0.04);
+  backdrop-filter: blur(24px);
+  -webkit-backdrop-filter: blur(24px);
+  border: 1px solid rgba(255, 255, 255, 0.10);
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.14), 0 8px 32px rgba(0, 0, 0, 0.20);
 }
 .gate-blur-top { display: flex; align-items: center; gap: 14px; margin-bottom: 16px; }
 .gate-blur-emoji { font-size: 52px; flex-shrink: 0; line-height: 1; animation: monsterFloat 3s ease-in-out infinite; }
 .gate-blur-info { flex: 1; text-align: left; }
-.gate-blur-sublabel { font-size: 9px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.14em; color: rgba(255, 255, 255, 0.35); margin-bottom: 4px; }
+.gate-blur-sublabel { font-size: 11px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.14em; color: var(--accent); margin-bottom: 4px; }
 .gate-blur-name { font-size: clamp(20px, 5vw, 24px); font-weight: 600; filter: blur(7px); user-select: none; color: #fff; line-height: 1; }
 .gate-blur-pct-col { text-align: right; flex-shrink: 0; }
 .gate-blur-pct { font-size: 28px; font-weight: 700; filter: blur(6px); user-select: none; color: #fff; line-height: 1; }
@@ -854,6 +888,7 @@ h1 .line-gradient {
 
 /* ── QUIZ RESULT ── */
 #quizResult { display: none; }
+#quizResult .quiz-wrapper { background: transparent; border: none; box-shadow: none; backdrop-filter: none; -webkit-backdrop-filter: none; padding: 0; }
 .scan-container { width: 140px; height: 140px; margin: 0 auto 20px; position: relative; }
 .scan-circle { width: 140px; height: 140px; border-radius: 50%; border: 2px solid rgba(212, 163, 115, 0.25); position: absolute; animation: scanPulse 2s ease-in-out infinite; }
 .scan-circle-2 { width: 104px; height: 104px; border-radius: 50%; border: 2px solid rgba(212, 163, 115, 0.18); position: absolute; top: 18px; left: 18px; animation: scanPulse 2s ease-in-out infinite 0.3s; }
@@ -862,10 +897,10 @@ h1 .line-gradient {
 @keyframes scanLine { 0% { top: 0; opacity: 1 } 100% { top: 100%; opacity: 0 } }
 @keyframes scanPulse { 0%, 100% { opacity: 0.4; transform: scale(1) } 50% { opacity: 1; transform: scale(1.04) } }
 .result-scanning-text { font-size: 13px; color: var(--violet-light); font-weight: 600; letter-spacing: 0.12em; text-transform: uppercase; text-align: center; animation: pulse 1s infinite; }
-.arch-intro-label { font-size: 12px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.15em; color: var(--muted); margin-bottom: 12px; text-align: center; }
+.arch-intro-label { font-size: clamp(18px, 4.5vw, 26px); font-weight: 700; letter-spacing: -0.02em; color: var(--accent); margin-top: 40px; margin-bottom: 24px; text-align: center; text-transform: none; }
 
 /* Result card */
-.result-card { border-radius: 28px; padding: 32px 28px; text-align: center; position: relative; overflow: hidden; margin-bottom: 36px; border: 1px solid rgba(212, 163, 115, 0.18); background: rgba(212, 163, 115, 0.04); }
+.result-card { border-radius: 28px; padding: 44px 36px; text-align: center; position: relative; overflow: hidden; margin-bottom: 48px; border: 1px solid rgba(212, 163, 115, 0.18); background: rgba(212, 163, 115, 0.04); }
 .result-card::before { content: ''; position: absolute; top: -60px; right: -60px; width: 200px; height: 200px; background: radial-gradient(circle, rgba(212, 163, 115, 0.08), transparent 70%); pointer-events: none; }
 .result-card::after { content: ''; position: absolute; bottom: -60px; left: -40px; width: 180px; height: 180px; background: radial-gradient(circle, rgba(244, 211, 161, 0.04), transparent 70%); pointer-events: none; }
 .contamination-badge { display: inline-flex; align-items: center; gap: 8px; border-radius: 100px; padding: 7px 18px; font-size: 11px; font-weight: 700; letter-spacing: 0.15em; text-transform: uppercase; margin-bottom: 16px; position: relative; z-index: 1; }
@@ -946,7 +981,7 @@ h1 .line-gradient {
   filter: blur(12px);
 }
 .final-cta-line {
-  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif !important;
+  font-family: 'Bricolage Grotesque', ui-sans-serif, system-ui, sans-serif !important;
   font-size: 1.125rem !important;
   font-weight: 700 !important;
   color: #ffffff !important; /* white text at rest */
@@ -1001,8 +1036,8 @@ h1 .line-gradient {
 .journee-block strong { color: var(--text); font-weight: 600; }
 
 /* ── ARCHETYPE IMAGE ── */
-.arch-image-wrap { position: relative; width: min(90vw, 360px); height: auto; margin: 0 auto 32px; animation: monsterFloat 4s ease-in-out infinite; filter: drop-shadow(0 0 4px rgba(0,0,0,0.6)); }
-.arch-image-wrap img { width: 100%; height: auto; display: block; border-radius: 16px; }
+.arch-image-wrap { position: relative; width: 100%; max-width: 360px; height: auto; margin: 0 auto 32px; animation: monsterFloat 4s ease-in-out infinite; filter: drop-shadow(0 0 4px rgba(0,0,0,0.6)); display: flex; justify-content: center; align-items: center; }
+.arch-image-wrap img { max-width: 100%; height: auto; display: block; border-radius: 16px; margin: 0 auto; }
 @keyframes monsterFloat { 0%, 100% { transform: translateY(0) } 50% { transform: translateY(-8px) } }
 
 /* ── ESPACEMENT SHOCK BANNER ── */
@@ -1024,7 +1059,7 @@ h1 .line-gradient {
   background: linear-gradient(160deg, #181828 0%, #0f0f1a 100%);
   transition: all 0.2s; text-decoration: none; text-align: center; overflow: hidden;
 }
-.cta-final-card::after { content: ''; position: absolute; top: 0; left: -100%; width: 60%; height: 100%; background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.05), transparent); transition: left 0.45s ease; pointer-events: none; }
+.cta-final-card::after { content: ''; position: absolute; top: -100%; left: -100%; width: 60%; height: 100%; background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.05), transparent); transition: left 0.45s ease; pointer-events: none; }
 .cta-final-card:hover::after { left: 160%; }
 .cta-final-card:hover { transform: translateY(-2px); }
 .cta-final-red { border: 1px solid rgba(212, 163, 115, 0.35); box-shadow: 0 0 0 1px rgba(212, 163, 115, 0.12), 0 6px 28px rgba(0, 0, 0, 0.6), inset 0 1px 0 rgba(255, 255, 255, 0.06); }
@@ -1053,8 +1088,8 @@ h1 .line-gradient {
 .projection-block { padding: 0; margin-bottom: 36px; }
 .proj-could-title { font-size: 14px; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; color: var(--accent3); margin-bottom: 16px; display: flex; align-items: center; gap: 8px; }
 .analogy-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
-.analogy-card { background: rgba(255, 255, 255, 0.02); border: 1px solid var(--border); border-radius: 16px; padding: 16px; }
-.analogy-emoji { font-size: 22px; margin-bottom: 6px; }
+.analogy-card { background: rgba(255, 255, 255, 0.02); border: 1px solid var(--border); border-radius: 16px; padding: 16px; display: flex; flex-direction: column; gap: 8px; }
+.analogy-emoji { font-size: 22px; margin-bottom: 2px; display: flex; align-items: center; justify-content: flex-start; min-height: 24px; }
 .analogy-text { font-size: 13.5px; color: var(--muted2); line-height: 1.5; }
 .analogy-text strong { color: var(--text); font-weight: 600; }
 
@@ -1097,7 +1132,14 @@ h1 .line-gradient {
 @keyframes numPop { 0% { transform: scale(0.85) } 60% { transform: scale(1.08) } 100% { transform: scale(1) } }
 .num-pop { animation: numPop 0.32s cubic-bezier(0.34, 1.56, 0.64, 1) both; }
 
-@media(max-width:480px) { .analogy-grid { grid-template-columns: 1fr } .categories-grid { grid-template-columns: 1fr } .share-cta-row { flex-direction: column } }
+@media(max-width: 480px) {
+  .analogy-grid { grid-template-columns: 1fr }
+  .categories-grid { grid-template-columns: 1fr }
+  .share-cta-row { flex-direction: column }
+  .sf-helper-box { flex-direction: column; gap: 20px; }
+  .sf-helper-box div { border-left: none !important; padding-left: 0 !important; }
+  .result-card { padding: 32px 16px; }
+}
 
 /* ── AJUSTER BTN ── */
 .ajuster-btn { position: relative; display: inline-flex; align-items: center; justify-content: center; gap: 8px; width: auto; margin-top: 10px; padding: 9px 16px; border-radius: 10px; cursor: pointer; background: transparent; border: 1px solid rgba(212, 163, 115, 0.25); transition: all 0.2s; text-decoration: none; text-align: center; overflow: hidden; }
@@ -1198,11 +1240,11 @@ h1 .line-gradient {
 .glass-cta {
   position: relative;
   overflow: hidden;
-  padding: 16px 32px;
+  padding: 14px 32px;
   border: none;
   border-radius: 9999px;
   color: #fff !important;
-  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+  font-family: 'Bricolage Grotesque', ui-sans-serif, system-ui, sans-serif;
   font-size: 16px;
   font-weight: 700;
   letter-spacing: -0.01em;
@@ -1305,8 +1347,6 @@ h1 .line-gradient {
   position: absolute;
   inset: 0;
   background: rgba(0, 0, 0, 0.8);
-  backdrop-filter: blur(12px);
-  -webkit-backdrop-filter: blur(12px);
   cursor: pointer;
 }
 .wl-modal-wrapper {
@@ -1453,7 +1493,7 @@ h1 .line-gradient {
   align-items: center;
   justify-content: center;
   gap: 12px;
-  padding: 16px 32px;
+  padding: 14px 32px;
   border: none;
   border-radius: 9999px;
   font-family: inherit;
@@ -1641,7 +1681,7 @@ h1 .line-gradient {
   letter-spacing: 0.15em;
   color: #ffffff;
   margin-bottom: 20px;
-  font-family: 'Bebas Neue', sans-serif;
+  font-family: 'Bricolage Grotesque', ui-sans-serif, system-ui, sans-serif;
   text-transform: uppercase;
 }
 .sf-footer-brand-desc {
@@ -1722,9 +1762,9 @@ h1 .line-gradient {
   margin: 0 auto 48px 0;
   width: 100%;
   max-width: 290px;
-  border: 1px solid rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.06);
   border-radius: 20px;
-  background: var(--surface);
+  background: rgba(255, 255, 255, 0.02);
   box-shadow: 0 15px 35px -15px rgba(0, 0, 0, 0.5), inset 0 1px 1px rgba(255, 255, 255, 0.06);
   padding: 12px 20px;
   position: relative;
@@ -1740,8 +1780,45 @@ h1 .line-gradient {
   white-space: nowrap;
 }
 </style>
+<style id="sim-lm">
+[data-theme="light"]{--bg:#F5EDE0;--surface:rgba(255,255,255,.5);--card:rgba(255,255,255,.6);--card2:rgba(255,255,255,.7);--border:rgba(163,81,57,.18);--border2:rgba(163,81,57,.28);--accent:#A35139;--accent-hot:#C06040;--accent3:#9a3428;--accent4:#7a2a20;--text:#1a1209;--muted:rgba(26,18,9,.52);--muted2:rgba(26,18,9,.68);--violet:#A35139;--violet2:#7a2a20;--violet-light:#C06040;--violet-pale:#E8CBBA;--green:#2e7d4f;--yellow:#8a6d00;--orange:#A35139;}
+[data-theme="light"] body{background:#F5EDE0!important;color:#1a1209!important;}
+[data-theme="light"] body::before{opacity:.08!important;}
+[data-theme="light"] .halo-container{opacity:.1!important;}
+[data-theme="light"] header{background:rgba(245,237,224,.92)!important;backdrop-filter:blur(16px)!important;-webkit-backdrop-filter:blur(16px)!important;border-bottom-color:rgba(163,81,57,.15)!important;}
+[data-theme="light"] header a{color:#1a1209!important;}
+[data-theme="light"] h1,[data-theme="light"] .line-white{color:#1a1209!important;-webkit-text-fill-color:#1a1209!important;}
+[data-theme="light"] .line-gradient{background:linear-gradient(135deg,#A35139 0%,#C06040 50%,#A35139 100%)!important;-webkit-background-clip:text!important;background-clip:text!important;-webkit-text-fill-color:transparent!important;}
+[data-theme="light"] .shock-banner,[data-theme="light"] .live-counter,[data-theme="light"] .howto-accordion,[data-theme="light"] .result-card,[data-theme="light"] .email-gate,[data-theme="light"] .conclusion-block,[data-theme="light"] .contam-double-wrap,[data-theme="light"] .conseq-block{background:rgba(255,255,255,.72)!important;border-color:rgba(163,81,57,.18)!important;color:#1a1209!important;box-shadow:inset 0 1px 0 rgba(255,255,255,.9),0 4px 20px rgba(0,0,0,.07)!important;}
+[data-theme="light"] .total-days,[data-theme="light"] .total-days-unit{color:#A35139!important;}
+[data-theme="light"] .total-label,[data-theme="light"] .contam-dstat-lbl{color:rgba(26,18,9,.55)!important;}
+[data-theme="light"] .total-unit .tu-month,[data-theme="light"] .contam-double-name,[data-theme="light"] .contam-dstat-val{color:#1a1209!important;}
+[data-theme="light"] .total-unit .tu-sub,[data-theme="light"] .muted,[data-theme="light"] .text-muted{color:rgba(26,18,9,.55)!important;}
+[data-theme="light"] .shock-contam-pct{color:#A35139!important;}
+[data-theme="light"] .shock-contam-fill{background:#A35139!important;}
+[data-theme="light"] .live-progress-fill{background:linear-gradient(90deg,#A35139,#C06040,#A35139)!important;}
+[data-theme="light"] .quiz-wrapper{background:rgba(255,255,255,.45)!important;border-color:rgba(163,81,57,.12)!important;}
+[data-theme="light"] .quiz-question{color:#1a1209!important;}
+[data-theme="light"] .quiz-option{background:rgba(255,255,255,.55)!important;border-color:rgba(163,81,57,.12)!important;color:rgba(26,18,9,.80)!important;}
+[data-theme="light"] .quiz-option:hover{background:rgba(163,81,57,.08)!important;border-color:rgba(163,81,57,.35)!important;color:#1a1209!important;}
+[data-theme="light"] .quiz-option.selected{background:rgba(163,81,57,.12)!important;border-color:#A35139!important;color:#1a1209!important;}
+[data-theme="light"] .arch-emoji{filter:drop-shadow(0 0 20px rgba(163,81,57,.35))!important;}
+[data-theme="light"] .arch-desc,[data-theme="light"] .arch-subtitle{color:rgba(26,18,9,.70)!important;}
+[data-theme="light"] strong,[data-theme="light"] b,.arch-desc strong{color:#A35139!important;font-weight:700;}
+[data-theme="light"] .gate-input{background:rgba(255,255,255,.9)!important;border-color:rgba(163,81,57,.25)!important;color:#1a1209!important;}
+[data-theme="light"] .gate-input::placeholder{color:rgba(26,18,9,.38)!important;}
+[data-theme="light"] .share-toast{background:rgba(255,255,255,.92)!important;border-color:rgba(163,81,57,.2)!important;color:#1a1209!important;}
+[data-theme="light"] .eyebrow{background:rgba(163,81,57,.10)!important;border-color:rgba(163,81,57,.3)!important;color:#A35139!important;}
+[data-theme="light"] .app-slider{background:rgba(163,81,57,.12)!important;}
+[data-theme="light"] #sf-sim-theme-btn{border-color:rgba(26,18,9,.2)!important;color:#2C3B4D!important;}
+[data-theme="light"] .contamination-bar-bg,[data-theme="light"] .shock-contam-track{background:rgba(163,81,57,.15)!important;}
+[data-theme="light"] .sub-plain{color:rgba(26,18,9,.68)!important;}
+[data-theme="light"] .sub-white{color:#1a1209!important;}
+[data-theme="light"] .social-proof-bar{color:rgba(26,18,9,.55)!important;}
+</style>
 </head>
 <body>
+<button id="sf-sim-theme-btn" onclick="sfToggleTheme()" style="position:fixed;top:14px;right:16px;z-index:500;display:inline-flex;align-items:center;gap:6px;background:none;border:1px solid rgba(255,255,255,.22);color:inherit;padding:5px 13px;border-radius:20px;cursor:pointer;font-family:inherit;font-size:12px;font-weight:600;letter-spacing:.04em;transition:all .2s;">&#9728; Mode jour</button>
 <header class="sf-navbar" style="padding-top: 16px; padding-bottom: 16px;">
   <a href="/" style="position: relative; display: inline-flex; align-items: center; justify-content: center; text-decoration: none;" aria-label="Accueil ScrollFree">
     <!-- GPU Accelerated Glow -->
@@ -1821,7 +1898,7 @@ h1 .line-gradient {
 <div class="container">
 
   <!-- HEADER -->
-  <div class="header" style="margin-bottom: 80px;">
+  <div class="header" style="margin-bottom: 60px;">
     <h1>
       <span class="line-white">Les réseaux ont</span>
       <span class="line-gradient">hacké ton cerveau ?</span>
@@ -1831,7 +1908,7 @@ h1 .line-gradient {
 
 
   <!-- SHOCK BANNER — chiffre choc en premier -->
-  <div class="shock-banner" style="margin-top:20px; margin-bottom: 12px;">
+  <div class="shock-banner" style="margin-top:32px; margin-bottom: 24px;">
     <div class="shock-avg-badge" id="avgBadge"><span class="shock-avg-dot"></span><span id="avgBadgeText">Moyenne française — IG + TikTok</span></div>
     <div class="total-label">Cette année les algos t'ont volé</div>
     <div class="days-row">
@@ -1857,35 +1934,53 @@ h1 .line-gradient {
   </div>
 
   <!-- SECTION AJUSTER - CADRE COMPACT INDÉPENDANT -->
-  <div class="ajuster-card-wrapper" id="ajusterWrapper" onmouseenter="openSlidersHover()" onmouseleave="closeSlidersHover()">
+  <div class="ajuster-card-wrapper" id="ajusterWrapper" onmouseenter="openSlidersHover()" onmouseleave="closeSlidersHover()" style="margin-bottom: 64px;">
     <!-- AJUSTER MON TEMPS — bouton unique de style premium -->
     <button class="ajuster-btn-trigger" onclick="toggleSliders()" id="ajusterBtn" style="margin: 0; width: 100%; display: flex; justify-content: space-between; align-items: center; gap: 12px; border: none; background: transparent; padding: 0; cursor: pointer; text-align: left; transition: opacity 0.2s;">
-      <span class="ajuster-btn-text" style="font-family: inherit; font-size: 13.5px; font-weight: 600; letter-spacing: 0.05em; color: var(--accent); display: flex; align-items: center;">Entrer mon vrai temps d’écran</span>
-      <span class="ajuster-btn-arrow" id="slidersArrow" style="font-size: 16px; color: var(--accent); transition: transform 0.3s;">›</span>
+      <span class="ajuster-btn-text" style="font-family: inherit; font-size: 13.5px; font-weight: 600; letter-spacing: 0.05em; color: var(--accent); display: flex; align-items: center;">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" style="margin-right: 8px;"><path d="M12 20a8 8 0 1 0 0-16 8 8 0 0 0 0 16Z"/><path d="M12 14V8"/><path d="M12 18h.01"/></svg>
+        Entrer mon vrai temps d’écran
+      </span>
+      <span class="ajuster-btn-arrow" id="slidersArrow" style="font-size: 16px; color: var(--accent); transition: transform 0.3s;">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="m9 18 6-6-6-6"/></svg>
+      </span>
     </button>
 
-    <!-- SLIDERS — caché par défaut, s'ouvre au survol ou au clic -->
+    <!-- SLIDERS — caché par défaut, s'ouvre au clic -->
     <div class="howto-body" id="slidersBody" style="margin-bottom: 0; padding-top: 0;">
-      <!-- Howto minimaliste intégré -->
-      <div class="sf-helper-box" style="margin-top: 4px; margin-bottom: 24px; padding: 18px 20px; background: rgba(255, 255, 255, 0.01); border: 1px dashed rgba(212, 163, 115, 0.15); border-radius: 20px; display: grid; grid-template-columns: 1fr 1fr; gap: 20px; backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px);">
-        <!-- Colonne iOS -->
-        <div style="display: flex; flex-direction: column; gap: 8px;">
-          <div style="display: flex; align-items: center; gap: 8px; font-size: 11px; font-weight: 700; color: var(--accent); letter-spacing: 0.06em; text-transform: uppercase;">
-            <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" style="color: var(--accent);"><path d="M12 20.94c1.88-1.06 3-3.07 3-5.24a5 5 0 0 0-10 0c0 2.17 1.12 4.18 3 5.24V22h4v-1.06z"/><path d="M12 2a5 5 0 0 1 5 5v3a5 5 0 0 1-10 0V7a5 5 0 0 1 5-5z"/></svg> 
-            Sur iOS (iPhone)
-          </div>
-          <div style="font-size: 12.5px; color: var(--muted2); line-height: 1.5; font-weight: 300; letter-spacing: -0.01em;">
-            Réglages → Temps d'écran → <span style="color: #ffffff; font-weight: 500;">Voir toute l'activité</span>
-          </div>
-        </div>
-        <!-- Colonne Android -->
-        <div style="display: flex; flex-direction: column; gap: 8px; border-left: 1px solid rgba(255, 255, 255, 0.06); padding-left: 20px;">
-          <div style="display: flex; align-items: center; gap: 8px; font-size: 11px; font-weight: 700; color: var(--accent); letter-spacing: 0.06em; text-transform: uppercase;">
-            <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" style="color: var(--accent);"><rect x="5" y="2" width="14" height="20" rx="2" ry="2"/><line x1="12" y1="18" x2="12.01" y2="18"/></svg>
-            Sur Android
-          </div>
-          <div style="font-size: 12.5px; color: var(--muted2); line-height: 1.5; font-weight: 300; letter-spacing: -0.01em;">
-            Paramètres → Bien-être numérique → <span style="color: #ffffff; font-weight: 500;">Graphique circulaire</span>
+      <!-- Howto minimaliste intégré en menu déroulant -->
+      <div id="howtoScreenTime" style="margin-top: 12px; margin-bottom: 24px;">
+        <button onclick="toggleHowtoST()" id="howtoSTBtn" style="background:none; border:none; padding:0; cursor:pointer; width:100%; text-align:left; display:flex; align-items:center; gap:8px; color:var(--muted2); font-size:12.5px; font-weight:600; margin-bottom:12px; transition: color 0.2s;">
+          <span id="howtoSTArrow" style="transition: transform 0.3s; font-size: 14px;">
+             <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="m9 18 6-6-6-6"/></svg>
+          </span> Comment voir mon temps d'écran ?
+        </button>
+        <div id="howtoSTBody" style="max-height:0; overflow:hidden; transition: max-height 0.4s ease-out;">
+          <div class="sf-helper-box" style="padding: 18px 20px; background: rgba(255, 255, 255, 0.01); border: 1px dashed rgba(212, 163, 115, 0.15); border-radius: 20px; display: flex; gap: 20px; backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px);">
+            <!-- Colonne iOS -->
+            <div style="flex: 1; display: flex; flex-direction: column; gap: 10px;">
+              <div style="display: flex; align-items: center; gap: 8px; font-size: 11px; font-weight: 700; color: var(--accent); letter-spacing: 0.06em; text-transform: uppercase;">
+                <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" style="color: var(--accent);"><path d="M12 20.94c1.88-1.06 3-3.07 3-5.24a5 5 0 0 0-10 0c0 2.17 1.12 4.18 3 5.24V22h4v-1.06z"/><path d="M12 2a5 5 0 0 1 5 5v3a5 5 0 0 1-10 0V7a5 5 0 0 1 5-5z"/></svg> 
+                Sur iOS (iPhone)
+              </div>
+              <div style="display: flex; flex-direction: column; gap: 4px; font-size: 12.5px; color: var(--muted2); line-height: 1.5; font-weight: 300; letter-spacing: -0.01em;">
+                <span>1. Ouvrir <strong>Réglages</strong></span>
+                <span>2. Aller dans <strong>Temps d'écran</strong></span>
+                <span>3. Cliquer sur <span style="color: #ffffff; font-weight: 500;">Voir toute l'activité</span></span>
+              </div>
+            </div>
+            <!-- Colonne Android -->
+            <div style="flex: 1; display: flex; flex-direction: column; gap: 10px; border-left: 1px solid rgba(255, 255, 255, 0.06); padding-left: 20px;">
+              <div style="display: flex; align-items: center; gap: 8px; font-size: 11px; font-weight: 700; color: var(--accent); letter-spacing: 0.06em; text-transform: uppercase;">
+                <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" style="color: var(--accent);"><rect x="5" y="2" width="14" height="20" rx="2" ry="2"/><line x1="12" y1="18" x2="12.01" y2="18"/></svg>
+                Sur Android
+              </div>
+              <div style="display: flex; flex-direction: column; gap: 4px; font-size: 12.5px; color: var(--muted2); line-height: 1.5; font-weight: 300; letter-spacing: -0.01em;">
+                <span>1. Ouvrir les <strong>Paramètres</strong></span>
+                <span>2. <strong>Bien-être numérique</strong></span>
+                <span>3. Cliquer sur le <span style="color: #ffffff; font-weight: 500;">Graphique circulaire</span></span>
+              </div>
+            </div>
           </div>
         </div>
       </div>
@@ -1908,31 +2003,24 @@ h1 .line-gradient {
     <h2 style="font-size: clamp(28px, 6vw, 42px); font-weight: 700; color: white; margin-bottom: 24px; line-height: 1.15; letter-spacing: -0.04em; font-family: 'Outfit', sans-serif;">
       8 questions pour voir ce que ton cerveau fait… <span class="wl-text-gradient" style="font-weight: 800; background: linear-gradient(90deg, #fff 30%, #F4D3A1 70%, #D4A373 100%); -webkit-background-clip: text; background-clip: text; -webkit-text-fill-color: transparent;">à ton insu</span>
     </h2>
-    
-    <p style="color: var(--muted2); font-size: 16.5px; max-width: 580px; margin: 0 auto 40px; line-height: 1.65; font-weight: 300; letter-spacing: -0.01em;">
-      Chaque ouverture d'application, chaque micro-scroll est le produit d'une ingénierie de pointe conçue pour te garder captif. Lève le voile sur ton profil attentionnel.
-    </p>
 
     <div class="quiz-intro-grid">
       
       <!-- Card 1 -->
       <div class="intro-glass-card" style="background: rgba(255, 255, 255, 0.02); border: 1px solid rgba(255, 255, 255, 0.06); padding: 28px 24px; border-radius: 24px; transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1); cursor: default; position: relative; overflow: hidden; display: flex; flex-direction: column; gap: 12px; box-shadow: inset 0 1px 0px rgba(255,255,255,0.05);" onmouseover="this.style.transform='translateY(-6px)'; this.style.borderColor='rgba(212, 163, 115, 0.3)'; this.style.boxShadow='0 12px 30px rgba(212, 163, 115, 0.06), inset 0 1px 0px rgba(255,255,255,0.1)';" onmouseout="this.style.transform='translateY(0)'; this.style.borderColor='rgba(255, 255, 255, 0.06)'; this.style.boxShadow='none';">
         <div style="font-size: 11px; font-weight: 800; letter-spacing: 0.15em; color: var(--accent); opacity: 0.8; text-transform: uppercase;">01 / LE DÉCLENCHEUR</div>
-        <div style="color: white; font-weight: 600; font-size: 18px; letter-spacing: -0.02em; font-family: 'Outfit', sans-serif;">Le Point de Rappel</div>
         <div style="color: var(--muted); font-size: 14px; line-height: 1.5; font-weight: 300;">Identifie l'hameçon psychologique précis qui te force à rouvrir ton écran sans même le décider consciemment.</div>
       </div>
       
       <!-- Card 2 -->
       <div class="intro-glass-card" style="background: rgba(255, 255, 255, 0.02); border: 1px solid rgba(255, 255, 255, 0.06); padding: 28px 24px; border-radius: 24px; transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1); cursor: default; position: relative; overflow: hidden; display: flex; flex-direction: column; gap: 12px; box-shadow: inset 0 1px 0px rgba(255,255,255,0.05);" onmouseover="this.style.transform='translateY(-6px)'; this.style.borderColor='rgba(212, 163, 115, 0.3)'; this.style.boxShadow='0 12px 30px rgba(212, 163, 115, 0.06), inset 0 1px 0px rgba(255,255,255,0.1)';" onmouseout="this.style.transform='translateY(0)'; this.style.borderColor='rgba(255, 255, 255, 0.06)'; this.style.boxShadow='none';">
         <div style="font-size: 11px; font-weight: 800; letter-spacing: 0.15em; color: var(--accent); opacity: 0.8; text-transform: uppercase;">02 / LA MESURE</div>
-        <div style="color: white; font-weight: 600; font-size: 18px; letter-spacing: -0.02em; font-family: 'Outfit', sans-serif;">L'Indice d'Emprise</div>
         <div style="color: var(--muted); font-size: 14px; line-height: 1.5; font-weight: 300;">Calcule ton score de conditionnement et d'accoutumance de ton système à la dopamine.</div>
       </div>
       
       <!-- Card 3 -->
       <div class="intro-glass-card" style="background: rgba(255, 255, 255, 0.02); border: 1px solid rgba(255, 255, 255, 0.06); padding: 28px 24px; border-radius: 24px; transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1); cursor: default; position: relative; overflow: hidden; display: flex; flex-direction: column; gap: 12px; box-shadow: inset 0 1px 0px rgba(255,255,255,0.05);" onmouseover="this.style.transform='translateY(-6px)'; this.style.borderColor='rgba(212, 163, 115, 0.3)'; this.style.boxShadow='0 12px 30px rgba(212, 163, 115, 0.06), inset 0 1px 0px rgba(255,255,255,0.1)';" onmouseout="this.style.transform='translateY(0)'; this.style.borderColor='rgba(255, 255, 255, 0.06)'; this.style.boxShadow='none';">
         <div style="font-size: 11px; font-weight: 800; letter-spacing: 0.15em; color: var(--accent); opacity: 0.8; text-transform: uppercase;">03 / LE PROFIL</div>
-        <div style="color: white; font-weight: 600; font-size: 18px; letter-spacing: -0.02em; font-family: 'Outfit', sans-serif;">Ton Archétype de Scrolleur</div>
         <div style="color: var(--muted); font-size: 14px; line-height: 1.5; font-weight: 300;">Découvre lequel des 8 archétypes comportementaux (L'Automate, Le Chasseur, Le Fugitif...) te définit.</div>
       </div>
       
@@ -1942,21 +2030,14 @@ h1 .line-gradient {
   <!-- SEPARATEUR VISUEL -->
   <div class="section-divider" style="margin: 24px 0 48px 0;"></div>
 
-  <!-- INSTRUCTION BADGE -->
-  <div style="text-align: center; margin-bottom: 48px; animation: fadeUp 0.8s ease both;">
-    <div style="font-style: normal; color: var(--accent); font-size: 14.5px; font-weight: 600; letter-spacing: 0.02em; padding: 14px 28px; background: rgba(212, 163, 115, 0.04); border: 1px solid rgba(212, 163, 115, 0.12); border-radius: 100px; display: inline-flex; align-items: center; gap: 10px; box-shadow: 0 4px 16px rgba(0,0,0,0.15);">
-      <span style="display: inline-block; width: 8px; height: 8px; border-radius: 50%; background: #D4A373; box-shadow: 0 0 8px #D4A373; animation: pillPulse 1.6s infinite;"></span>
-      <span>Réponds instinctivement : le but est d’avoir une réponse instinctive</span>
-    </div>
-  </div>
-
   <!-- QUIZ -->
   <div id="quizSection" style="margin-bottom: 120px;">
     <div class="quiz-wrapper">
       <div class="quiz-progress-bar-bg"><div class="quiz-progress-bar-fill" id="quizProgressBar" style="width:0%"></div></div>
       <div class="quiz-step-label">
         <span class="quiz-step-badge" id="quizStepText">Question 1 / 8</span>
-        <span class="quiz-step-pct" id="quizStepPct">0%</span>
+        <span style="color: var(--accent); font-size: 14px; font-weight: 600; letter-spacing: 0.02em;">Réponds instinctivement</span>
+        <span class="quiz-step-pct" id="quizStepPct" style="display: none;">0%</span>
       </div>
       <div class="quiz-question" id="quizQuestion"></div>
       <div class="quiz-options" id="quizOptions"></div>
@@ -1969,16 +2050,16 @@ h1 .line-gradient {
 
       <!-- Status -->
       <div class="gate-status-done" style="margin-bottom: 28px;">
-        <span class="gate-status-dot"></span>
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#00d264" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" style="margin-right: 4px;"><path d="M20 6 9 17l-5-5"/></svg>
         <span class="gate-status-text">Analyse terminée</span>
       </div>
 
       <!-- Carte floutée — couleur archétype injectée via JS -->
       <div class="gate-blur-card" id="gateBlurCard" style="margin-bottom: 32px;">
         <div class="gate-blur-top">
-          <div class="gate-blur-emoji" id="gateAnimArch">🧠</div>
+          <div class="gate-blur-emoji" id="gateAnimArch"><svg width="52" height="52" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="color: var(--accent);"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><path d="m9 12 2 2 4-4"/></svg></div>
           <div class="gate-blur-info">
-            <div class="gate-blur-sublabel">Ton archétype</div>
+            <div class="gate-blur-sublabel">Ton archétype est</div>
             <div class="gate-blur-name" id="gateArchNameBlur">L'_________</div>
           </div>
           <div class="gate-blur-pct-col">
@@ -1987,10 +2068,10 @@ h1 .line-gradient {
           </div>
         </div>
         <div class="gate-blur-bars">
-          <div class="gate-blur-row"><span class="gate-blur-ico">🧪</span><span class="gate-blur-lbl">Dopamine</span><div class="gate-blur-bg"><div class="gate-blur-fill" style="width:75%;background:linear-gradient(90deg,#A27B5C,#D4A373);"></div></div></div>
-          <div class="gate-blur-row"><span class="gate-blur-ico">⚡</span><span class="gate-blur-lbl">Anxiété</span><div class="gate-blur-bg"><div class="gate-blur-fill" style="width:62%;background:linear-gradient(90deg,#9C5232,#C57E5F);"></div></div></div>
-          <div class="gate-blur-row"><span class="gate-blur-ico">🪞</span><span class="gate-blur-lbl">Estime de soi</span><div class="gate-blur-bg"><div class="gate-blur-fill" style="width:50%;background:linear-gradient(90deg,#C1B092,#E6D6B8);"></div></div></div>
-          <div class="gate-blur-row"><span class="gate-blur-ico">🌙</span><span class="gate-blur-lbl">Sommeil</span><div class="gate-blur-bg"><div class="gate-blur-fill" style="width:68%;background:linear-gradient(90deg,#596D80,#8EA4B8);"></div></div></div>
+          <div class="gate-blur-row"><span class="gate-blur-ico"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M4.5 16.5c-1.5 1.26-2 2.6-2 3.5 0 1 1 2 2 2s2-1 2-2c0-.9-.5-2.24-2-3.5Z"/><path d="M15 14.5c-1.5 1.26-2 2.6-2 3.5 0 1 1 2 2 2s2-1 2-2c0-.9-.5-2.24-2-3.5Z"/><path d="M20 7c0 2.2-3 3.5-3 5.5 0 1 1 2 2 2s2-1 2-2c0-2-3-3.3-3-5.5Z"/><path d="M7 10c0 2.2-3 3.5-3 5.5 0 1 1 2 2 2s2-1 2-2c0-2-3-3.3-3-5.5Z"/><path d="M12 2c0 3 5 4 5 8 0 1-1 2-2 2s-2-1-2-2c0-4-5-5-5-8Z"/></svg></span><span class="gate-blur-lbl">Dopamine</span><div class="gate-blur-bg"><div class="gate-blur-fill" style="width:75%;background:linear-gradient(90deg,#A27B5C,#D4A373);"></div></div></div>
+          <div class="gate-blur-row"><span class="gate-blur-ico"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="m12 14 4-4"/><path d="M3.34 19a10 10 0 1 1 17.32 0"/></svg></span><span class="gate-blur-lbl">Anxiété</span><div class="gate-blur-bg"><div class="gate-blur-fill" style="width:62%;background:linear-gradient(90deg,#9C5232,#C57E5F);"></div></div></div>
+          <div class="gate-blur-row"><span class="gate-blur-ico"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M19 14c1.49-1.46 3-3.21 3-5.5A5.5 5.5 0 0 0 16.5 3c-1.76 0-3 .5-4.5 2-1.5-1.5-2.74-2-4.5-2A5.5 5.5 0 0 0 2 8.5c0 2.3 1.5 4.05 3 5.5l7 7Z"/></svg></span><span class="gate-blur-lbl">Estime de soi</span><div class="gate-blur-bg"><div class="gate-blur-fill" style="width:50%;background:linear-gradient(90deg,#C1B092,#E6D6B8);"></div></div></div>
+          <div class="gate-blur-row"><span class="gate-blur-ico"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg></span><span class="gate-blur-lbl">Sommeil</span><div class="gate-blur-bg"><div class="gate-blur-fill" style="width:68%;background:linear-gradient(90deg,#596D80,#8EA4B8);"></div></div></div>
         </div>
         <div class="gate-blur-overlay" id="gateBlurOverlay"></div>
         <div class="gate-blur-lock">🔒</div>
@@ -2089,27 +2170,28 @@ h1 .line-gradient {
 <footer class="sf-footer">
   <div class="sf-footer-container">
     <div class="sf-footer-grid">
+
+      <!-- Brand -->
       <div class="sf-footer-col">
         <div class="sf-footer-brand-title">
-          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="color: #fff;"><path d="M12 5a3 3 0 1 0-5.997.125 4 4 0 0 0-2.526 5.77 4 4 0 0 0 .556 6.588A4 4 0 1 0 12 18Z"/><path d="M12 5a3 3 0 1 1 5.997.125 4 4 0 0 1 2.526 5.77 4 4 0 0 1-.556 6.588A4 4 0 1 1 12 18Z"/><path d="M12 5v14"/></svg>
-          <span>ScrollFree</span>
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9.5 2A2.5 2.5 0 0 1 12 4.5v15a2.5 2.5 0 0 1-4.96-.46 2.5 2.5 0 0 1-2.96-3.08 3 3 0 0 1-.34-5.58 2.5 2.5 0 0 1 1.32-4.24 2.5 2.5 0 0 1 1.98-3A2.5 2.5 0 0 1 9.5 2Z"/><path d="M14.5 2A2.5 2.5 0 0 0 12 4.5v15a2.5 2.5 0 0 0 4.96-.46 2.5 2.5 0 0 0 2.96-3.08 3 3 0 0 0 .34-5.58 2.5 2.5 0 0 0-1.32-4.24 2.5 2.5 0 0 0-1.98-3A2.5 2.5 0 0 0 14.5 2Z"/></svg>
+          ScrollFree
         </div>
-        <p class="sf-footer-brand-desc">
-          Reprends le contrôle.<br>Reprends ta vie.
-        </p>
+        <p class="sf-footer-brand-desc">Reprends le contrôle.<br>Reprends ta vie.</p>
         <div class="sf-footer-socials">
           <a href="#" aria-label="Instagram" class="sf-footer-social-link">
-            <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect width="20" height="20" x="2" y="2" rx="5" ry="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg>
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg>
           </a>
           <a href="#" aria-label="TikTok" class="sf-footer-social-link">
-            <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 18V5l12-2v13"/><circle cx="6" cy="18" r="3"/><circle cx="18" cy="16" r="3"/></svg>
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 18V5l12-2v13"/><circle cx="6" cy="18" r="3"/><circle cx="18" cy="16" r="3"/></svg>
           </a>
           <a href="#" aria-label="YouTube" class="sf-footer-social-link">
-            <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M2.5 17a24.12 24.12 0 0 1 0-10 2 2 0 0 1 1.4-1.4 49.56 49.56 0 0 1 16.2 0A2 2 0 0 1 21.5 7a24.12 24.12 0 0 1 0 10 2 2 0 0 1-1.4 1.4 49.56 49.56 0 0 1-16.2 0A2 2 0 0 1 2.5 17z"/><path d="m10 15 5-3-5-3z"/></svg>
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22.54 6.42a2.78 2.78 0 0 0-1.95-1.96C18.88 4 12 4 12 4s-6.88 0-8.59.46a2.78 2.78 0 0 0-1.95 1.96A29 29 0 0 0 1 12a29 29 0 0 0 .46 5.58A2.78 2.78 0 0 0 3.41 19.6C5.12 20 12 20 12 20s6.88 0 8.59-.46a2.78 2.78 0 0 0 1.95-1.95A29 29 0 0 0 23 12a29 29 0 0 0-.46-5.58z"/><polygon points="9.75 15.02 15.5 12 9.75 8.98 9.75 15.02"/></svg>
           </a>
         </div>
       </div>
-      
+
+      <!-- Navigation -->
       <div class="sf-footer-col">
         <h4>Navigation</h4>
         <ul class="sf-footer-links">
@@ -2121,31 +2203,33 @@ h1 .line-gradient {
         </ul>
       </div>
 
+      <!-- Ressources -->
       <div class="sf-footer-col">
         <h4>Ressources</h4>
         <ul class="sf-footer-links">
           <li><a href="/blog">Blog</a></li>
-          <li><a href="#">Guides gratuits</a></li>
-          <li><a href="#">Études scientifiques</a></li>
-          <li><a href="#">À propos</a></li>
+          <li><a href="/simulateur">Simulateur de temps perdu</a></li>
+          <li><a href="/?goto=diagnostic">Quiz archétype de scroller</a></li>
           <li><a href="mailto:hello@scrollfree.co">Nous contacter</a></li>
         </ul>
       </div>
 
+      <!-- Légal -->
       <div class="sf-footer-col">
         <h4>Légal</h4>
         <ul class="sf-footer-links">
-          <li><a href="/mentions-legales.html">Mentions légales</a></li>
-          <li><a href="/cgv.html">Conditions générales</a></li>
-          <li><a href="/confidentialite.html">Politique de confidentialité</a></li>
-          <li><a href="/remboursement.html">Politique de remboursement</a></li>
+          <li><a href="/mentions-legales">Mentions légales</a></li>
+          <li><a href="/cgv">Conditions générales</a></li>
+          <li><a href="/confidentialite">Politique de confidentialité</a></li>
+          <li><a href="/remboursement">Politique de remboursement</a></li>
         </ul>
       </div>
+
     </div>
-    
+
     <div class="sf-footer-bottom">
       <p>© 2026 ScrollFree. Tous droits réservés.</p>
-      <p style="display: flex; align-items: center; gap: 4px;">Fabriqué avec <span style="color: #f97316;">♥</span> pour t'aider à reprendre le contrôle.</p>
+      <p>Fabriqué avec <span style="color:#fb923c;">♥</span> pour t'aider à reprendre le contrôle.</p>
     </div>
   </div>
 </footer>
@@ -2536,6 +2620,7 @@ function toggleSliders(){
 }
 let slidersHoverTimer = null;
 function openSlidersHover(){
+  if (window.matchMedia("(hover: none)").matches) return; // Skip on mobile
   clearTimeout(slidersHoverTimer);
   const b=document.getElementById('slidersBody'),a=document.getElementById('slidersArrow'),w=document.getElementById('ajusterWrapper');
   if(!b||!a||!w)return;
@@ -2544,6 +2629,7 @@ function openSlidersHover(){
   a.classList.add('open');
 }
 function closeSlidersHover(){
+  if (window.matchMedia("(hover: none)").matches) return; // Skip on mobile
   slidersHoverTimer = setTimeout(()=>{
     const b=document.getElementById('slidersBody'),a=document.getElementById('slidersArrow'),w=document.getElementById('ajusterWrapper');
     if(!b||!a||!w)return;
@@ -2553,6 +2639,20 @@ function closeSlidersHover(){
       a.classList.remove('open');
     }
   }, 350);
+}
+function toggleHowtoST(){
+  const b=document.getElementById('howtoSTBody'),a=document.getElementById('howtoSTArrow'),btn=document.getElementById('howtoSTBtn');
+  if(!b||!a||!btn)return;
+  const o = b.style.maxHeight === '0px' || b.style.maxHeight === '' ;
+  if(o) {
+    b.style.maxHeight = b.scrollHeight + 'px';
+    a.style.transform = 'rotate(90deg)';
+    btn.style.color = 'var(--text)';
+  } else {
+    b.style.maxHeight = '0px';
+    a.style.transform = 'rotate(0deg)';
+    btn.style.color = 'var(--muted2)';
+  }
 }
 function switchHowtoTab(tab,btn){document.querySelectorAll('.howto-tab').forEach(t=>t.classList.remove('active'));document.querySelectorAll('.howto-content').forEach(t=>t.classList.remove('active'));btn.classList.add('active');const el=document.getElementById('howto-'+tab);if(el)el.classList.add('active');}
 
@@ -2851,12 +2951,12 @@ async function showResult(){
         const hW = Math.round(hY / 52);
         const dY = (hY / 24).toFixed(1);
         grid.innerHTML = [
-          {e:'🎸', t:`<strong>${Math.round(hY/4).toLocaleString('fr-FR')} chansons maîtrisées</strong> sur l'instrument que tu veux apprendre`},
-          {e:'🎨', t:`<strong>${Math.round(hY/1.5).toLocaleString('fr-FR')} dessins complétés</strong> — assez pour ne plus être un débutant`},
-          {e:'📚', t:`<strong>${Math.round(hY/4.5).toLocaleString('fr-FR')} livres de 200 pages</strong> — une vraie bibliothèque d'idées`},
-          {e:'🏃', t:`<strong>${Math.round(hY/175).toLocaleString('fr-FR')} marathons d'entraînement</strong> complets, du premier footing à l'arrivée`},
-          {e:'🤜', t:`<strong>${Math.round(hY/2.5).toLocaleString('fr-FR')} sorties ou moments vrais</strong> avec les gens qui comptent`},
-          {e:'🎧', t:`<strong>${Math.round(hY/0.75).toLocaleString('fr-FR')} épisodes de podcast</strong> — des dizaines de sujets explorés en profondeur`},
+          {e:`<svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="color:var(--accent);"><path d="M9 18V5l12-2v13"/><circle cx="6" cy="18" r="3"/><circle cx="18" cy="16" r="3"/></svg>`, t:`<strong>${Math.round(hY/4).toLocaleString('fr-FR')} chansons maîtrisées</strong> sur l'instrument que tu veux apprendre`},
+          {e:`<svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="color:var(--accent);"><path d="M12 22C17.5228 22 22 17.5228 22 12C22 6.47715 17.5228 2 12 2C6.47715 2 2 6.47715 2 12C2 14.7255 3.09032 17.1962 4.85857 19C5.01445 19.1559 5.01445 19.4087 4.85857 19.5646C4.42392 19.9992 3.83481 20.1559 3.28445 19.9806C2.51865 19.7367 1.68536 19.9934 1.16857 20.6234C0.840788 21.0234 1.12555 21.6234 1.64415 21.6234H12Z" /><circle cx="7.5" cy="10.5" r="1.5" fill="currentColor"/><circle cx="11.5" cy="7.5" r="1.5" fill="currentColor"/><circle cx="16.5" cy="9.5" r="1.5" fill="currentColor"/><circle cx="15.5" cy="14.5" r="1.5" fill="currentColor"/></svg>`, t:`<strong>${Math.round(hY/1.5).toLocaleString('fr-FR')} dessins complétés</strong> — assez pour ne plus être un débutant`},
+          {e:`<svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="color:var(--accent);"><path d="m2 3 9.25 2.25a2 2 0 0 1 1.5 0L22 3V18l-9.25 2.25a2 2 0 0 1-1.5 0L2 18V3Z"/><path d="M12 5v15"/></svg>`, t:`<strong>${Math.round(hY/4.5).toLocaleString('fr-FR')} livres de 200 pages</strong> — une vraie bibliothèque d'idées`},
+          {e:`<svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="color:var(--accent);"><circle cx="15" cy="4" r="2" /><path d="m9 20 2-4.5v-3.5l-2-2-3 2" /><path d="m14 11.5 2.5 2.5 3-1.5" /><path d="m11 12 3.5 3.5 2.5 4.5" /><path d="m10 15.5-2.5 3.5" /></svg>`, t:`<strong>${Math.round(hY/175).toLocaleString('fr-FR')} marathons d'entraînement</strong> complets, du premier footing à l'arrivée`},
+          {e:`<svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="color:var(--accent);"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>`, t:`<strong>${Math.round(hY/2.5).toLocaleString('fr-FR')} sorties ou moments vrais</strong> avec les gens qui comptent`},
+          {e:`<svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="color:var(--accent);"><path d="M3 14h3a2 2 0 0 1 2 2v3a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-7a9 9 0 0 1 18 0v7a2 2 0 0 1-2 2h-1a2 2 0 0 1-2-2v-3a2 2 0 0 1 2-2h3"/></svg>`, t:`<strong>${Math.round(hY/0.75).toLocaleString('fr-FR')} épisodes de podcast</strong> — des dizaines de sujets explorés en profondeur`},
         ].map(i => `<div class="analogy-card"><div class="analogy-emoji">${i.e}</div><div class="analogy-text">${i.t}</div></div>`).join('');
         const jEl = document.getElementById('journeeBlock');
         const jTxt = document.getElementById('journeeText');
@@ -2895,7 +2995,7 @@ const levelLabels=['','Éveillé','Distrait','Absorbé','Submergé'];
       <div class="arch-image-wrap" style="filter:drop-shadow(0 0 48px ${info.color}40);">
         <img src="${imgSrc}" alt="${info.label}" onerror="this.style.display='none';this.parentElement.innerHTML='<div style=\'font-size:80px;line-height:1;\'>${info.emoji}</div>'">
       </div>
-     <div class="arch-name" style="color:${info.color};font-size:clamp(20px,5.5vw,30px);font-family:'Helvetica Neue',Helvetica,Arial,sans-serif;font-weight:600;letter-spacing:-0.02em;margin-bottom:24px;" id="archName">${info.label}</div>      <div class="contamination-bar-wrap">
+     <div class="arch-name" style="color:${info.color};font-size:clamp(26px,6.5vw,40px);font-family:'Bricolage Grotesque',ui-sans-serif,system-ui,sans-serif;font-weight:800;letter-spacing:-0.035em;line-height:1.05;margin-bottom:28px;" id="archName">${info.label}</div>      <div class="contamination-bar-wrap">
         <div class="contamination-label-row" style="display:flex;align-items:center;gap:12px;margin-bottom:8px;">
           <span class="contamination-pct" style="color:${cc.color};font-size:28px;font-weight:800;flex-shrink:0;" id="contamPctDisplay">0%</span>
           <div class="contamination-bar-bg" style="flex:1;"><div class="contamination-bar-fill" id="contamBarFill" style="width:0%;background:${cc.color};"></div></div>
@@ -3029,7 +3129,147 @@ function closeShareModal() {
   if (modal) modal.style.display = 'none';
 }
 
-function executeShare(platform) {
+function generateShareCard() {
+  const W = 1080, H = 1080;
+  const canvas = document.createElement('canvas');
+  canvas.width = W;
+  canvas.height = H;
+  const ctx = canvas.getContext('2d');
+
+  const archKey = window._resultData?.archKey || 'automate';
+  const archLabel = window._resultData?.archLabel || "L'Automate";
+  const contamPct = window._resultData?.contamPct ?? 75;
+  const daysLost = window._hYear ? Math.round(window._hYear / 24) : 41;
+  const emoji = ARCHETYPE_INFO[archKey]?.emoji || '🤖';
+
+  function rr(x, y, w, h, r) {
+    ctx.beginPath();
+    ctx.moveTo(x + r, y);
+    ctx.lineTo(x + w - r, y);
+    ctx.quadraticCurveTo(x + w, y, x + w, y + r);
+    ctx.lineTo(x + w, y + h - r);
+    ctx.quadraticCurveTo(x + w, y + h, x + w - r, y + h);
+    ctx.lineTo(x + r, y + h);
+    ctx.quadraticCurveTo(x, y + h, x, y + h - r);
+    ctx.lineTo(x, y + r);
+    ctx.quadraticCurveTo(x, y, x + r, y);
+    ctx.closePath();
+  }
+
+  // Background
+  ctx.fillStyle = '#0B0F19';
+  ctx.fillRect(0, 0, W, H);
+
+  // Top ambient glow
+  const gTop = ctx.createRadialGradient(W / 2, 180, 0, W / 2, 180, 520);
+  gTop.addColorStop(0, 'rgba(212,163,115,0.16)');
+  gTop.addColorStop(1, 'rgba(212,163,115,0)');
+  ctx.fillStyle = gTop;
+  ctx.fillRect(0, 0, W, H);
+
+  // Bottom-right ambient glow
+  const gBot = ctx.createRadialGradient(W * 0.8, H * 0.9, 0, W * 0.8, H * 0.9, 380);
+  gBot.addColorStop(0, 'rgba(163,120,84,0.12)');
+  gBot.addColorStop(1, 'rgba(163,120,84,0)');
+  ctx.fillStyle = gBot;
+  ctx.fillRect(0, 0, W, H);
+
+  // Card border
+  const m = 32;
+  rr(m, m, W - m * 2, H - m * 2, 52);
+  ctx.strokeStyle = 'rgba(212,163,115,0.25)';
+  ctx.lineWidth = 2;
+  ctx.stroke();
+
+  // Inner top highlight
+  ctx.fillStyle = 'rgba(255,255,255,0.06)';
+  ctx.fillRect(m + 52, m + 1, W - 2 * m - 104, 1);
+
+  // "SCROLLFREE" branding
+  ctx.font = '700 28px "Bricolage Grotesque", system-ui, sans-serif';
+  ctx.fillStyle = 'rgba(255,255,255,0.32)';
+  ctx.textAlign = 'center';
+  ctx.fillText('SCROLLFREE', W / 2, 120);
+
+  // Thin gold separator
+  ctx.fillStyle = 'rgba(212,163,115,0.30)';
+  ctx.fillRect(W / 2 - 32, 138, 64, 1.5);
+
+  // Subtitle
+  ctx.font = '600 21px "Bricolage Grotesque", system-ui, sans-serif';
+  ctx.fillStyle = 'rgba(255,255,255,0.28)';
+  ctx.textAlign = 'center';
+  ctx.fillText('MON PROFIL D\'ATTENTION', W / 2, 180);
+
+  // Archetype emoji
+  ctx.font = '220px serif';
+  ctx.textAlign = 'center';
+  ctx.fillText(emoji, W / 2, 445);
+
+  // Archetype name
+  ctx.font = '700 72px "Bricolage Grotesque", system-ui, sans-serif';
+  ctx.fillStyle = '#D4A373';
+  ctx.textAlign = 'center';
+  ctx.fillText(archLabel.toUpperCase(), W / 2, 562);
+
+  // Divider
+  ctx.fillStyle = 'rgba(212,163,115,0.14)';
+  ctx.fillRect(W / 2 - 220, 592, 440, 1);
+
+  // "NIVEAU D'EMPRISE" label
+  ctx.font = '600 22px "Bricolage Grotesque", system-ui, sans-serif';
+  ctx.fillStyle = 'rgba(255,255,255,0.32)';
+  ctx.textAlign = 'center';
+  ctx.fillText('NIVEAU D\'EMPRISE', W / 2, 655);
+
+  // Contamination %
+  ctx.font = '800 152px "Bricolage Grotesque", system-ui, sans-serif';
+  ctx.fillStyle = '#F4D3A1';
+  ctx.textAlign = 'center';
+  ctx.fillText(`${contamPct}%`, W / 2, 808);
+
+  // Progress bar — track
+  const bW = 660, bH = 13, bX = (W - bW) / 2, bY = 840;
+  rr(bX, bY, bW, bH, 6);
+  ctx.fillStyle = 'rgba(255,255,255,0.08)';
+  ctx.fill();
+
+  // Progress bar — fill
+  const fillW = Math.max(bW * Math.min(contamPct, 100) / 100, bH);
+  const grad = ctx.createLinearGradient(bX, 0, bX + fillW, 0);
+  grad.addColorStop(0, '#A37854');
+  grad.addColorStop(1, '#F4D3A1');
+  rr(bX, bY, fillW, bH, 6);
+  ctx.fillStyle = grad;
+  ctx.fill();
+
+  // Days lost stat
+  ctx.font = '400 30px "Bricolage Grotesque", system-ui, sans-serif';
+  ctx.fillStyle = 'rgba(255,255,255,0.42)';
+  ctx.textAlign = 'center';
+  ctx.fillText(`${daysLost} jours volés par les algorithmes cette année`, W / 2, 928);
+
+  // URL
+  ctx.font = '400 23px "Bricolage Grotesque", system-ui, sans-serif';
+  ctx.fillStyle = 'rgba(212,163,115,0.42)';
+  ctx.textAlign = 'center';
+  ctx.fillText('scrollfree.fr/simulateur', W / 2, 988);
+
+  return new Promise(resolve => canvas.toBlob(resolve, 'image/png'));
+}
+
+function downloadShareImage(blob) {
+  const url = URL.createObjectURL(blob);
+  const a = document.createElement('a');
+  a.href = url;
+  a.download = 'profil-scrollfree.png';
+  document.body.appendChild(a);
+  a.click();
+  document.body.removeChild(a);
+  setTimeout(() => URL.revokeObjectURL(url), 1000);
+}
+
+async function executeShare(platform) {
   const isResult = currentShareType === 'result';
   const archLabel = window._resultData ? window._resultData.archLabel : "L'Automate";
   const archKey = window._resultData ? window._resultData.archKey : "automate";
@@ -3038,89 +3278,118 @@ function executeShare(platform) {
   const daysLost = window._hYear ? Math.round(window._hYear / 24) : 41;
   const shareUrl = window.location.origin + window.location.pathname;
 
+  // ── RESULT SHARE : image card ───────────────────────────
+  if (isResult) {
+    const blob = await generateShareCard();
+    const imageFile = new File([blob], 'profil-scrollfree.png', { type: 'image/png' });
+    const pName = platform.charAt(0).toUpperCase() + platform.slice(1);
+
+    switch (platform) {
+      case 'instagram':
+      case 'tiktok':
+      case 'snapchat': {
+        try {
+          await navigator.clipboard.write([new ClipboardItem({ 'image/png': blob })]);
+          showToast(`Image copiée ! Colle-la dans ${pName} 📸`);
+        } catch {
+          downloadShareImage(blob);
+          showToast(`Image téléchargée ! Partage-la sur ${pName} 📸`);
+        }
+        closeShareModal();
+        return;
+      }
+
+      case 'x': {
+        const text = `Mon archétype de scroller : ${archLabel} (Emprise : ${contamPct}%) ${emoji}. Cette année, les algorithmes m'ont volé ${daysLost} jours de ma vie.\nDécouvre ton score sur ScrollFree :\n👉 ${shareUrl}\n#digitaldetox #screentime`;
+        downloadShareImage(blob);
+        window.open(`https://twitter.com/intent/tweet?text=${encodeURIComponent(text)}`, '_blank');
+        showToast(`Image téléchargée — attache-la à ton tweet ! 🔥`);
+        closeShareModal();
+        return;
+      }
+
+      case 'telegram': {
+        const text = `📊 Mon Diagnostic Attentionnel Scrollfree 📊\n\n• Archétype : ${archLabel} ${emoji}\n• Niveau d'emprise : ${contamPct}%\n• Temps volé cette année : ${daysLost} jours\n\nDécouvre si les réseaux ont piraté ton attention :\n👉 ${shareUrl}`;
+        downloadShareImage(blob);
+        window.open(`https://t.me/share/url?url=${encodeURIComponent(shareUrl)}&text=${encodeURIComponent(text)}`, '_blank');
+        showToast(`Image téléchargée — partage-la sur Telegram ! 🔥`);
+        closeShareModal();
+        return;
+      }
+
+      case 'contacts': {
+        if (navigator.canShare && navigator.canShare({ files: [imageFile] })) {
+          try {
+            await navigator.share({
+              files: [imageFile],
+              title: 'Mon profil Scrollfree',
+              text: `Mon archétype : ${archLabel} (${contamPct}% d'emprise) ${emoji} — ${daysLost} jours volés cette année. 👉 ${shareUrl}`,
+            });
+            closeShareModal();
+            return;
+          } catch { /* annulé ou erreur */ }
+        } else if (navigator.share) {
+          const text = `Salut ! Je viens de faire le diagnostic d'attention ScrollFree. Mon archétype est ${archLabel} (${contamPct}% d'emprise ${emoji}). Les algos m'ont volé ${daysLost} jours de vie cette année... Fais le test toi aussi ! 👉 ${shareUrl}`;
+          navigator.share({ title: 'Diagnostic Scrollfree', text, url: shareUrl }).catch(() => {});
+        } else {
+          downloadShareImage(blob);
+          showToast(`Image téléchargée ! 📸`);
+        }
+        closeShareModal();
+        return;
+      }
+
+      case 'copy':
+      default: {
+        try {
+          await navigator.clipboard.write([new ClipboardItem({ 'image/png': blob })]);
+          showToast(`Image copiée dans le presse-papier ! 📸`);
+        } catch {
+          downloadShareImage(blob);
+          showToast(`Image téléchargée ! 📸`);
+        }
+        closeShareModal();
+        return;
+      }
+    }
+  }
+
+  // ── SIMULATOR SHARE : texte seulement (inchangé) ────────
   let text = '';
   let clipboardOnly = false;
   let customAction = null;
+  const inviteText = `Es-tu sûr de contrôler ton temps d'écran ou est-ce l'algorithme qui te contrôle ? Fais ce test de 3 minutes pour découvrir ton archétype de scrolleur et ce que ton attention pourrait reconstruire 👇\n${shareUrl}`;
 
-  if (isResult) {
-    switch (platform) {
-      case 'instagram':
-        text = `Mon archétype de scroller : ${archLabel} (Emprise : ${contamPct}%) ${emoji}\n\nPris au piège par l'attention capturée. Fais le test pour découvrir ton profil et reprendre le contrôle sur tes écrans.\n👉 ${shareUrl}`;
-        clipboardOnly = true;
-        break;
-      case 'tiktok':
-        text = `J'ai fait le test Scrollfree et je suis ${archLabel} (Emprise: ${contamPct}% ${emoji}). Cette année, les algorithmes m'ont volé ${daysLost} jours de vie... Fais le test pour voir ton score ! 👉 ${shareUrl} #scrollfree #screentime`;
-        clipboardOnly = true;
-        break;
-      case 'snapchat':
-        text = `Mon score Scrollfree : ${contamPct}% d'emprise (${archLabel}) ${emoji}. ${daysLost} jours perdus sur mon écran... Fais le test direct : ${shareUrl}`;
-        clipboardOnly = true;
-        break;
-      case 'x':
-        text = `Mon archétype de scroller : ${archLabel} (Emprise : ${contamPct}%) ${emoji}. Cette année, les algorithmes m'ont volé ${daysLost} jours de ma vie.\nDécouvre ton score sur ScrollFree :\n👉 ${shareUrl}\n#digitaldetox #screentime`;
-        customAction = `https://twitter.com/intent/tweet?text=${encodeURIComponent(text)}`;
-        break;
-      case 'telegram':
-        text = `📊 Mon Diagnostic Attentionnel Scrollfree 📊\n\n• Archétype : ${archLabel} ${emoji}\n• Niveau d'emprise : ${contamPct}%\n• Temps volé cette année : ${daysLost} jours\n\nDécouvre si les réseaux ont piraté ton attention et obtiens tes conseils personnalisés :\n👉 ${shareUrl}`;
-        customAction = `https://t.me/share/url?url=${encodeURIComponent(shareUrl)}&text=${encodeURIComponent(text)}`;
-        break;
-      case 'contacts':
-        text = `Salut ! Je viens de faire le diagnostic d'attention ScrollFree. Mon archétype est ${archLabel} (${contamPct}% d'emprise ${emoji}). Les algos m'ont volé ${daysLost} jours de vie cette année... C'est fou, fais le test toi aussi pour voir ton profil ! 👉 ${shareUrl}`;
-        if (navigator.share) {
-          navigator.share({
-            title: 'Diagnostic Scrollfree',
-            text: text,
-            url: shareUrl
-          }).catch(err => console.log('Share failed', err));
-          closeShareModal();
-          return;
-        } else {
-          customAction = `https://api.whatsapp.com/send?text=${encodeURIComponent(text)}`;
-        }
-        break;
-      case 'copy':
-      default:
-        text = `Mon archétype de scroller : ${archLabel} (Emprise : ${contamPct}%) ${emoji}\nCette année, les algorithmes m'ont volé ${daysLost} jours de vie.\nFais le test pour découvrir ton profil → ${shareUrl}`;
-        clipboardOnly = true;
-        break;
-    }
-  } else {
-    const inviteText = `Es-tu sûr de contrôler ton temps d'écran ou est-ce l'algorithme qui te contrôle ? Fais ce test de 3 minutes pour découvrir ton archétype de scrolleur et ce que ton attention pourrait reconstruire 👇\n${shareUrl}`;
-    switch (platform) {
-      case 'instagram':
-      case 'tiktok':
-      case 'snapchat':
-        text = inviteText;
-        clipboardOnly = true;
-        break;
-      case 'x':
-        text = `Es-tu sûr de contrôler ton écran ou est-ce lui qui te contrôle ? Fais ce diagnostic de 3 minutes pour découvrir ton archétype de scrolleur et ton attention volée 👇\n${shareUrl}\n#screentime #awareness`;
-        customAction = `https://twitter.com/intent/tweet?text=${encodeURIComponent(text)}`;
-        break;
-      case 'telegram':
-        text = `📱 As-tu le contrôle sur ton écran ? 📱\n\nFais ce test rapide et extrêmement révélateur de 3 minutes pour découvrir ton archétype de scrolleur et ce que ton attention pourrait reconstruire :\n👉 ${shareUrl}`;
-        customAction = `https://t.me/share/url?url=${encodeURIComponent(shareUrl)}&text=${encodeURIComponent(text)}`;
-        break;
-      case 'contacts':
-        text = inviteText;
-        if (navigator.share) {
-          navigator.share({
-            title: 'Simulateur Scrollfree',
-            text: text,
-            url: shareUrl
-          }).catch(err => console.log('Share failed', err));
-          closeShareModal();
-          return;
-        } else {
-          customAction = `https://api.whatsapp.com/send?text=${encodeURIComponent(text)}`;
-        }
-        break;
-      case 'copy':
-      default:
-        text = inviteText;
-        clipboardOnly = true;
-        break;
-    }
+  switch (platform) {
+    case 'instagram':
+    case 'tiktok':
+    case 'snapchat':
+      text = inviteText;
+      clipboardOnly = true;
+      break;
+    case 'x':
+      text = `Es-tu sûr de contrôler ton écran ou est-ce lui qui te contrôle ? Fais ce diagnostic de 3 minutes pour découvrir ton archétype de scrolleur et ton attention volée 👇\n${shareUrl}\n#screentime #awareness`;
+      customAction = `https://twitter.com/intent/tweet?text=${encodeURIComponent(text)}`;
+      break;
+    case 'telegram':
+      text = `📱 As-tu le contrôle sur ton écran ? 📱\n\nFais ce test rapide et extrêmement révélateur de 3 minutes pour découvrir ton archétype de scrolleur et ce que ton attention pourrait reconstruire :\n👉 ${shareUrl}`;
+      customAction = `https://t.me/share/url?url=${encodeURIComponent(shareUrl)}&text=${encodeURIComponent(text)}`;
+      break;
+    case 'contacts':
+      text = inviteText;
+      if (navigator.share) {
+        navigator.share({ title: 'Simulateur Scrollfree', text, url: shareUrl }).catch(() => {});
+        closeShareModal();
+        return;
+      } else {
+        customAction = `https://api.whatsapp.com/send?text=${encodeURIComponent(text)}`;
+      }
+      break;
+    case 'copy':
+    default:
+      text = inviteText;
+      clipboardOnly = true;
+      break;
   }
 
   if (customAction) {
@@ -3177,35 +3446,40 @@ async function handleWaitlistSubmit(event) {
     const response = await fetch(`${WORKER_URL}/register-systemeio`, {
       method: 'POST',
       headers: {
-        'Content-Type': 'application/json'
+        'Content-Type': 'application/json',
+        'Accept': 'application/json'
       },
+      mode: 'cors',
       body: JSON.stringify({
         email: email,
         first_name: firstName,
+        name: firstName,
         tag: 'WAITLIST_SIMULATEUR'
       })
     });
-    
+
     if (response.ok) {
       localStorage.setItem('sf_user_email', email);
       localStorage.setItem('sf_user_name', firstName);
-      
+
       document.getElementById('wlFormContent').style.display = 'none';
       document.getElementById('wlSuccessContent').style.display = 'block';
       document.getElementById('wlSuccessName').textContent = firstName;
     } else {
+      const errorData = await response.json().catch(() => ({}));
+      console.error('Registration error:', errorData);
       if (errorEl) {
-        errorEl.textContent = "Une erreur est survenue. Veuillez réessayer.";
+        errorEl.textContent = "Une erreur est survenue. L'inscription est peut-être déjà active.";
         errorEl.style.display = 'block';
       }
     }
   } catch (err) {
+    console.error('Connection error:', err);
     if (errorEl) {
       errorEl.textContent = "Erreur de connexion.";
       errorEl.style.display = 'block';
     }
-  } finally {
-    if (submitBtn) {
+  } finally {    if (submitBtn) {
       submitBtn.disabled = false;
       submitBtn.querySelector('span').textContent = 'Rejoindre';
     }
@@ -3359,5 +3633,18 @@ document.head.appendChild(dynStyle);
     </div>
   </div>
 </div>
+
+<script>
+  // Disable right-click
+  document.addEventListener('contextmenu', event => event.preventDefault());
+  
+  // Disable drag on images
+  document.addEventListener('dragstart', event => {
+    if (event.target.tagName === 'IMG') event.preventDefault();
+  });
+</script>
+<script>
+function sfToggleTheme(){var t=document.documentElement.getAttribute("data-theme")==="light"?"dark":"light";document.documentElement.setAttribute("data-theme",t);localStorage.setItem("sf-theme",t);var b=document.getElementById("sf-sim-theme-btn");if(b){b.textContent=t==="dark"?"☀ Mode jour":"☾ Mode nuit";}}
+</script>
 </body>
 </html>

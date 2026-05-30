@@ -1,5 +1,4 @@
 import { m } from 'motion/react';
-import { Star, Quote, Sparkles } from 'lucide-react';
 
 const testimonials = [
   {
@@ -7,120 +6,73 @@ const testimonials = [
     name: "Isabelle, 44 ans",
     role: "Mère de famille, Bordeaux",
     avatar: "https://i.pravatar.cc/150?u=isabelle",
-    tag: "PARENT"
+    tag: "Parent",
   },
   {
     text: "J'ai raté mon bac parce que je passais mes nuits sur TikTok au lieu de dormir. C'est quand j'ai compris le mécanisme que j'ai pu m'en sortir. J'ai eu mon bac l'année d'après.",
     name: "Mathis, 18 ans",
     role: "Lycéen, Lyon",
     avatar: "https://i.pravatar.cc/150?u=mathis",
-    tag: "BAC RATÉ → RATTRAPÉ"
+    tag: "Bac raté → rattrapé",
   },
   {
-    text: "Les apps de contrôle du temps d'écran : ça tient 3 jours. Elles mettent un pansement sur une hémorragie. Comprendre pourquoi mon cerveau cherchait cette dopamine — ça, ça a tout changé.",
+    text: "Les apps de contrôle du temps d'écran, ça tient 3 jours. Elles mettent un pansement sur une hémorragie. Comprendre pourquoi mon cerveau cherchait cette dopamine : ça, ça a tout changé.",
     name: "Laurent, 27 ans",
     role: "Développeur, Paris",
     avatar: "https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?q=80&w=250&auto=format&fit=crop",
-    tag: "4H → 35MIN/JOUR"
-  }
+    tag: "4h → 35 min/jour",
+  },
 ];
-
-const containerVariants = {
-  hidden: { opacity: 0 },
-  visible: {
-    opacity: 1,
-    transition: {
-      staggerChildren: 0.1,
-    },
-  },
-};
-
-const itemVariants = {
-  hidden: { opacity: 0, y: 30 },
-  visible: { 
-    opacity: 1, 
-    y: 0,
-    transition: { duration: 0.6 }
-  },
-};
 
 export const Testimonials = () => {
   return (
-    <section className="relative z-10 px-6 py-24 md:px-12 max-w-7xl mx-auto flex flex-col items-center text-center">
-      <m.p 
-        initial={{ opacity: 0, y: 20 }}
-        whileInView={{ opacity: 1, y: 0 }}
-        viewport={{ once: true, margin: "100px" }}
-        className="uppercase tracking-widest text-[11px] text-white/50 mb-4"
-      >
-        Ce qu'ils disent
-      </m.p>
-      <m.h2 
-        initial={{ opacity: 0, y: 20 }}
-        whileInView={{ opacity: 1, y: 0 }}
-        viewport={{ once: true, margin: "100px" }}
-        className="text-3xl md:text-4xl lg:text-5xl font-medium tracking-tight text-white mb-6 max-w-4xl mx-auto"
-      >
-        Ils ont repris le <span className="text-transparent bg-clip-text bg-gradient-to-r from-white via-[#F4D3A1] to-[#D4A373]">Contrôle</span>
-      </m.h2>
-
-      <m.div 
-        variants={containerVariants}
-        initial="hidden"
-        whileInView="visible"
-        viewport={{ once: true, margin: "100px" }}
-        className="grid grid-cols-1 md:grid-cols-3 gap-6 w-full text-left"
-      >
-        {testimonials.map((testimonial, i) => (
-          <m.div
+    <section className="relative z-10 px-6 py-24 md:py-32 md:px-12 max-w-7xl mx-auto">
+      <div className="mb-14 md:mb-20">
+        <m.p
+          initial={{ opacity: 0, y: 16 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, margin: "100px" }}
+          transition={{ duration: 0.5, ease: [0.22, 1, 0.36, 1] }}
+          className="text-[11px] font-bold tracking-[0.18em] text-[#D4A373] uppercase mb-4"
+        >
+          Témoignages
+        </m.p>
+        <m.h2
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, margin: "100px" }}
+          transition={{ duration: 0.65, ease: [0.22, 1, 0.36, 1], delay: 0.07 }}
+          className="text-3xl md:text-4xl lg:text-5xl text-white max-w-2xl"
+        >
+          Ce qu'ils disent.
+        </m.h2>
+      </div>
+      <div className="flex flex-col">
+        {testimonials.map((t, i) => (
+          <m.article
             key={i}
-            variants={itemVariants}
-            className="relative rounded-[32px] p-8 flex flex-col overflow-hidden group bg-[#0A0A0A] border border-[#D4A373]/30 transition-[transform,border-color,box-shadow] duration-500 hover:-translate-y-2 hover:border-[#D4A373] hover:shadow-[0_0_50px_-12px_rgba(212,163,115,0.5)] will-change-transform"
+            initial={{ opacity: 0, y: 24 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true, margin: "60px" }}
+            transition={{ duration: 0.7, ease: [0.22, 1, 0.36, 1], delay: i * 0.08 }}
+            className={`py-10 md:py-14 flex flex-col md:flex-row gap-8 md:gap-20 items-start${i > 0 ? ' border-t border-[#D4A373]/15' : ''}`}
           >
-            {/* Internal glow effect on hover */}
-            <div className="absolute inset-0 bg-gradient-to-br from-[#D4A373]/10 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none" />
-            
-            <div className="absolute inset-0 bg-black/20 group-hover:bg-black/0 transition-colors duration-500 pointer-events-none" />
-            
-            <div className="relative z-10 flex flex-col h-full">
-              <div className="flex justify-between items-start mb-6">
-                <div className="flex gap-1.5">
-                  {[...Array(5)].map((_, j) => (
-                    <Star key={j} size={16} className="fill-yellow-500 text-yellow-500" />
-                  ))}
-                </div>
-                <Quote size={40} className="text-white/10 -mt-2" />
-              </div>
-              
-              <p className="text-white/80 text-[15px] leading-relaxed mb-8 flex-grow">
-                {testimonial.text}
-              </p>
-              
-              <div className="flex items-center gap-4 mb-8">
-                {/* Img with lazy loading applied */}
-                <img 
-                  src={testimonial.avatar} 
-                  alt={testimonial.name} 
-                  loading="lazy"
-                  decoding="async"
-                  width="48"
-                  height="48"
-                  className="w-12 h-12 rounded-full object-cover border border-white/20" 
-                />
-                <div>
-                  <h4 className="text-white font-medium text-sm">{testimonial.name}</h4>
-                  <p className="text-white/50 text-xs mt-1">{testimonial.role}</p>
-                </div>
-              </div>
-              
-              <div className="inline-flex items-center justify-center w-full py-2.5 rounded-full bg-white/5 border border-white/10 text-white/70 text-[11px] font-medium tracking-wide">
-                <Sparkles size={12} className="mr-2 opacity-50" />
-                {testimonial.tag}
+            <div className="flex-1 min-w-0">
+              <p className="text-[11px] font-bold tracking-[0.18em] text-[#D4A373] uppercase mb-5">{t.tag}</p>
+              <blockquote className="text-[17px] md:text-[19px] font-light text-white/80 leading-[1.65] text-pretty">
+                «&nbsp;{t.text}&nbsp;»
+              </blockquote>
+            </div>
+            <div className="flex items-center gap-4 md:flex-col md:items-start md:w-44 md:pt-10 shrink-0">
+              <img src={t.avatar} alt={t.name} loading="lazy" decoding="async" width="52" height="52" className="w-13 h-13 rounded-full object-cover border border-white/15 shrink-0" />
+              <div>
+                <p className="text-white font-semibold text-[14px] leading-snug">{t.name}</p>
+                <p className="text-white/45 text-[12px] mt-1">{t.role}</p>
               </div>
             </div>
-          </m.div>
+          </m.article>
         ))}
-      </m.div>
+      </div>
     </section>
   );
 };

@@ -19,6 +19,7 @@ const FAQItem: React.FC<FAQItemProps> = ({ question, answer }) => {
       <button
         className="flex w-full items-center justify-between py-6 text-left transition-colors duration-300 group"
         aria-expanded={isOpen}
+        onClick={() => setIsOpen(prev => !prev)}
       >
         <span className={`text-[16px] md:text-[18px] font-medium transition-colors duration-300 pr-4 ${isOpen ? 'text-[#F4D3A1]' : 'text-white/70 group-hover:text-white'}`}>
           {question}
@@ -133,18 +134,18 @@ export const FAQ = () => {
   const [activeCategory, setActiveCategory] = useState(0);
 
   return (
-    <section className="relative z-10 px-6 py-24 md:px-12 max-w-7xl mx-auto w-full">
+    <section className="relative z-10 px-6 py-24 md:py-32 md:px-12 max-w-7xl mx-auto w-full">
       <m.div
         initial={{ opacity: 0, y: 20 }}
         whileInView={{ opacity: 1, y: 0 }}
         viewport={{ once: true, margin: "100px" }}
         className="text-center mb-20"
       >
-        <h2 className="text-3xl md:text-4xl lg:text-5xl font-medium tracking-tight text-white mb-6">
-          Questions <span className="text-transparent bg-clip-text bg-gradient-to-r from-white via-[#F4D3A1] to-[#D4A373]">Fréquentes</span>
+        <h2 className="text-3xl md:text-4xl lg:text-5xl text-white mb-6">
+          Questions <span className="text-[#D4A373]">Fréquentes</span>
         </h2>
         <p className="text-white/50 max-w-2xl mx-auto text-lg">
-          Tout ce que vous devez savoir sur Scrollfree et notre méthode pour reprendre le contrôle de votre attention.
+          Tout ce que tu dois savoir sur Scrollfree et notre méthode pour reprendre le contrôle de ton attention.
         </p>
       </m.div>
 

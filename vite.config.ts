@@ -1,86 +1,57 @@
 import tailwindcss from '@tailwindcss/vite';
 import react from '@vitejs/plugin-react';
-import fs from 'node:fs/promises';
 import path from 'path';
-import { defineConfig, loadEnv } from 'vite';
+import { defineConfig } from 'vite';
 
-function gradientSavePlugin() {
-  return {
-    name: 'gradient-save',
-    configureServer(server: any) {
-      server.middlewares.use('/api/save-gradient', async (req: any, res: any) => {
-        if (req.method === 'POST') {
-          let body = '';
-          req.on('data', (chunk: any) => { body += chunk.toString(); });
-          req.on('end', async () => {
-            try {
-              const data = JSON.parse(body);
-              const filename = (data.filename || "home.gradient.json").replace(/[^a-zA-Z0-9._-]/g, "");
-              const dir = path.resolve(__dirname, 'public', 'gradients');
-              await fs.mkdir(dir, { recursive: true });
-              await fs.writeFile(path.join(dir, filename), JSON.stringify(data.preset, null, 2), 'utf8');
-              res.statusCode = 200;
-              res.setHeader('Content-Type', 'application/json');
-              res.end(JSON.stringify({ ok: true, file: `public/gradients/${filename}` }));
-            } catch (err: any) {
-              res.statusCode = 500;
-              res.end(err.message);
-            }
-          });
-        } else {
-          res.statusCode = 405;
-          res.end('Method Not Allowed');
-        }
-      });
-    }
-  };
-}
-
-import { visualizer } from "rollup-plugin-visualizer";
-
-export default defineConfig(({mode}) => {
-  const env = loadEnv(mode, '.', '');
-  return {
-    plugins: [react(), tailwindcss(), gradientSavePlugin(), visualizer({ open: false })],
-    define: {
-      'process.env.GEMINI_API_KEY': JSON.stringify(env.GEMINI_API_KEY),
-    },
-    resolve: {
-      alias: {
-        '@': path.resolve(__dirname, '.'),
+export default defineConfig({
+  plugins: [
+    react(),
+    tailwindcss(),
+    {
+      name: 'serve-albra-html',
+      configureServer(server) {
+        server.middlewares.use((req, _res, next) => {
+          const blogRewrites: Record<string, string> = {
+            '/blog': '/blog.html',
+            '/blog/cerveau-popcorn': '/blog-cerveau-popcorn.html',
+            '/blog/cout-physique-scroll-sedentarite-text-neck': '/blog-cout-physique-scroll-sedentarite-text-neck.html',
+            '/blog/dopamine-reseaux-sociaux': '/blog-dopamine-reseaux-sociaux.html',
+            '/blog/fatigue-oculaire-ecran': '/blog-fatigue-oculaire-ecran.html',
+            '/blog/insomnie-smartphone': '/blog-insomnie-smartphone.html',
+            '/blog/lumiere-bleue-insomnie-sommeil': '/blog-lumiere-bleue-insomnie-sommeil.html',
+            '/blog/neuroplasticite-scroll-infini-cerveau': '/blog-neuroplasticite-scroll-infini-cerveau.html',
+            '/simulateur': '/simulateur.html',
+            '/cgv': '/cgv.html',
+            '/confidentialite': '/confidentialite.html',
+            '/mentions-legales': '/mentions-legales.html',
+            '/remboursement': '/remboursement.html',
+          };
+          const url = req.url?.split('?')[0] ?? '';
+          if (blogRewrites[url]) {
+            req.url = blogRewrites[url];
+          } else if (url === '/' || url === '/index.html') {
+            req.url = '/index-albra.html';
+          }
+          next();
+        });
       },
     },
-    server: {
-      // HMR is disabled in AI Studio via DISABLE_HMR env var.
-      // Do not modifyâ€”file watching is disabled to prevent flickering during agent edits.
-      hmr: process.env.DISABLE_HMR !== 'true',
+  ],
+  resolve: {
+    alias: {
+      '@': path.resolve(__dirname, '../app'),
     },
-    build: {
-      rollupOptions: {
-        input: {
-          main: path.resolve(__dirname, 'index.html'),
-          simulateur: path.resolve(__dirname, 'simulateur.html'),
-          cgv: path.resolve(__dirname, 'cgv.html'),
-          confidentialite: path.resolve(__dirname, 'confidentialite.html'),
-          'mentions-legales': path.resolve(__dirname, 'mentions-legales.html'),
-          remboursement: path.resolve(__dirname, 'remboursement.html'),
-          'blog-insomnie-smartphone': path.resolve(__dirname, 'blog-insomnie-smartphone.html'),
-          blog: path.resolve(__dirname, 'blog.html'),
-          'blog-dopamine-reseaux-sociaux': path.resolve(__dirname, 'blog-dopamine-reseaux-sociaux.html'),
-          'blog-fatigue-oculaire-ecran': path.resolve(__dirname, 'blog-fatigue-oculaire-ecran.html'),
-          'blog-cerveau-popcorn': path.resolve(__dirname, 'blog-cerveau-popcorn.html'),
-          'blog-lumiere-bleue-insomnie-sommeil': path.resolve(__dirname, 'blog-lumiere-bleue-insomnie-sommeil.html'),
-          'blog-neuroplasticite-scroll-infini-cerveau': path.resolve(__dirname, 'blog-neuroplasticite-scroll-infini-cerveau.html'),
-          'blog-cout-physique-scroll-sedentarite-text-neck': path.resolve(__dirname, 'blog-cout-physique-scroll-sedentarite-text-neck.html'),
-        },
-        output: {
-          manualChunks: {
-            'vendor-react': ['react', 'react-dom'],
-            'vendor-motion': ['motion'],
-            'vendor-icons': ['lucide-react'],
-          }
-        }
-      }
-    }
-  };
+  },
+  server: {
+    port: 5174,
+    host: '0.0.0.0',
+    hmr: true,
+  },
+  build: {
+    rollupOptions: {
+      input: {
+        main: path.resolve(__dirname, 'index-albra.html'),
+      },
+    },
+  },
 });

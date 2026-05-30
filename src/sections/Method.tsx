@@ -42,8 +42,22 @@ const modules = [
       "Installer des routines durables qui remplacent les anciens réflexes"
     ]
   },
-  { 
-    moduleNum: "MODULE 5", 
+  {
+    moduleNum: "BONUS",
+    tag: "INCLUS",
+    title: "Ce qui t'accompagne",
+    desc: "Tout ce dont tu as besoin pour rester sur la bonne voie et ancrer les changements durablement.",
+    features: [
+      "Plan d'action jour par jour",
+      "Communauté privée d'entraide",
+      "Exercices pratiques adaptés",
+      "Fiches ressources téléchargeables",
+      "Suivi de progression",
+      "Accès à vie + mises à jour incluses",
+    ]
+  },
+  {
+    moduleNum: "MODULE 5",
     tag: "PARENT",
     title: "Devenir un repère", 
     desc: "Aide ton enfant à construire une relation plus saine aux écrans avec calme et confiance.",
@@ -66,34 +80,39 @@ const containerVariants = {
 };
 
 const itemVariants = {
-  hidden: { opacity: 0, y: 30 },
-  visible: { 
-    opacity: 1, 
+  hidden: { opacity: 0, y: 22 },
+  visible: {
+    opacity: 1,
     y: 0,
-    transition: { duration: 0.6 }
+    transition: { duration: 0.6, ease: [0.22, 1, 0.36, 1] }
   },
 };
 
 export const Method = () => {
   return (
-    <section className="relative z-10 px-6 py-24 md:px-12 max-w-7xl mx-auto flex flex-col flex-wrap text-center items-center">
-      <m.h2 
+    <section className="relative z-10 px-6 py-24 md:py-32 md:px-12 max-w-7xl mx-auto flex flex-col flex-wrap text-center items-center">
+      <m.p initial={{ opacity: 0, y: 16 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true, margin: "100px" }} transition={{ duration: 0.5, ease: [0.22, 1, 0.36, 1] }} className="text-[11px] font-bold tracking-[0.18em] text-[#D4A373] uppercase mb-4">
+        La méthode Origine
+      </m.p>
+      <m.h2
         initial={{ opacity: 0, y: 20 }}
         whileInView={{ opacity: 1, y: 0 }}
         viewport={{ once: true, margin: "100px" }}
-        className="text-3xl md:text-4xl lg:text-5xl font-medium tracking-tight text-white mb-6 max-w-4xl"
+        transition={{ duration: 0.65, ease: [0.22, 1, 0.36, 1], delay: 0.07 }}
+        className="text-3xl md:text-4xl lg:text-5xl text-white mb-6 max-w-4xl"
       >
         Tu n'as pas besoin de plus de volonté. <br className="hidden md:block"/>
-        Tu as besoin de <span className="text-transparent bg-clip-text bg-gradient-to-r from-white via-[#F4D3A1] to-[#D4A373]">la bonne méthode.</span>
+        Tu as besoin de <span className="text-[#D4A373]">la bonne méthode.</span>
       </m.h2>
 
-      <m.p 
+      <m.p
         initial={{ opacity: 0, y: 20 }}
         whileInView={{ opacity: 1, y: 0 }}
         viewport={{ once: true, margin: "100px" }}
-        className="text-lg text-white/70 max-w-3xl mb-16 leading-relaxed"
+        transition={{ duration: 0.65, ease: [0.22, 1, 0.36, 1], delay: 0.16 }}
+        className="text-white/70 max-w-3xl mb-16 leading-relaxed"
       >
-        Un programme complet en 5 modules, dont 1 module <span className="text-[#D4A373] font-semibold">parent</span> (pack famille) pour t'aider à reprendre le contrôle de ton attention et construire une vie alignée, plus claire et pleine de sens.
+        Un programme en 5 modules pour comprendre les mécanismes, briser les automatismes et construire des habitudes durables, à ton rythme.
       </m.p>
       
       <m.div 
@@ -107,15 +126,18 @@ export const Method = () => {
           <m.div
             key={i}
             variants={itemVariants}
-            className="relative rounded-[32px] p-12 flex flex-col overflow-hidden group bg-[#0A0A0A] border border-[#D4A373]/30 transition-[transform,border-color,box-shadow] duration-500 hover:-translate-y-2 hover:border-[#D4A373] hover:shadow-[0_0_50px_-12px_rgba(212,163,115,0.5)] will-change-transform w-full md:w-[calc(50%-2rem)] lg:w-[calc(33.333%-2rem)] min-w-[300px] max-w-[400px]"
+            className="relative rounded-[32px] p-12 flex flex-col overflow-hidden group bg-white/[0.04] backdrop-blur-2xl border border-white/[0.10] shadow-[inset_0_1px_0_rgba(255,255,255,0.14),0_4px_24px_rgba(0,0,0,0.25)] transition-[transform,background-color,border-color,box-shadow,backdrop-filter] duration-500 hover:-translate-y-2 hover:bg-white/[0.09] hover:backdrop-blur-[48px] hover:border-[#D4A373]/60 hover:shadow-[inset_0_1px_0_rgba(255,255,255,0.32),0_0_20px_-6px_rgba(212,163,115,0.28)] will-change-transform w-full md:w-[calc(50%-2rem)] lg:w-[calc(33.333%-2rem)] min-w-[300px] max-w-[400px]"
           >
-            {/* Internal glow effect on hover */}
+            {/* Frost top-edge */}
+            <div className="absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-white/20 to-transparent pointer-events-none" />
+            <div className="absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-white/55 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none" />
+            {/* Golden glow on hover */}
             <div className="absolute inset-0 bg-gradient-to-br from-[#D4A373]/10 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none" />
             
             <div className="relative z-10 flex flex-col h-full">
               <div className="flex flex-col mb-6">
                 <div className="inline-flex items-center gap-2 mb-2">
-                  <span className="text-[12px] uppercase tracking-[0.2em] font-black text-transparent bg-clip-text bg-gradient-to-r from-[#F4D3A1] to-[#D4A373]">
+                  <span className="text-[12px] uppercase tracking-[0.2em] font-black text-[#D4A373]">
                     {mod.moduleNum}
                   </span>
                   {mod.tag && (

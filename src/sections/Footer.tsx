@@ -8,12 +8,11 @@ export const Footer = ({ onContactClick }: { onContactClick?: () => void }) => {
     const element = document.getElementById(id);
     if (element) {
       element.scrollIntoView({ behavior: 'smooth' });
-      window.history.replaceState(null, '', window.location.pathname);
     }
   };
 
   return (
-    <footer className="relative z-10 border-t border-white/10 bg-[#0B0F19] pt-20 pb-10 mt-12 w-full">
+    <footer className="relative z-10 border-t border-white/10 bg-[#0B0F19] pt-20 pb-10 w-full">
       <div className="max-w-7xl mx-auto px-6 md:px-12">
         <div className="grid grid-cols-1 md:grid-cols-4 gap-12 mb-16">
           <div className="col-span-1 md:col-span-1">
@@ -66,16 +65,16 @@ export const Footer = ({ onContactClick }: { onContactClick?: () => void }) => {
           <div>
             <h4 className="text-white font-medium mb-6">Légal</h4>
             <ul className="flex flex-col gap-4 text-sm text-white/50">
-              <li><a href="/mentions-legales.html" className="hover:text-white transition-colors">Mentions légales</a></li>
-              <li><a href="/cgv.html" className="hover:text-white transition-colors">Conditions générales</a></li>
-              <li><a href="/confidentialite.html" className="hover:text-white transition-colors">Politique de confidentialité</a></li>
-              <li><a href="/remboursement.html" className="hover:text-white transition-colors">Politique de remboursement</a></li>
+              <li><a href="/mentions-legales" className="hover:text-white transition-colors">Mentions légales</a></li>
+              <li><a href="/cgv" className="hover:text-white transition-colors">Conditions générales</a></li>
+              <li><a href="/confidentialite" className="hover:text-white transition-colors">Politique de confidentialité</a></li>
+              <li><a href="/remboursement" className="hover:text-white transition-colors">Politique de remboursement</a></li>
             </ul>
           </div>
         </div>
         
         <div className="pt-8 border-t border-white/10 flex flex-col md:flex-row items-center justify-between gap-4 text-[12px] text-white/40">
-          <p>© 2025 ScrollFree. Tous droits réservés.</p>
+          <p>© 2026 ScrollFree. Tous droits réservés.</p>
           <p className="flex items-center gap-1">Fabriqué avec <span className="text-orange-400">♥</span> pour t'aider à reprendre le contrôle.</p>
         </div>
       </div>

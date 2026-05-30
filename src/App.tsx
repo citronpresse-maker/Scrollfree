@@ -1,4 +1,4 @@
-import React, { Suspense, lazy } from 'react';
+import React, { Suspense, lazy, useState, useEffect, useCallback } from 'react';
 import { LazyMotion, domAnimation } from 'motion/react';
 import { GradientBackground } from './components/gradient/GradientBackground';
 import homeGradient from '../public/gradients/home.gradient.json';
@@ -12,7 +12,6 @@ const Stats = lazy(() => import('./sections/Stats').then(m => ({ default: m.Stat
 const DiagnosticFeatures = lazy(() => import('./sections/DiagnosticFeatures').then(m => ({ default: m.DiagnosticFeatures })));
 const Testimonials = lazy(() => import('./sections/Testimonials').then(m => ({ default: m.Testimonials })));
 const Method = lazy(() => import('./sections/Method').then(m => ({ default: m.Method })));
-const SuccessFeatures = lazy(() => import('./sections/SuccessFeatures').then(m => ({ default: m.SuccessFeatures })));
 const Pricing = lazy(() => import('./sections/Pricing').then(m => ({ default: m.Pricing })));
 const FAQ = lazy(() => import('./sections/FAQ').then(m => ({ default: m.FAQ })));
 const ContactForm = lazy(() => import('./sections/ContactForm').then(m => ({ default: m.ContactForm })));
@@ -31,6 +30,61 @@ export default function App() {
   const [waitlistState, setWaitlistState] = React.useState<{isOpen: boolean, pack?: string}>({
     isOpen: false
   });
+
+  const [theme, setTheme] = useState<'dark' | 'light'>(() => {
+    if (typeof window !== 'undefined') {
+      return (localStorage.getItem('sf-theme') as 'dark' | 'light') || 'dark';
+    }
+    return 'dark';
+  });
+
+  useEffect(() => {
+    document.documentElement.setAttribute('data-theme', theme);
+    localStorage.setItem('sf-theme', theme);
+  }, [theme]);
+
+  const toggleTheme = useCallback(() => {
+    setTheme(t => t === 'dark' ? 'light' : 'dark');
+  }, []);
+
+  React.useEffect(() => {
+    const urlParams = new URLSearchParams(window.location.search);
+    const goto = urlParams.get('goto');
+    const hash = window.location.hash;
+    const targetId = goto || (hash ? hash.replace('#', '') : null);
+
+    if (targetId) {
+      let attempts = 0;
+      const interval = setInterval(() => {
+        const element = document.getElementById(targetId);
+        if (element) {
+          clearInterval(interval);
+          setTimeout(() => {
+            element.scrollIntoView({ behavior: 'smooth' });
+            // Remove any query parameters and hashes from the address bar to keep it perfectly clean
+            window.history.replaceState(null, '', window.location.pathname);
+          }, 100);
+        }
+        attempts++;
+        if (attempts > 50) {
+          clearInterval(interval);
+        }
+      }, 100);
+      return () => clearInterval(interval);
+    }
+  }, []);
+
+  React.useEffect(() => {
+    const handleDragStart = (e: DragEvent) => {
+      if ((e.target as HTMLElement).tagName === 'IMG') e.preventDefault();
+    };
+
+    document.addEventListener('dragstart', handleDragStart);
+
+    return () => {
+      document.removeEventListener('dragstart', handleDragStart);
+    };
+  }, []);
 
   return (
     <LazyMotion features={domAnimation} strict>
@@ -56,7 +110,7 @@ export default function App() {
             </defs>
           </svg>
 
-          <Hero />
+          <Hero theme={theme} onThemeToggle={toggleTheme} />
 
           <main>
             <Suspense fallback={<SectionPlaceholder height="100vh" />}>
@@ -82,12 +136,6 @@ export default function App() {
             <div id="methode">
               <Suspense fallback={<SectionPlaceholder height="100vh" />}>
                 <Method />
-              </Suspense>
-            </div>
-            
-            <div id="success">
-              <Suspense fallback={<SectionPlaceholder height="80vh" />}>
-                <SuccessFeatures />
               </Suspense>
             </div>
             

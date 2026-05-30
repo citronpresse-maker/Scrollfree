@@ -1,9 +1,15 @@
 import React, { useState } from 'react';
-import { Menu, X, ChevronRight } from 'lucide-react';
-import { m } from 'motion/react';
-import bgImage from '../background_web_dark.webp';
+import { Menu, X, ChevronRight, Sun, Moon } from 'lucide-react';
+import { m, AnimatePresence } from 'motion/react';
+import bgDark from '../background_web_dark.webp';
+import bgLight from '../background_web_light.webp';
 
-export const Hero = () => {
+interface HeroProps {
+  theme: 'dark' | 'light';
+  onThemeToggle: () => void;
+}
+
+export const Hero = ({ theme, onThemeToggle }: HeroProps) => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
 
   const navLinks = [
@@ -23,16 +29,17 @@ export const Hero = () => {
       if (element) {
         element.scrollIntoView({ behavior: 'smooth' });
         setIsMenuOpen(false);
-        window.history.replaceState(null, '', window.location.pathname);
       }
     }
   };
 
   return (
+    <>
+    <a href="#hero" className="sr-only focus:not-sr-only focus:fixed focus:top-4 focus:left-4 focus:z-[200] focus:bg-[#D4A373] focus:text-black focus:px-4 focus:py-2 focus:rounded-lg focus:font-bold focus:text-sm">Aller au contenu</a>
     <div className="relative min-h-screen">
       <div className="absolute inset-0 -z-10 overflow-hidden pointer-events-none">
         <img 
-          src={bgImage} 
+          src={theme === 'light' ? bgLight : bgDark} 
           alt="Atmospheric Background" 
           className="w-full h-full object-cover"
           draggable="false"
@@ -40,7 +47,7 @@ export const Hero = () => {
           fetchPriority="high"
           decoding="async"
         />
-        <div className="absolute inset-x-0 bottom-0 h-[60vh] bg-gradient-to-b from-transparent via-[#0B0F19]/50 to-[#0B0F19] pointer-events-none" />
+        <div className="absolute inset-x-0 bottom-0 h-[8vh] bg-gradient-to-b from-transparent to-[#0B0F19] pointer-events-none" />
       </div>
 
       {/* Navigation */}
@@ -129,9 +136,21 @@ export const Hero = () => {
           ))}
         </div>
 
+        {/* Theme toggle — desktop */}
+        <button
+          onClick={onThemeToggle}
+          aria-label="Changer le thème"
+          className="hidden lg:flex glass-cta items-center gap-2 !py-[7px] !px-5 !text-sm"
+        >
+          {theme === 'dark'
+            ? <><Sun size={15} strokeWidth={2} /> Mode jour</>
+            : <><Moon size={15} strokeWidth={2} /> Mode nuit</>
+          }
+        </button>
+
         {/* Mobile Nav Toggle */}
-        <button 
-          className="md:hidden text-white" 
+        <button
+          className="lg:hidden text-white flex items-center justify-center w-11 h-11 -mr-1"
           onClick={() => setIsMenuOpen(!isMenuOpen)}
           aria-label="Toggle menu"
         >
@@ -139,24 +158,34 @@ export const Hero = () => {
         </button>
 
         {/* Mobile Menu Overlay */}
-        {isMenuOpen && (
-          <m.div 
-            initial={{ opacity: 0, y: -20 }}
-            animate={{ opacity: 1, y: 0 }}
-            className="absolute top-24 left-0 w-full bg-[#0B0F19] border-b border-white/10 px-6 py-8 flex flex-col gap-6 md:hidden z-50 text-center"
-          >
-            {navLinks.map((link) => (
-              <a
-                key={link.name}
-                href={link.href}
-                className="text-lg font-medium opacity-60 hover:opacity-100 transition-opacity"
-                onClick={(e) => scrollToSection(e, link.href)}
+        <AnimatePresence>
+          {isMenuOpen && (
+            <m.div
+              initial={{ opacity: 0, y: -12 }}
+              animate={{ opacity: 1, y: 0 }}
+              exit={{ opacity: 0, y: -8 }}
+              transition={{ duration: 0.22, ease: [0.23, 1, 0.32, 1] }}
+              className="absolute top-24 left-0 w-full bg-[#0B0F19] border-b border-white/10 px-6 py-8 flex flex-col gap-6 lg:hidden z-50 text-center"
+            >
+              {navLinks.map((link) => (
+                <a
+                  key={link.name}
+                  href={link.href}
+                  className="text-lg font-medium opacity-60 hover:opacity-100 transition-opacity"
+                  onClick={(e) => scrollToSection(e, link.href)}
+                >
+                  {link.name}
+                </a>
+              ))}
+              <button
+                onClick={() => { onThemeToggle(); setIsMenuOpen(false); }}
+                className="glass-cta flex items-center justify-center gap-2 w-full !text-base"
               >
-                {link.name}
-              </a>
-            ))}
-          </m.div>
-        )}
+                {theme === 'dark' ? <><Sun size={16} /> Mode jour</> : <><Moon size={16} /> Mode nuit</>}
+              </button>
+            </m.div>
+          )}
+        </AnimatePresence>
       </nav>
 
       {/* Hero Section */}
@@ -167,10 +196,10 @@ export const Hero = () => {
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, ease: "easeOut" }}
-            className="text-5xl md:text-[65px] font-medium leading-[1.1] md:leading-[1.1] mb-8 tracking-tight text-white"
+            className="text-5xl md:text-[68px] mb-8 text-white"
           >
             <span className="block">Reprends le contrôle</span>
-            <span className="block">sur les écrans</span>
+            <span className="block">de ton temps d’écran</span>
           </m.h1>
 
           {/* Sub Headline */}
@@ -178,11 +207,9 @@ export const Hero = () => {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 0.2, ease: "easeOut" }}
-            className="text-[19.4px] text-white/90 mb-12 max-w-2xl leading-[1.6] font-normal tracking-wide"
+            className="text-[18px] text-white/65 mb-12 max-w-[56ch] leading-[1.7] font-light text-pretty"
           >
-            Scrollfree t'aide à reprendre le contrôle<br className="hidden sm:block" />
-            sur les écrans en <span className="font-bold text-white">21 jours chrono</span> avec<br className="hidden sm:block" />
-            la méthode personnalisée Origine.
+            Retrouve plus de calme, de focus et de temps pour ce qui compte vraiment grâce à <span className="font-bold text-white">Origine</span>, notre méthode personnalisée sans quitter les réseaux sociaux.
           </m.p>
 
           {/* Call to Actions */}
@@ -200,12 +227,13 @@ export const Hero = () => {
               Reprendre le contrôle
             </a>
 
-            <a href="/simulateur.html" className="glass-cta group flex items-center justify-center text-center no-underline">
+            <a href="/simulateur" className="glass-cta group flex items-center justify-center text-center no-underline">
               Mon diagnostic
             </a>
           </m.div>
         </div>
       </main>
     </div>
+    </>
   );
 };
