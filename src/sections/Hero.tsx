@@ -47,7 +47,7 @@ export const Hero = ({ theme, onThemeToggle }: HeroProps) => {
           fetchPriority="high"
           decoding="async"
         />
-        <div className="absolute inset-x-0 bottom-0 h-[8vh] bg-gradient-to-b from-transparent to-[#0B0F19] pointer-events-none" />
+        <div className={`absolute inset-x-0 bottom-0 h-[8vh] pointer-events-none ${theme === 'light' ? 'bg-gradient-to-b from-transparent to-[#EEE9DF]' : 'bg-gradient-to-b from-transparent to-[#0B0F19]'}`} />
       </div>
 
       {/* Navigation */}

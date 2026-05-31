@@ -93,6 +93,9 @@
 [data-theme="light"] .text-white\/80 {
   color: rgba(27,38,50,0.68) !important;
 }
+[data-theme="light"] .text-white\/75 {
+  color: #000000 !important;
+}
 [data-theme="light"] .text-white\/50,
 [data-theme="light"] .text-white\/55 {
   color: rgba(27,38,50,0.55) !important;
@@ -674,7 +677,7 @@
 
 /* ── TEXT-WHITE OVERRIDE DAY MODE ── */
 [data-theme="light"] .text-white {
-  color: #1B2632 !important;
+  color: #000000 !important;
 }
 
 /* Bold/strong → terracotta in day mode */

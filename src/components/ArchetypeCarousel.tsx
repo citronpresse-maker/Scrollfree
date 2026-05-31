@@ -1,8 +1,8 @@
 import { m, AnimatePresence } from 'motion/react';
 
-const archetypes = [
+export const archetypes = [
   { key: 'automate',    label: "L'AUTOMATE",    highlight: 'AUTO',   color: '#D4A373', level: 3 },
-  { key: 'explorateur', label: "L'EXPLORATEUR", highlight: 'EXPLOR', color: '#38BDF8', level: 2 },
+  { key: 'explorateur', label: "L'EXPLORATEUR", highlight: 'EXPLOR', color: '#38BDF8', level: 1 },
   { key: 'flaneur',     label: 'LE FLÂNEUR',    highlight: 'FLÂN',   color: '#A78BFA', level: 1 },
   { key: 'fugitif',     label: 'LE FUGITIF',    highlight: 'FUGIT',  color: '#FB923C', level: 2 },
   { key: 'relie',       label: 'LE RELIÉ',      highlight: 'RELI',   color: '#4ADE80', level: 1 },
@@ -10,18 +10,6 @@ const archetypes = [
   { key: 'stimule',     label: 'LE STIMULÉ',    highlight: 'STIMUL', color: '#FACC15', level: 3 },
   { key: 'valide',      label: 'LE VALIDÉ',     highlight: 'VALID',  color: '#34D399', level: 1 },
 ];
-
-function HighlightedName({ label, highlight, color }: { label: string; highlight: string; color: string }) {
-  const idx = label.indexOf(highlight);
-  if (idx === -1) return <span>{label}</span>;
-  return (
-    <>
-      <span className="text-white/90">{label.slice(0, idx)}</span>
-      <span style={{ color }}>{label.slice(idx, idx + highlight.length)}</span>
-      <span className="text-white/90">{label.slice(idx + highlight.length)}</span>
-    </>
-  );
-}
 
 interface ArchetypeCarouselProps {
   currentIndex: number;
@@ -48,22 +36,6 @@ export const ArchetypeCarousel = ({ currentIndex }: ArchetypeCarouselProps) => {
           loading="lazy"
           draggable={false}
         />
-      </AnimatePresence>
-
-      {/* Name badge — overlaid at top */}
-      <AnimatePresence mode="wait">
-        <m.div
-          key={`name-${arch.key}`}
-          initial={{ opacity: 0, y: -6 }}
-          animate={{ opacity: 1, y: 0 }}
-          exit={{ opacity: 0, y: 6 }}
-          transition={{ duration: 0.3 }}
-          className="absolute top-5 inset-x-0 flex justify-center z-10"
-        >
-          <span className="text-[0.95rem] font-black tracking-[0.07em]">
-            <HighlightedName label={arch.label} highlight={arch.highlight} color={arch.color} />
-          </span>
-        </m.div>
       </AnimatePresence>
 
     </div>

@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
-import { m } from 'motion/react';
+import { m, AnimatePresence } from 'motion/react';
 import { Clock, Zap, User, Sparkles, ChevronRight } from 'lucide-react';
-import { ArchetypeCarousel } from '../components/ArchetypeCarousel';
+import { ArchetypeCarousel, archetypes } from '../components/ArchetypeCarousel';
 import { ScreenTimeSimulator } from '../components/ScreenTimeSimulator';
 import { EmpriseSimulator } from '../components/EmpriseSimulator';
 
@@ -54,7 +54,7 @@ export const DiagnosticFeatures = () => {
         CE QUE TON RAPPORT SUR-MESURE DÉVOILE…
       </m.p>
 
-      {/* Card titles */}
+      {/* Card titles - Desktop */}
       <m.div
         initial={{ opacity: 0, y: 15 }}
         whileInView={{ opacity: 1, y: 0 }}
@@ -62,8 +62,24 @@ export const DiagnosticFeatures = () => {
         className="hidden md:grid grid-cols-3 gap-8 md:gap-10 w-full mb-8 text-center"
       >
         {cardTitles.map((title, idx) => (
-          <div key={idx} className="px-4 text-white/75 font-semibold text-[14px] leading-relaxed">
-            {title}
+          <div key={idx} className="px-4 text-white/75 font-semibold text-[14px] leading-relaxed flex flex-col items-center">
+            <span className="mb-2">{title}</span>
+            {idx === 1 && (
+              <div className="h-6">
+                <AnimatePresence mode="wait">
+                  <m.div
+                    key={archetypes[animationIndex % archetypes.length].key}
+                    initial={{ opacity: 0, y: -5 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    exit={{ opacity: 0, y: 5 }}
+                    className="text-white font-black tracking-widest text-[1rem] uppercase"
+                    style={{ fontFamily: "'Bricolage Grotesque', sans-serif" }}
+                  >
+                    {archetypes[animationIndex % archetypes.length].label}
+                  </m.div>
+                </AnimatePresence>
+              </div>
+            )}
           </div>
         ))}
       </m.div>
@@ -74,19 +90,51 @@ export const DiagnosticFeatures = () => {
         initial="hidden"
         whileInView="visible"
         viewport={{ once: true, margin: "100px" }}
-        className="grid grid-cols-1 md:grid-cols-3 gap-6 w-full mb-20"
+        className="grid grid-cols-1 md:grid-cols-3 gap-12 md:gap-6 w-full mb-20"
       >
-        <m.div variants={itemVariants} className="diagnostic-card relative rounded-[28px] h-[460px] overflow-hidden border border-white/[0.08] bg-[#0d0d18] shadow-[inset_0_1px_0_rgba(255,255,255,0.06),0_8px_32px_rgba(0,0,0,0.4)] transition-[transform,border-color] duration-500 hover:-translate-y-1 hover:border-[#D4A373]/30 will-change-transform">
-          <ScreenTimeSimulator stepIndex={animationIndex % 4} />
-        </m.div>
+        {/* Card 1 */}
+        <div className="flex flex-col gap-4">
+          <div className="md:hidden text-white/75 font-semibold text-[14px] leading-relaxed">
+            {cardTitles[0]}
+          </div>
+          <m.div variants={itemVariants} className="diagnostic-card relative rounded-[28px] h-[460px] overflow-hidden border border-white/[0.08] bg-[#0d0d18] shadow-[inset_0_1px_0_rgba(255,255,255,0.06),0_8px_32px_rgba(0,0,0,0.4)] transition-[transform,border-color] duration-500 hover:-translate-y-1 hover:border-[#D4A373]/30 will-change-transform">
+            <ScreenTimeSimulator stepIndex={animationIndex % 4} />
+          </m.div>
+        </div>
 
-        <m.div variants={itemVariants} className="diagnostic-card relative rounded-[28px] h-[460px] overflow-hidden border border-white/[0.08] bg-[#0d0d18] shadow-[inset_0_1px_0_rgba(255,255,255,0.06),0_8px_32px_rgba(0,0,0,0.4)] transition-[transform,border-color] duration-500 hover:-translate-y-1 hover:border-[#D4A373]/30 will-change-transform">
-          <ArchetypeCarousel currentIndex={animationIndex} />
-        </m.div>
+        {/* Card 2 */}
+        <div className="flex flex-col gap-4">
+          <div className="md:hidden text-white/75 font-semibold text-[14px] leading-relaxed">
+            {cardTitles[1]}
+            <div className="mt-2 h-6">
+              <AnimatePresence mode="wait">
+                <m.div
+                  key={archetypes[animationIndex % archetypes.length].key}
+                  initial={{ opacity: 0, y: -5 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  exit={{ opacity: 0, y: 5 }}
+                  className="text-white font-black tracking-widest text-[1rem] uppercase"
+                  style={{ fontFamily: "'Bricolage Grotesque', sans-serif" }}
+                >
+                  {archetypes[animationIndex % archetypes.length].label}
+                </m.div>
+              </AnimatePresence>
+            </div>
+          </div>
+          <m.div variants={itemVariants} className="diagnostic-card relative rounded-[28px] h-[460px] overflow-hidden border border-white/[0.08] bg-[#0d0d18] shadow-[inset_0_1px_0_rgba(255,255,255,0.06),0_8px_32px_rgba(0,0,0,0.4)] transition-[transform,border-color] duration-500 hover:-translate-y-1 hover:border-[#D4A373]/30 will-change-transform">
+            <ArchetypeCarousel currentIndex={animationIndex} />
+          </m.div>
+        </div>
 
-        <m.div variants={itemVariants} className="diagnostic-card relative rounded-[28px] h-[460px] overflow-hidden border border-white/[0.08] bg-[#0d0d18] shadow-[inset_0_1px_0_rgba(255,255,255,0.06),0_8px_32px_rgba(0,0,0,0.4)] transition-[transform,border-color] duration-500 hover:-translate-y-1 hover:border-[#D4A373]/30 will-change-transform">
-          <EmpriseSimulator activeIndex={animationIndex % 4} />
-        </m.div>
+        {/* Card 3 */}
+        <div className="flex flex-col gap-4">
+          <div className="md:hidden text-white/75 font-semibold text-[14px] leading-relaxed">
+            {cardTitles[2]}
+          </div>
+          <m.div variants={itemVariants} className="diagnostic-card relative rounded-[28px] h-[460px] overflow-hidden border border-white/[0.08] bg-[#0d0d18] shadow-[inset_0_1px_0_rgba(255,255,255,0.06),0_8px_32px_rgba(0,0,0,0.4)] transition-[transform,border-color] duration-500 hover:-translate-y-1 hover:border-[#D4A373]/30 will-change-transform">
+            <EmpriseSimulator activeIndex={animationIndex % 4} />
+          </m.div>
+        </div>
       </m.div>
 
       {/* CTA */}

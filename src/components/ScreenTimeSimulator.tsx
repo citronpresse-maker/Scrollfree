@@ -17,10 +17,10 @@ export const ScreenTimeSimulator = ({ stepIndex }: ScreenTimeSimulatorProps) => 
   const pct = Math.min(step.hours / maxH, 1);
 
   return (
-    <div className="flex flex-col justify-between items-center w-full h-full px-5 pt-5 pb-7 text-center">
+    <div className="flex flex-col justify-between items-center w-full h-full px-5 pt-10 pb-7 text-center">
 
-      {/* Slider inner card */}
-      <div className="w-full rounded-2xl bg-white/[0.05] border border-white/[0.06] px-5 py-4 flex flex-col gap-3">
+      {/* Slider inner card — narrower and lower */}
+      <div className="w-[92%] rounded-2xl bg-white/[0.05] border border-white/[0.06] px-5 py-4 flex flex-col gap-3">
         <div className="flex items-center justify-between">
           <span className="text-[0.65rem] font-bold uppercase tracking-[0.14em] text-white/50">
             Temps d'écran quotidien
